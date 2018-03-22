@@ -8,6 +8,9 @@ package com.bubble.execute.utils;
  */
 
 public class ConstantUtil {
+    public static final String USER_LOGIN_TYPE_UNUPDATA_DEVICEID = "0";
+    public static final String USER_LOGIN_TYPE_UPDATA_DEVICEID = "1";
+
     public interface UserData{
         /**
          * 用户的账户

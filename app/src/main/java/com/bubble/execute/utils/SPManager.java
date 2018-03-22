@@ -14,7 +14,7 @@ import com.bubble.execute.ExApplication;
 
 public class SPManager {
 
-    public static SharedPreferences getSharedPreferences() {
+    private static SharedPreferences getSharedPreferences() {
         return ExApplication.getInstance()
                 .getSharedPreferences(ExApplication.getInstance().getPackageName(), Context.MODE_PRIVATE);
     }

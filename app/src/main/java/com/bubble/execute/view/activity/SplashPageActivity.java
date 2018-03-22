@@ -8,9 +8,11 @@ import android.widget.TextView;
 
 import com.bubble.execute.R;
 import com.bubble.execute.presenter.SplashPagePresenter;
-import com.bubble.execute.presenter.presenter_interface.ISplashPagePresenter;
+import com.bubble.execute.presenter.impl.ISplashPagePresenter;
+import com.bubble.execute.utils.ConstantUtil;
+import com.bubble.execute.utils.DeviceUtil;
 import com.bubble.execute.utils.SPManager;
-import com.bubble.execute.view_interface.ISplashActivityView;
+import com.bubble.execute.view.impl.ISplashActivityView;
 
 /**
  * @author 徐长策
@@ -64,6 +66,16 @@ public class SplashPageActivity extends BaseActivity implements ISplashActivityV
     @Override
     public void showLoadingData() {
         mTextLoading.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public String getDeviceID() {
+        return DeviceUtil.getAndroidID(this);
+    }
+
+    @Override
+    public String getUserLoginType() {
+        return ConstantUtil.USER_LOGIN_TYPE_UNUPDATA_DEVICEID;
     }
 
     @Override

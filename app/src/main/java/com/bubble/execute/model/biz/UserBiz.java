@@ -1,7 +1,9 @@
 package com.bubble.execute.model.biz;
 
-import com.bubble.execute.model.biz.biz_interface.IUserBiz;
-import com.bubble.execute.model.biz.listener.OnLoginListener;
+import com.bubble.execute.model.bean.LoginDataRequest;
+import com.bubble.execute.model.impl.IUserBiz;
+import com.bubble.execute.model.listener.OnLoginListener;
+import com.google.gson.Gson;
 
 /**
  * @author 徐长策
@@ -13,7 +15,7 @@ import com.bubble.execute.model.biz.listener.OnLoginListener;
 public class UserBiz implements IUserBiz{
 
     @Override
-    public void login(String mail, String password, OnLoginListener loginListener) {
-        //开始写登录业务逻辑
+    public void login(String mail, String password, String phoneDeviceId, String userLoginType, OnLoginListener loginListener) {
+
     }
 }

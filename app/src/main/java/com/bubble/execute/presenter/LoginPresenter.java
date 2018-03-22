@@ -1,7 +1,6 @@
 package com.bubble.execute.presenter;
 
-import com.bubble.execute.presenter.presenter_interface.ILoginPresenter;
-import com.bubble.execute.view_interface.ISplashActivityView;
+import com.bubble.execute.presenter.impl.ILoginPresenter;
 
 /**
  * @author 徐长策
