@@ -28,13 +28,17 @@ public class SplashPagePresenter implements ISplashPagePresenter{
         mSplashView.showLoadingData();
         mILoginBiz.login(mSplashView.getMail(), mSplashView.getPassword(), mSplashView.getDeviceID(), mSplashView.getUserLoginType(), new OnLoginListener() {
             @Override
-            public void onLoginSuccess() {
-
+            public void onLoginSuccess(String msg) {
+                mSplashView.toPasswordActivity();
+                mSplashView.hideLoadingData();
+                mSplashView.showReturnMsg(msg);
             }
 
             @Override
-            public void onLoginFailed() {
-
+            public void onLoginFailed(String msg) {
+                mSplashView.toLoginActivity();
+                mSplashView.hideLoadingData();
+                mSplashView.showReturnMsg(msg);
             }
         });
     }

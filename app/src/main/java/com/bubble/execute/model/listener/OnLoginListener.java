@@ -8,13 +8,18 @@ package com.bubble.execute.model.listener;
  */
 
 public interface OnLoginListener {
+
     /**
      * 登录成功
+     *
+     * @param msg 成功信息
      */
-    void onLoginSuccess();
+    void onLoginSuccess(String msg);
 
     /**
      * 登录失败
+     *
+     * @param msg 失败信息
      */
-    void onLoginFailed();
+    void onLoginFailed(String msg);
 }

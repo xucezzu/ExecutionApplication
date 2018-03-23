@@ -13,6 +13,7 @@ import com.bubble.execute.utils.ConstantUtil;
 import com.bubble.execute.utils.DeviceUtil;
 import com.bubble.execute.utils.SPManager;
 import com.bubble.execute.view.impl.ISplashActivityView;
+import com.muddzdev.styleabletoastlibrary.StyleableToast;
 
 /**
  * @author 徐长策
@@ -95,6 +96,11 @@ public class SplashPageActivity extends BaseActivity implements ISplashActivityV
         Intent intent = new Intent(SplashPageActivity.this, PasswordActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public void showReturnMsg(String msg) {
+        StyleableToast.makeText(SplashPageActivity.this, msg, R.style.AppDefaultToast).show();
     }
 
     /**

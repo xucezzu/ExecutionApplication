@@ -24,8 +24,43 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class LoginBiz implements ILoginBiz {
+    /**
+     * 登录成功
+     */
+    private static final String LOGIN_SUCCESS = "0";
+
+    /**
+     * 参数值不正确
+     */
+    private static final String LOGIN_FAILED_VALUE = "1";
+
+    /**
+     * 账户信息不对
+     */
+    private static final String LOGIN_FAILED_NO_USER = "2";
+
+    /**
+     * 密码错误
+     */
+    private static final String LOGIN_FAILED_PASSWORD = "3";
+
+    /**
+     * 在其他设备登录
+     */
+    private static final String LOGIN_FAILED_DEVICE = "4";
+
+    /**
+     * 登录操作
+     *
+     * @param mail          用户邮箱
+     * @param password      用户登录密码
+     * @param phoneDeviceId 用户设备ID
+     * @param userLoginType 用户登录类型
+     * @param loginListener 用户登录结果监听
+     */
+
     @Override
-    public void login(String mail, String password, String phoneDeviceId, String userLoginType, OnLoginListener loginListener) {
+    public void login(String mail, String password, String phoneDeviceId, String userLoginType, final OnLoginListener loginListener) {
         // 封装JSON数据
         LoginDataRequest loginDataBean = new LoginDataRequest();
         loginDataBean.setMail(mail);
@@ -50,8 +85,27 @@ public class LoginBiz implements ILoginBiz {
         call.enqueue(new Callback<LoginDataResponse>() {
             @Override
             public void onResponse(Call<LoginDataResponse> call, Response<LoginDataResponse> response) {
-                // 处理返回的结果
+                // 网络请求成功，处理返回的结果
                 LogUtil.d("返回的数据：" + response.body().toString());
+                switch (response.body().getErrCode()){
+                    case LOGIN_SUCCESS:
+                        loginListener.onLoginSuccess(response.body().getAlertMsg());
+                        break;
+                    case LOGIN_FAILED_VALUE:
+                        loginListener.onLoginFailed(response.body().getAlertMsg());
+                        break;
+                    case LOGIN_FAILED_NO_USER:
+                        loginListener.onLoginFailed(response.body().getAlertMsg());
+                        break;
+                    case LOGIN_FAILED_PASSWORD:
+                        loginListener.onLoginFailed(response.body().getAlertMsg());
+                        break;
+                    case LOGIN_FAILED_DEVICE:
+                        loginListener.onLoginFailed(response.body().getAlertMsg());
+                        break;
+                    default:
+                        break;
+                }
             }
 
             @Override

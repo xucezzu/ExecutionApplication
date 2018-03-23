@@ -68,12 +68,6 @@ public class LoginDataResponse {
 
     @Override
     public String toString() {
-        String data =
-                "{" + "errCode:" +  errCode +
-                " alertMsg:" + alertMsg +"}";
-//                "returnData: {userId:"  + returnData.getUserId() +
-//                    "userMail: " + returnData.getUserMail() +
-//                    "userName: " + returnData.getUserName() + "}}";
-        return data;
+        return  "{" + "errCode:" +  errCode + " alertMsg:" + alertMsg +"}";
     }
 }

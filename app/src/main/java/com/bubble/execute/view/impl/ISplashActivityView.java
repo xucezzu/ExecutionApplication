@@ -51,4 +51,10 @@ public interface ISplashActivityView {
      * 验证成功跳转到安全密码输入界面
      */
     void toPasswordActivity();
+
+    /**
+     * 弹出Toast的信息
+     * @param msg 展示的信息
+     */
+    void showReturnMsg(String msg);
 }
