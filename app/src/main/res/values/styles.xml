@@ -10,13 +10,13 @@
     <!-- 设置App的默认Toast的样式 -->
     <style name="AppDefaultToast">
         <!-- 字体是否加粗 -->
-        <item name="textBold">true</item>
+        <item name="textBold">false</item>
         <!-- 字体颜色 -->
         <item name="textColor">#ffffff</item>
         <!-- 字体大小 -->
-        <item name="textSize">14sp</item>
+        <item name="textSize">12sp</item>
         <!-- 提示框的背景颜色 -->
-        <item name="colorBackground">#85000000</item>
+        <item name="colorBackground">#8C000000</item>
         <!-- 是否是方形框体 -->
         <item name="solidBackground">true</item>
         <!-- 边框的粗细大小 -->
@@ -24,9 +24,9 @@
         <!-- 边框的颜色 -->
         <item name="strokeColor">#fff</item>    API 21+
         <!-- Toast展示的时间长or短 -->
-        <item name="length">LONG</item>         ENUM: LONG | SHORT
+        <item name="length">SHORT</item>         ENUM: LONG | SHORT
         <!-- 圆角的弧度 -->
-        <item name="cornerRadius">5dp</item>
+        <item name="cornerRadius">3dp</item>
     </style>
 
 </resources>
