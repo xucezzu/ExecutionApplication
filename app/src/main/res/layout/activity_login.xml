@@ -82,6 +82,18 @@
 
     </RelativeLayout>
 
+    <TextView
+        android:id="@+id/text_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/layout_button"
+        android:layout_marginBottom="20dp"
+        android:text="@string/login_loading"
+        android:textColor="@color/colorBlack"
+        android:textSize="14sp"
+        android:visibility="visible"/>
+
     <LinearLayout
         android:id="@+id/layout_button"
         android:layout_width="match_parent"
@@ -102,7 +114,8 @@
             android:textSize="16sp"
             android:layout_weight="1"
             android:gravity="center"
-            android:padding="20dp"/>
+            android:padding="20dp"
+            android:visibility="visible"/>
 
         <TextView
             android:id="@+id/button_login"
@@ -114,7 +127,8 @@
             android:textColor="@color/colorLoginButtonText"
             android:textSize="16sp"
             android:layout_weight="1"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:visibility="visible"/>
 
     </LinearLayout>
 

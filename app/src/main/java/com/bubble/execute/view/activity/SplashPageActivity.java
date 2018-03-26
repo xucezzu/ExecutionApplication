@@ -100,6 +100,7 @@ public class SplashPageActivity extends BaseActivity implements ISplashActivityV
 
     @Override
     public void showReturnMsg(String msg) {
+        // 展示登录的结果，但是为了照顾逻辑，有时此处不易显示Toast
         StyleableToast.makeText(SplashPageActivity.this, msg, R.style.AppDefaultToast).show();
     }
 

@@ -12,24 +12,45 @@ package com.bubble.execute.view.impl;
 
 public interface ILoginActivityView {
     /**
-     * 设置注册页面可见
+     * 获取用户邮箱
+     * @return 邮箱
      */
-    void onSetRegisterPageVisible();
+    String getMail();
 
     /**
-     * 设置登陆界面可见
+     * 获取密码
+     * @return 密码
      */
-    void onSetLoginPageVisible();
+    String getPassword();
 
     /**
-     * 设置登陆结果
+     * 注册时获取再次输入的密码
+     * @return 再次输入的密码
      */
-    void onLoginResult();
+    String getTwoPassword();
 
     /**
-     * 设置注册结果
+     * 跳转到忘记密码界面
      */
-    void onRegisterResult();
+    void toForgetPasswordActivity();
 
+    /**
+     * 邮箱输入错误，全部清空输入框
+     */
+    void clearAllEditText();
 
+    /**
+     * 密码输入错误，全部清除密码输入框
+     */
+    void clearAllPasswordEditText();
+
+    /**
+     * 注册成功||登录成功但未设置安全密码，需要跳转到密码设置界面
+     */
+    void toPasswordActivity();
+
+    /**
+     * 登录成功，需要跳转到主界面
+     */
+    void toMainActivity();
 }

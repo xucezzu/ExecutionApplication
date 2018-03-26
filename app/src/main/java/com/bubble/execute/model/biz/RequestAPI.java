@@ -18,6 +18,11 @@ import retrofit2.http.Url;
  */
 
 public interface RequestAPI {
+    /**
+     * 登录的接口
+     * @param requestBody 上传的数据
+     * @return
+     */
     @Headers({"Content-type:application/json;charset=utf-8", "Accept:application/json"})
     @POST("user_login/")
     Call<LoginDataResponse> loginPostMsg(@Body RequestBody requestBody);

@@ -15,6 +15,7 @@ public class LoginDataResponse {
     private static class ReturnData{
         private String userId;
         private String userMail;
+        private String userPassword;
         private String userName;
 
         public String getUserId() {
@@ -31,6 +32,14 @@ public class LoginDataResponse {
 
         public void setUserMail(String userMail) {
             this.userMail = userMail;
+        }
+
+        public String getUserPassword() {
+            return userPassword;
+        }
+
+        public void setUserPassword(String userPassword) {
+            this.userPassword = userPassword;
         }
 
         public String getUserName() {

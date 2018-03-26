@@ -4,6 +4,8 @@
     <string name="splash_b">极简</string>
     <string name="splash_c">坚持</string>
     <string name="splash_loading">数据加载…</string>
+    <string name="login_loading">正在登录…</string>
+    <string name="register_loading">正在上传数据…</string>
     <string name="title_layout_default">Title</string>
     <string name="main_bottom_left">小目标</string>
     <string name="main_bottom_right">个人</string>
@@ -15,4 +17,6 @@
     <string name="login_button_login">登录</string>
     <string name="login_text_forget_password">忘记密码？</string>
     <string name="login_text_open_forget_password">忘记密码</string>
+    <string name="reset_password_next">下一步</string>
+    <string name="reset_password_commit">确定</string>
 </resources>
