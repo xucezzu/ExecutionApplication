@@ -35,7 +35,7 @@ public interface ILoginActivityView {
     void toForgetPasswordActivity();
 
     /**
-     * 邮箱输入错误，全部清空输入框
+     * 邮箱输入错误 || 注册失败， 全部清空输入框
      */
     void clearAllEditText();
 
@@ -53,4 +53,19 @@ public interface ILoginActivityView {
      * 登录成功，需要跳转到主界面
      */
     void toMainActivity();
+
+    /**
+     * 忘记密码，跳转到密码重置页面
+     */
+    void toResetPasswordActivity();
+
+    /**
+     * 显示“正在登录...”
+     */
+    void showLoadingData();
+
+    /**
+     * 隐藏“正在登录...”
+     */
+    void hideLoadingData();
 }

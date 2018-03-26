@@ -1,6 +1,9 @@
 package com.bubble.execute.presenter;
 
+import com.bubble.execute.model.biz.LoginBiz;
+import com.bubble.execute.model.impl.ILoginBiz;
 import com.bubble.execute.presenter.impl.ILoginPresenter;
+import com.bubble.execute.view.impl.ILoginActivityView;
 
 /**
  * @author 徐长策
@@ -10,9 +13,21 @@ import com.bubble.execute.presenter.impl.ILoginPresenter;
  */
 
 public class LoginPresenter implements ILoginPresenter{
+    private ILoginActivityView mILoginActivityView;
+    private ILoginBiz mILoginBiz;
+
+    public LoginPresenter(ILoginActivityView loginActivityView){
+        this.mILoginActivityView = loginActivityView;
+        this.mILoginBiz = new LoginBiz();
+    }
 
     @Override
-    public void doLogin(String userMail, String userPassword) {
+    public void userLogin() {
+
+    }
+
+    @Override
+    public void userRegister() {
 
     }
 }

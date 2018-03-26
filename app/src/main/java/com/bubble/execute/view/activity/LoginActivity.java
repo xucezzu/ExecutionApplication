@@ -1,11 +1,17 @@
 package com.bubble.execute.view.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bubble.execute.R;
+import com.bubble.execute.presenter.LoginPresenter;
+import com.bubble.execute.presenter.impl.ILoginPresenter;
+import com.bubble.execute.utils.ConstantUtil;
 import com.bubble.execute.utils.LogUtil;
+import com.bubble.execute.view.impl.ILoginActivityView;
 import com.bubble.execute.widget.CancelEditText;
 import com.jakewharton.rxbinding2.view.RxView;
 
@@ -21,13 +27,23 @@ import io.reactivex.functions.Consumer;
  */
 
 @SuppressLint("Registered")
-public class LoginActivity extends BaseActivity {
-    private TextView mTextRegister, mTextLogin, mTextForgetPassword;
+public class LoginActivity extends BaseActivity implements ILoginActivityView{
+    private ImageView mImageBack;
+    private TextView mTextRegister, mTextLogin, mTextForgetPassword, mTextLoginLoading;
     private CancelEditText mEditMail, mEditPassword, mEditPasswordNext;
     /**
      * 标记是否在登录页面，true && false
      */
     private boolean isPageInLogin = true;
+
+    /**
+     * 0 && 1分别代表从闪屏页和密码页面跳转
+     */
+    private int isFromSplashActivity = 0;
+    private int isFromPasswordActivity = 1;
+    private int typeFromActivity;
+
+    private ILoginPresenter mILoginPresenter;
 
     @Override
     public void setContentView() {
@@ -36,13 +52,19 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     public void initActivity() {
-
+        // 获取从上一个页面传递的值
+        Intent intent = getIntent();
+        typeFromActivity = intent.getIntExtra(ConstantUtil.LOGIN_ACTIVITY_TYPE, 0);
+        mILoginPresenter = new LoginPresenter(this);
     }
 
     @Override
     public void initView() {
+        mImageBack = getViewById(R.id.image_back);
         mTextLogin = getViewById(R.id.button_login);
         mTextRegister = getViewById(R.id.button_register);
+        mTextForgetPassword = getViewById(R.id.text_forget_password);
+        mTextLoginLoading = getViewById(R.id.text_loading);
         mEditMail = getViewById(R.id.edit_text_user);
         mEditPassword = getViewById(R.id.edit_text_password);
         mEditPasswordNext = getViewById(R.id.edit_text_again_password);
@@ -109,5 +131,60 @@ public class LoginActivity extends BaseActivity {
 
                     }
                 });
+    }
+
+    @Override
+    public String getMail() {
+        return null;
+    }
+
+    @Override
+    public String getPassword() {
+        return null;
+    }
+
+    @Override
+    public String getTwoPassword() {
+        return null;
+    }
+
+    @Override
+    public void toForgetPasswordActivity() {
+
+    }
+
+    @Override
+    public void clearAllEditText() {
+
+    }
+
+    @Override
+    public void clearAllPasswordEditText() {
+
+    }
+
+    @Override
+    public void toPasswordActivity() {
+
+    }
+
+    @Override
+    public void toMainActivity() {
+
+    }
+
+    @Override
+    public void toResetPasswordActivity() {
+
+    }
+
+    @Override
+    public void showLoadingData() {
+
+    }
+
+    @Override
+    public void hideLoadingData() {
+
     }
 }

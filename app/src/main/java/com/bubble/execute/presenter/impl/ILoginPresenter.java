@@ -9,9 +9,12 @@ package com.bubble.execute.presenter.impl;
 
 public interface ILoginPresenter {
     /**
-     * 用户登陆
-     * @param userMail 用户账户
-     * @param userPassword  用户密码
+     * 用户登录
      */
-    void doLogin(String userMail, String userPassword);
+    void userLogin();
+
+    /**
+     * 用户注册
+     */
+    void userRegister();
 }

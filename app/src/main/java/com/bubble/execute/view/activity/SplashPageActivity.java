@@ -87,6 +87,7 @@ public class SplashPageActivity extends BaseActivity implements ISplashActivityV
     @Override
     public void toLoginActivity() {
         Intent intent = new Intent(SplashPageActivity.this, LoginActivity.class);
+        intent.putExtra(ConstantUtil.LOGIN_ACTIVITY_TYPE, 0);
         startActivity(intent);
         finish();
     }
