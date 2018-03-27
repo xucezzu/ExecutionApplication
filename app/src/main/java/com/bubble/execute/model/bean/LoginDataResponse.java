@@ -12,7 +12,7 @@ public class LoginDataResponse {
     private String alertMsg;
     private ReturnData returnData;
 
-    private static class ReturnData{
+    public class ReturnData {
         private String userId;
         private String userMail;
         private String userPassword;
@@ -77,6 +77,15 @@ public class LoginDataResponse {
 
     @Override
     public String toString() {
-        return  "{" + "errCode:" +  errCode + " alertMsg:" + alertMsg +"}";
+        String returnMessage = "{ " + "errCode: " + getErrCode() + " alertMsg: " + getAlertMsg();
+        String returnDataForUser = "";
+        if(returnData!= null){
+            returnDataForUser = " returnData: {" +
+                    " userId: " + returnData.getUserId() +
+                    " userMail: " + returnData.getUserMail() +
+                    " userPassword " + returnData.getUserPassword() +
+                    " userName " + returnData.getUserName() + " }";
+        }
+        return returnMessage + returnDataForUser + " }";
     }
 }

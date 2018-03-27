@@ -1,8 +1,9 @@
 package com.bubble.execute.presenter;
 
+import android.content.Context;
+
 import com.bubble.execute.model.biz.LoginBiz;
 import com.bubble.execute.model.impl.ILoginBiz;
-import com.bubble.execute.model.impl.IUserBiz;
 import com.bubble.execute.model.listener.OnLoginListener;
 import com.bubble.execute.presenter.impl.ISplashPagePresenter;
 import com.bubble.execute.view.impl.ISplashActivityView;
@@ -15,12 +16,14 @@ import com.bubble.execute.view.impl.ISplashActivityView;
  */
 
 public class SplashPagePresenter implements ISplashPagePresenter{
+    private Context mContext;
     private ISplashActivityView mSplashView;
     private ILoginBiz mILoginBiz;
 
-    public SplashPagePresenter(ISplashActivityView splashView){
+    public SplashPagePresenter(Context context, ISplashActivityView splashView){
+        this.mContext = context;
         this.mSplashView = splashView;
-        this.mILoginBiz = new LoginBiz();
+        this.mILoginBiz = new LoginBiz(mContext);
     }
 
     @Override

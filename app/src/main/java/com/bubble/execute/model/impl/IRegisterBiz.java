@@ -9,7 +9,7 @@ import com.bubble.execute.model.listener.OnLoginListener;
  * 版权所有 © 徐长策
  */
 
-public interface IUserBiz {
+public interface IRegisterBiz {
     /**
      * 用户登录接口
      * @param mail 用户邮箱

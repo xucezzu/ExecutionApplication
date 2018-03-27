@@ -7,7 +7,7 @@ package com.bubble.execute.model.bean;
  * 版权所有 © 徐长策
  */
 
-public class UserModel {
+public class RegisterDataRequest {
     private String mail;
     private String password;
     private String nickname;

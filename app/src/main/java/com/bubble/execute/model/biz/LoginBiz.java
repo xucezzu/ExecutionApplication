@@ -1,11 +1,16 @@
 package com.bubble.execute.model.biz;
 
+import android.content.Context;
+
+import com.bubble.execute.R;
 import com.bubble.execute.model.bean.LoginDataRequest;
 import com.bubble.execute.model.bean.LoginDataResponse;
 import com.bubble.execute.model.impl.ILoginBiz;
 import com.bubble.execute.model.listener.OnLoginListener;
 import com.bubble.execute.utils.LogUtil;
+import com.bubble.execute.utils.SPManager;
 import com.bubble.execute.utils.ServerURL;
+import com.bubble.execute.utils.Util;
 import com.google.gson.Gson;
 
 import okhttp3.MediaType;
@@ -24,6 +29,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class LoginBiz implements ILoginBiz {
+    private Context mContext;
+
     /**
      * 登录成功
      */
@@ -48,6 +55,10 @@ public class LoginBiz implements ILoginBiz {
      * 在其他设备登录
      */
     private static final String LOGIN_FAILED_DEVICE = "4";
+
+    public LoginBiz(Context context){
+        this.mContext = context;
+    }
 
     /**
      * 登录操作
@@ -77,19 +88,23 @@ public class LoginBiz implements ILoginBiz {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         // 创建网络请求接口实例
-        RequestAPI requestAPI = retrofitLogin.create(RequestAPI.class);
-        //
-        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), loginRequestJson);
+        RequestApi requestAPI = retrofitLogin.create(RequestApi.class);
+        final RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), loginRequestJson);
         Call<LoginDataResponse> call = requestAPI.loginPostMsg(requestBody);
         // 发送网络请求（异步）
         call.enqueue(new Callback<LoginDataResponse>() {
             @Override
             public void onResponse(Call<LoginDataResponse> call, Response<LoginDataResponse> response) {
                 // 网络请求成功，处理返回的结果
+                LogUtil.d("【login】网络请求成功");
                 LogUtil.d("返回的数据：" + response.body().toString());
                 switch (response.body().getErrCode()){
                     case LOGIN_SUCCESS:
                         loginListener.onLoginSuccess(response.body().getAlertMsg());
+                        //登录成功，需要保存登录的数据
+                        SPManager.setUserMail(response.body().getReturnData().getUserMail());
+                        SPManager.setUserPassword(response.body().getReturnData().getUserPassword());
+                        SPManager.setUserID(response.body().getReturnData().getUserId());
                         break;
                     case LOGIN_FAILED_VALUE:
                         loginListener.onLoginFailed(response.body().getAlertMsg());
@@ -111,6 +126,8 @@ public class LoginBiz implements ILoginBiz {
             @Override
             public void onFailure(Call<LoginDataResponse> call, Throwable t) {
                 // 网络请求失败
+                LogUtil.d("【login】网络请求失败");
+                loginListener.onLoginFailed(Util.getResourceString(mContext, R.string.net_fail));
             }
         });
     }

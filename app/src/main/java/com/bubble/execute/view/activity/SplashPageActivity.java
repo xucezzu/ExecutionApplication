@@ -45,7 +45,7 @@ public class SplashPageActivity extends BaseActivity implements ISplashActivityV
 
     @Override
     public void initData() {
-        mISplashPagePresenter = new SplashPagePresenter(this);
+        mISplashPagePresenter = new SplashPagePresenter(SplashPageActivity.this, this);
     }
 
     @Override
@@ -76,7 +76,7 @@ public class SplashPageActivity extends BaseActivity implements ISplashActivityV
 
     @Override
     public String getUserLoginType() {
-        return ConstantUtil.USER_LOGIN_TYPE_UNUPDATA_DEVICEID;
+        return ConstantUtil.USER_LOGIN_TYPE_UNUPDATE_DEVICEID;
     }
 
     @Override

@@ -50,4 +50,20 @@ public class SPManager {
     public static String getUserPassword() {
         return getSharedPreferences().getString(ConstantUtil.UserData.USER_PASSWORD, "");
     }
+
+    /**
+     * 写入用户个人ID
+     * @param USER_ID
+     */
+    public static void setUserID(String USER_ID) {
+        getSharedPreferences().edit().putString(ConstantUtil.UserData.USER_ID, USER_ID).apply();
+    }
+
+    /**
+     * 返回存储的用户账户数据
+     * @return
+     */
+    public static String getUserID() {
+        return getSharedPreferences().getString(ConstantUtil.UserData.USER_ID, "");
+    }
 }

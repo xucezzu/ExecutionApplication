@@ -10,10 +10,12 @@ import com.bubble.execute.R;
 import com.bubble.execute.presenter.LoginPresenter;
 import com.bubble.execute.presenter.impl.ILoginPresenter;
 import com.bubble.execute.utils.ConstantUtil;
+import com.bubble.execute.utils.DeviceUtil;
 import com.bubble.execute.utils.LogUtil;
 import com.bubble.execute.view.impl.ILoginActivityView;
 import com.bubble.execute.widget.CancelEditText;
 import com.jakewharton.rxbinding2.view.RxView;
+import com.muddzdev.styleabletoastlibrary.StyleableToast;
 
 import java.util.concurrent.TimeUnit;
 
@@ -55,7 +57,7 @@ public class LoginActivity extends BaseActivity implements ILoginActivityView{
         // 获取从上一个页面传递的值
         Intent intent = getIntent();
         typeFromActivity = intent.getIntExtra(ConstantUtil.LOGIN_ACTIVITY_TYPE, 0);
-        mILoginPresenter = new LoginPresenter(this);
+        mILoginPresenter = new LoginPresenter(LoginActivity.this, this);
     }
 
     @Override
@@ -96,6 +98,7 @@ public class LoginActivity extends BaseActivity implements ILoginActivityView{
         }
     }
 
+    @SuppressLint("CheckResult")
     @Override
     public void initData() {
         RxView.clicks(mTextLogin).throttleFirst(2, TimeUnit.SECONDS)
@@ -105,6 +108,7 @@ public class LoginActivity extends BaseActivity implements ILoginActivityView{
                         if (isPageInLogin) {
                             // 点击之前就在登录界面，这时点击就是提交登录数据
                             LogUtil.d("点击之前就在登录界面，此次点击需要上传登录数据......");
+                            mILoginPresenter.userLogin();
                         } else {
                             // 之前在注册界面，这时需要变换界面显示
                             isPageInLogin = true;
@@ -122,6 +126,7 @@ public class LoginActivity extends BaseActivity implements ILoginActivityView{
                         if (!isPageInLogin) {
                             // 点击之前就在注册界面，这时点击就是提交注册数据
                             LogUtil.d("点击之前就在注册界面，此次点击需要上传注册数据......");
+                            mILoginPresenter.userRegister();
                         } else {
                             // 之前在登录界面，这时需要变换界面显示
                             isPageInLogin = false;
@@ -135,17 +140,33 @@ public class LoginActivity extends BaseActivity implements ILoginActivityView{
 
     @Override
     public String getMail() {
+        String eMail = mEditMail.getText().toString();
+        if(ConstantUtil.isEmail(eMail)){
+            return eMail;
+        }else {
+            StyleableToast.makeText(LoginActivity.this, getResources().getString(R.string.login_mail_error), R.style.AppDefaultToast).show();
+        }
         return null;
     }
 
     @Override
     public String getPassword() {
-        return null;
+        return mEditPassword.getText().toString();
     }
 
     @Override
     public String getTwoPassword() {
         return null;
+    }
+
+    @Override
+    public String getDeviceID() {
+        return DeviceUtil.getAndroidID(this);
+    }
+
+    @Override
+    public String getUserLoginType() {
+        return ConstantUtil.USER_LOGIN_TYPE_UPDATE_DEVICEID;
     }
 
     @Override
@@ -165,26 +186,38 @@ public class LoginActivity extends BaseActivity implements ILoginActivityView{
 
     @Override
     public void toPasswordActivity() {
-
+        Intent intent = new Intent(LoginActivity.this, PasswordActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override
     public void toMainActivity() {
-
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override
     public void toResetPasswordActivity() {
-
+        Intent intent = new Intent(LoginActivity.this, ResetPasswordActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override
     public void showLoadingData() {
-
+        mTextLoginLoading.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideLoadingData() {
+        mTextLoginLoading.setVisibility(View.GONE);
+    }
 
+    @Override
+    public void showReturnMsg(String msg) {
+        // 展示登录的结果，但是为了照顾逻辑，有时此处不易显示Toast
+        StyleableToast.makeText(LoginActivity.this, msg, R.style.AppDefaultToast).show();
     }
 }

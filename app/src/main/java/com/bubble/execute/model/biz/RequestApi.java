@@ -1,6 +1,7 @@
 package com.bubble.execute.model.biz;
 
 import com.bubble.execute.model.bean.LoginDataResponse;
+import com.bubble.execute.model.bean.SafePasswordDataResponse;
 
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
@@ -17,7 +18,7 @@ import retrofit2.http.Url;
  * 版权所有 © 徐长策
  */
 
-public interface RequestAPI {
+public interface RequestApi {
     /**
      * 登录的接口
      * @param requestBody 上传的数据
@@ -26,4 +27,13 @@ public interface RequestAPI {
     @Headers({"Content-type:application/json;charset=utf-8", "Accept:application/json"})
     @POST("user_login/")
     Call<LoginDataResponse> loginPostMsg(@Body RequestBody requestBody);
+
+    /**
+     * 是否存在安全密码
+     * @param requestBody 上传的数据
+     * @return
+     */
+    @Headers({"Content-type:application/json;charset=utf-8", "Accept:application/json"})
+    @POST("user_login/")
+    Call<SafePasswordDataResponse.IsExistSafePassword> isExitSafePasswordPostMsg(@Body RequestBody requestBody);
 }

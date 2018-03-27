@@ -30,6 +30,18 @@ public interface ILoginActivityView {
     String getTwoPassword();
 
     /**
+     * 获取设备ID
+     * @return 设备ID
+     */
+    String getDeviceID();
+
+    /**
+     * 获取用户登录类型
+     * @return 用户登录类型
+     */
+    String getUserLoginType();
+
+    /**
      * 跳转到忘记密码界面
      */
     void toForgetPasswordActivity();
@@ -68,4 +80,10 @@ public interface ILoginActivityView {
      * 隐藏“正在登录...”
      */
     void hideLoadingData();
+
+    /**
+     * 弹出Toast的信息
+     * @param msg 展示的信息
+     */
+    void showReturnMsg(String msg);
 }

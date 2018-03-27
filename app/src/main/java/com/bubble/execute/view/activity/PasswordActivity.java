@@ -3,6 +3,8 @@ package com.bubble.execute.view.activity;
 import android.text.InputType;
 
 import com.bubble.execute.R;
+import com.bubble.execute.utils.LogUtil;
+import com.bubble.execute.view.impl.IPasswordActivityView;
 import com.bubble.execute.widget.PasswordEditText;
 import com.bubble.execute.widget.PasswordKeyboard;
 
@@ -13,7 +15,7 @@ import com.bubble.execute.widget.PasswordKeyboard;
  * 版权所有 © 徐长策
  */
 
-public class PasswordActivity extends BaseActivity{
+public class PasswordActivity extends BaseActivity implements IPasswordActivityView {
     private PasswordEditText mPasswordEdit;
     private PasswordKeyboard mPasswordKeyboard;
 
@@ -36,6 +38,7 @@ public class PasswordActivity extends BaseActivity{
         mPasswordKeyboard.setIOnKeyboardListener(new PasswordKeyboard.IOnKeyboardListener() {
             @Override
             public void onInsertKeyEvent(String text) {
+                LogUtil.d("输入的数字为：" + text);
                 mPasswordEdit.append(text);
             }
 
