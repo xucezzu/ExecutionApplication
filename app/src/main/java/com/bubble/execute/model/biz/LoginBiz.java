@@ -97,7 +97,7 @@ public class LoginBiz implements ILoginBiz {
             public void onResponse(Call<LoginDataResponse> call, Response<LoginDataResponse> response) {
                 // 网络请求成功，处理返回的结果
                 LogUtil.d("【login】网络请求成功");
-                LogUtil.d("返回的数据：" + response.body().toString());
+                LogUtil.d("【login】返回的数据：" + response.body().toString());
                 switch (response.body().getErrCode()){
                     case LOGIN_SUCCESS:
                         loginListener.onLoginSuccess(response.body().getAlertMsg());

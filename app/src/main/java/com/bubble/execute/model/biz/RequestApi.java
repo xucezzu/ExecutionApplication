@@ -29,11 +29,29 @@ public interface RequestApi {
     Call<LoginDataResponse> loginPostMsg(@Body RequestBody requestBody);
 
     /**
-     * 是否存在安全密码
+     * 是否存在安全密码接口
      * @param requestBody 上传的数据
      * @return
      */
     @Headers({"Content-type:application/json;charset=utf-8", "Accept:application/json"})
-    @POST("user_login/")
+    @POST("is_exist_safe_password/")
     Call<SafePasswordDataResponse.IsExistSafePassword> isExitSafePasswordPostMsg(@Body RequestBody requestBody);
+
+    /**
+     * 核对安全密码接口
+     * @param requestBody 上传的数据
+     * @return
+     */
+    @Headers({"Content-type:application/json;charset=utf-8", "Accept:application/json"})
+    @POST("check_safe_password/")
+    Call<SafePasswordDataResponse.CheckSafePassword> checkSafePasswordPostMsg(@Body RequestBody requestBody);
+
+    /**
+     * 更新安全密码接口
+     * @param requestBody 上传的数据
+     * @return
+     */
+    @Headers({"Content-type:application/json;charset=utf-8", "Accept:application/json"})
+    @POST("update_safe_password/")
+    Call<SafePasswordDataResponse.UpdateSafePassword> updateSafePasswordPostMsg(@Body RequestBody requestBody);
 }

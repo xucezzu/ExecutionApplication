@@ -33,7 +33,7 @@ public class SafePasswordDataRequest {
     /**
      * 核对安全密码
      */
-    public class CheckSafePassword{
+    public static class CheckSafePassword{
         /**
          * 用户ID
          */
@@ -69,7 +69,7 @@ public class SafePasswordDataRequest {
     /**
      * 更新安全密码
      */
-    public class UpdateSafePassword{
+    public static class UpdateSafePassword{
         /**
          * 用户ID
          */

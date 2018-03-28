@@ -76,7 +76,7 @@ public class SplashPageActivity extends BaseActivity implements ISplashActivityV
 
     @Override
     public String getUserLoginType() {
-        return ConstantUtil.USER_LOGIN_TYPE_UNUPDATE_DEVICEID;
+        return ConstantUtil.USER_LOGIN_TYPE_UNUPDATE_DEVICE_ID;
     }
 
     @Override

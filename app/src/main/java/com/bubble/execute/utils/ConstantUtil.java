@@ -12,13 +12,28 @@ import java.util.regex.Pattern;
  */
 
 public class ConstantUtil {
-    public static final String USER_LOGIN_TYPE_UNUPDATE_DEVICEID = "0";
-    public static final String USER_LOGIN_TYPE_UPDATE_DEVICEID = "1";
+    /**
+     * 联网失败的返回码
+     */
+    public static final String NET_REQUEST_FAIL = "404";
+
+    public static final String USER_LOGIN_TYPE_UNUPDATE_DEVICE_ID = "0";
+    public static final String USER_LOGIN_TYPE_UPDATE_DEVICE_ID = "1";
 
     /**
      * 进入LoginActivity传递的参数名称：从哪一个页面进入，0-闪屏页，1-安全密码页
      */
     public static String LOGIN_ACTIVITY_TYPE = "login_activity_type";
+
+    /**
+     * 进入PasswordActivity传递的参数名称：从哪一个页面进入，0-闪屏页，1-登录页面，2-设置页面
+     */
+    public static String PASSWORD_ACTIVITY_TYPE = "password_activity_type";
+
+    /**
+     * 进入MainActivity传递的参数名称：从哪一个页面进入，0-登录界面，1-安全密码页
+     */
+    public static String MAIN_ACTIVITY_TYPE = "main_activity_type";
 
     public interface UserData{
         /**

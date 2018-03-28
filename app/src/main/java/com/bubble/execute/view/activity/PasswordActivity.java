@@ -1,9 +1,15 @@
 package com.bubble.execute.view.activity;
 
+import android.content.Intent;
 import android.text.InputType;
 
 import com.bubble.execute.R;
+import com.bubble.execute.presenter.PasswordPresenter;
+import com.bubble.execute.presenter.impl.IPasswordPresenter;
+import com.bubble.execute.utils.ConstantUtil;
+import com.bubble.execute.utils.DialogUtil;
 import com.bubble.execute.utils.LogUtil;
+import com.bubble.execute.utils.SPManager;
 import com.bubble.execute.view.impl.IPasswordActivityView;
 import com.bubble.execute.widget.PasswordEditText;
 import com.bubble.execute.widget.PasswordKeyboard;
@@ -16,8 +22,15 @@ import com.bubble.execute.widget.PasswordKeyboard;
  */
 
 public class PasswordActivity extends BaseActivity implements IPasswordActivityView {
+    /**
+     * 页面跳转类型值
+     */
+    private int typeFromActivity = 0;
+    private static final int isFromSplash = 0, isFromLogin = 1, isFromSetting = 2;
+
     private PasswordEditText mPasswordEdit;
     private PasswordKeyboard mPasswordKeyboard;
+    private IPasswordPresenter mIPasswordPresenter;
 
     @Override
     public void setContentView() {
@@ -26,7 +39,10 @@ public class PasswordActivity extends BaseActivity implements IPasswordActivityV
 
     @Override
     public void initActivity() {
-
+        // 获取从上一个页面传递的值
+        Intent intent = getIntent();
+        typeFromActivity = intent.getIntExtra(ConstantUtil.PASSWORD_ACTIVITY_TYPE, 0);
+        mIPasswordPresenter = new PasswordPresenter(PasswordActivity.this, this);
     }
 
     @Override
@@ -59,6 +75,57 @@ public class PasswordActivity extends BaseActivity implements IPasswordActivityV
 
     @Override
     public void initData() {
+        //根绝值的不同是否选择去判断用户是否含有安全密码
+        switch (typeFromActivity) {
+            case isFromSplash:
+                break;
+            case isFromLogin:
+                break;
+            case isFromSetting:
+                break;
+            default:
+                break;
+        }
+    }
 
+    @Override
+    public String getUserId() {
+        return SPManager.getUserID();
+    }
+
+    @Override
+    public String getSafePassword() {
+        return null;
+    }
+
+    @Override
+    public String getNewSafePassword() {
+        return null;
+    }
+
+    @Override
+    public void toMainActivity() {
+        Intent intent = new Intent(PasswordActivity.this, LoginActivity.class);
+        intent.putExtra(ConstantUtil.MAIN_ACTIVITY_TYPE, 1);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void toLoginActivity() {
+        Intent intent = new Intent(PasswordActivity.this, LoginActivity.class);
+        intent.putExtra(ConstantUtil.LOGIN_ACTIVITY_TYPE, 1);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void showLoadingDataDialog() {
+        DialogUtil.getInstance().showProgressDialog(PasswordActivity.this);
+    }
+
+    @Override
+    public void dismissLoadingDataDialog() {
+        DialogUtil.getInstance().dismissProgressDialog();
     }
 }

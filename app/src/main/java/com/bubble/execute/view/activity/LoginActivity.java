@@ -166,7 +166,7 @@ public class LoginActivity extends BaseActivity implements ILoginActivityView{
 
     @Override
     public String getUserLoginType() {
-        return ConstantUtil.USER_LOGIN_TYPE_UPDATE_DEVICEID;
+        return ConstantUtil.USER_LOGIN_TYPE_UPDATE_DEVICE_ID;
     }
 
     @Override
