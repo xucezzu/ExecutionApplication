@@ -33,17 +33,32 @@ public class SafePasswordBiz implements ISafePasswordBiz {
     /**
      * 存在安全密码
      */
-    private static final String IS_EXIST_SAFE_PASSWORD_SUCCESS = "0";
+    public static final String IS_EXIST_SAFE_PASSWORD_SUCCESS = "0";
 
     /**
      * 不存在安全密码
      */
-    private static final String IS_EXIST_SAFE_PASSWORD_NO = "1";
+    public static final String IS_EXIST_SAFE_PASSWORD_NO = "1";
 
     /**
      * 检测是否存在安全密码时，发现用户不存在
      */
-    private static final String IS_EXIST_SAFE_PASSWORD_USER_NOT = "2";
+    public static final String IS_EXIST_SAFE_PASSWORD_USER_NOT = "2";
+
+    /**
+     * 安全密码输入正确
+     */
+    public static final String IS_CHECK_SAFE_PASSWORD_SUCCESS = "0";
+
+    /**
+     * 安全密码输入错误
+     */
+    public static final String IS_CHECK_SAFE_PASSWORD_NO = "1";
+
+    /**
+     * 用户不存在
+     */
+    public static final String IS_CHECK_SAFE_PASSWORD_USER_NOT = "2";
 
     public SafePasswordBiz(Context context) {
         this.mContext = context;
@@ -131,12 +146,26 @@ public class SafePasswordBiz implements ISafePasswordBiz {
             @Override
             public void onResponse(Call<SafePasswordDataResponse.CheckSafePassword> call, Response<SafePasswordDataResponse.CheckSafePassword> response) {
                 LogUtil.d("【checkSafePassword】网络请求成功！");
-
+                LogUtil.d("【checkSafePassword】返回数据：" + response.body().toString());
+                switch (response.body().getErrCode()) {
+                    case IS_CHECK_SAFE_PASSWORD_SUCCESS:
+                        listener.onCheckSuccess(response.body().getErrCode(), response.body().getAlertMsg());
+                        break;
+                    case IS_CHECK_SAFE_PASSWORD_NO:
+                        listener.onCheckFailed(response.body().getErrCode(), response.body().getAlertMsg());
+                        break;
+                    case IS_CHECK_SAFE_PASSWORD_USER_NOT:
+                        listener.onCheckFailed(response.body().getErrCode(), response.body().getAlertMsg());
+                        break;
+                    default:
+                        break;
+                }
             }
 
             @Override
             public void onFailure(Call<SafePasswordDataResponse.CheckSafePassword> call, Throwable t) {
                 LogUtil.d("【checkSafePassword】网络请求失败！");
+                listener.onCheckFailed(ConstantUtil.NET_REQUEST_FAIL, Util.getResourceString(mContext, R.string.net_fail));
             }
         });
     }

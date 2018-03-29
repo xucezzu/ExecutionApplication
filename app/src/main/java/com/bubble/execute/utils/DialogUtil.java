@@ -27,10 +27,25 @@ public class DialogUtil {
     private static MaterialDialog dialog;
 
     /**
-     * 显示数据加载的对话框，固定格式
+     * 显示数据加载的对话框，固定格式，不包含Title
      * @param context
      */
     public void showProgressDialog(Context context) {
+        MaterialDialog.Builder builder = new MaterialDialog.Builder(context)
+                .content(R.string.dialog_content_loading_data)
+                .progress(true, 0)
+                .progressIndeterminateStyle(false)
+                .cancelable(false);
+
+        dialog = builder.build();
+        dialog.show();
+    }
+
+    /**
+     * 显示数据加载的对话框，固定格式，包含Title
+     * @param context
+     */
+    public void showTitleProgressDialog(Context context) {
         MaterialDialog.Builder builder = new MaterialDialog.Builder(context)
                 .title(R.string.dialog_title_warn)
                 .content(R.string.dialog_content_loading_data)

@@ -43,4 +43,25 @@ public interface IPasswordActivityView {
      * 关闭数据加载对哈UK阿UN个
      */
     void dismissLoadingDataDialog();
+
+    /**
+     * 获取查询IsExistSafePassword接口返回的数据
+     * @param code
+     * @param msg
+     */
+    void getIsExistReturnData(String code, String msg);
+
+    /**
+     * 获取CheckSafePassword接口返回的数据
+     * @param code
+     * @param msg
+     */
+    void getCheckReturnData(String code, String msg);
+
+    /**
+     * 获取UpdateSafePassword接口返回的数据
+     * @param code
+     * @param msg
+     */
+    void getUpdateReturnData(String code, String msg);
 }

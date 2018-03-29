@@ -30,12 +30,14 @@ public class PasswordPresenter implements IPasswordPresenter {
         mISafePasswordBiz.isExistSafePassword(mIPasswordActivityView.getUserId(), new OnSafePasswordListener.OnIsExistListener() {
             @Override
             public void onIsExistSuccess(String code, String msg) {
-
+                mIPasswordActivityView.dismissLoadingDataDialog();
+                mIPasswordActivityView.getIsExistReturnData(code, msg);
             }
 
             @Override
             public void onIsExistFailed(String code, String msg) {
-
+                mIPasswordActivityView.dismissLoadingDataDialog();
+                mIPasswordActivityView.getIsExistReturnData(code, msg);
             }
         });
     }
