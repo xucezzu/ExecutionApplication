@@ -119,7 +119,7 @@ public class SplashPageActivity extends BaseActivity implements ISplashActivityV
         // 语音（测试）
         Future future = DefaultExecutorSupplier.getInstance()
                 .forLightWeightBackgroundTasks()
-                .submit(new SpeechTask(SplashPageActivity.this, "欢迎使用现代支付智能POS"));
+                .submit(new SpeechTask(SplashPageActivity.this, msg));
     }
 
     /**
