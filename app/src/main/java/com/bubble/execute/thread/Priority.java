@@ -27,5 +27,5 @@ public enum Priority {
     /**
      * 高等级，用于能立即得到数据
      */
-    IMMEDIATE;
+    IMMEDIATE
 }
