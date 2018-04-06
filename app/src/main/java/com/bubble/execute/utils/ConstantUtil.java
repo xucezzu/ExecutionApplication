@@ -35,6 +35,11 @@ public class ConstantUtil {
      */
     public static String MAIN_ACTIVITY_TYPE = "main_activity_type";
 
+    /**
+     * PasswordActivity
+     */
+    public static String PASSWORD_ACTIVITY = "PasswordActivity";
+
     public interface UserData{
         /**
          * 用户ID

@@ -25,14 +25,10 @@ public interface IPasswordActivityView {
     String getNewSafePassword();
 
     /**
-     * 跳转到主页面
+     * 跳转到下一个页面
+     * 根据登录结果返回值，来决定跳转
      */
-    void toMainActivity();
-
-    /**
-     * 跳转到登录注册界面
-     */
-    void toLoginActivity();
+    void toNextActivity();
 
     /**
      * 显示数据加载对话框

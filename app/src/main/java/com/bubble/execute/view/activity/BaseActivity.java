@@ -1,14 +1,22 @@
 package com.bubble.execute.view.activity;
 
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
 import android.os.MessageQueue;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+
+import com.bubble.execute.utils.ConstantUtil;
+import com.bubble.execute.utils.LogUtil;
+import com.bubble.execute.utils.ScreenListener;
 
 /**
  * @author 徐长策
@@ -19,6 +27,11 @@ import android.view.WindowManager;
 
 @SuppressLint("Registered")
 public abstract class BaseActivity extends AppCompatActivity {
+    private ScreenListener mScreenListener;
+    private String nameClass = "";
+
+    @TargetApi(Build.VERSION_CODES.M)
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +50,41 @@ public abstract class BaseActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT_WATCH)
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        LogUtil.d(this.getClass().getSimpleName() + ": " + "onRestart()");
+        // 监听屏幕有无锁屏
+        mScreenListener = new ScreenListener(this);
+        nameClass = this.getClass().getSimpleName();
+        if(!ConstantUtil.PASSWORD_ACTIVITY.equals(nameClass)){
+            mScreenListener.begin(new ScreenListener.ScreenStateListener() {
+                @Override
+                public void onScreenOn() {
+                    LogUtil.d("【" + nameClass + "】屏幕打开了~");
+                }
+
+                @Override
+                public void onScreenOff() {
+                    LogUtil.d("【" + nameClass + "】屏幕关闭了~");
+                }
+
+                @Override
+                public void onUserPresent() {
+                    LogUtil.d("【" + nameClass + "】屏幕解锁了~");
+                    toPasswordActivity();
+                }
+            });
+        }
+    }
+
+    public void toPasswordActivity() {
+        Intent intent = new Intent(this, PasswordActivity.class);
+        intent.putExtra(ConstantUtil.PASSWORD_ACTIVITY_TYPE, 3);
+        startActivity(intent);
     }
 
     /**

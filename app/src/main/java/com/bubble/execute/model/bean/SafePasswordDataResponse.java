@@ -79,7 +79,7 @@ public class SafePasswordDataResponse {
 
         @Override
         public String toString() {
-            return "CheckSafePasswordResponse: {" + "errCode: " + errCode +  "alertMsg: " + alertMsg + "}";
+            return "CheckSafePasswordResponse: {" + "errCode: " + errCode +  " alertMsg: " + alertMsg + "}";
         }
     }
 
@@ -115,7 +115,7 @@ public class SafePasswordDataResponse {
 
         @Override
         public String toString() {
-            return "UpdateSafePasswordResponse: {" + "errCode:" + errCode +  "alertMsg" + alertMsg + "}";
+            return "UpdateSafePasswordResponse: {" + "errCode:" + errCode +  " alertMsg" + alertMsg + "}";
         }
     }
 }

@@ -62,7 +62,7 @@ public class SafePasswordDataRequest {
 
         @Override
         public String toString() {
-            return "CheckSafePasswordDataBean: {" + "userID:" + userId +  "userSafePassword" + userSafePassword + "}";
+            return "CheckSafePasswordDataBean: {" + "userID:" + userId +  " userSafePassword: " + userSafePassword + "}";
         }
     }
 
@@ -98,7 +98,7 @@ public class SafePasswordDataRequest {
 
         @Override
         public String toString() {
-            return "UpdateSafePasswordDataBean: {" + "userID:" + userId +  "userSafePassword" + userSafePassword + "}";
+            return "UpdateSafePasswordDataBean: {" + "userID:" + userId +  " userSafePassword: " + userSafePassword + "}";
         }
     }
 

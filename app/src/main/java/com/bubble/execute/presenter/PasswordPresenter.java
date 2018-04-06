@@ -47,12 +47,13 @@ public class PasswordPresenter implements IPasswordPresenter {
         mISafePasswordBiz.checkSafePassword(mIPasswordActivityView.getUserId(), mIPasswordActivityView.getSafePassword(), new OnSafePasswordListener.OnCheckListener() {
             @Override
             public void onCheckSuccess(String code, String msg) {
-
+                mIPasswordActivityView.getCheckReturnData(code, msg);
+                mIPasswordActivityView.toNextActivity();
             }
 
             @Override
             public void onCheckFailed(String code, String msg) {
-
+                mIPasswordActivityView.getCheckReturnData(code, msg);
             }
         });
     }
@@ -62,12 +63,12 @@ public class PasswordPresenter implements IPasswordPresenter {
         mISafePasswordBiz.updateSafePassword(mIPasswordActivityView.getUserId(), mIPasswordActivityView.getNewSafePassword(), new OnSafePasswordListener.OnUpdateListener() {
             @Override
             public void onUpdateSuccess(String code, String msg) {
-
+                mIPasswordActivityView.getUpdateReturnData(code, msg);
             }
 
             @Override
             public void onUpdateFailed(String code, String msg) {
-
+                mIPasswordActivityView.getUpdateReturnData(code, msg);
             }
         });
     }

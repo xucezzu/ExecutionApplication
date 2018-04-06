@@ -108,6 +108,7 @@ public class SplashPageActivity extends BaseActivity implements ISplashActivityV
     @Override
     public void toPasswordActivity() {
         Intent intent = new Intent(SplashPageActivity.this, PasswordActivity.class);
+        intent.putExtra(ConstantUtil.PASSWORD_ACTIVITY_TYPE, 0);
         startActivity(intent);
         finish();
     }

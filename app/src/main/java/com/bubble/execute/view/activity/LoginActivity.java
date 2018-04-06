@@ -2,6 +2,8 @@ package com.bubble.execute.view.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -60,6 +62,7 @@ public class LoginActivity extends BaseActivity implements ILoginActivityView{
         mILoginPresenter = new LoginPresenter(LoginActivity.this, this);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void initView() {
         mImageBack = getViewById(R.id.image_back);
@@ -79,6 +82,7 @@ public class LoginActivity extends BaseActivity implements ILoginActivityView{
      *
      * @param isClickLoginButton
      */
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public void setViewForLogin(boolean isClickLoginButton) {
         if (isClickLoginButton) {
             // 登录页面
@@ -103,6 +107,7 @@ public class LoginActivity extends BaseActivity implements ILoginActivityView{
     public void initData() {
         RxView.clicks(mTextLogin).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(new Consumer<Object>() {
+                    @RequiresApi(api = Build.VERSION_CODES.M)
                     @Override
                     public void accept(Object o) throws Exception {
                         if (isPageInLogin) {
@@ -121,6 +126,7 @@ public class LoginActivity extends BaseActivity implements ILoginActivityView{
 
         RxView.clicks(mTextRegister).throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(new Consumer<Object>() {
+                    @RequiresApi(api = Build.VERSION_CODES.M)
                     @Override
                     public void accept(Object o) throws Exception {
                         if (!isPageInLogin) {
@@ -187,6 +193,7 @@ public class LoginActivity extends BaseActivity implements ILoginActivityView{
     @Override
     public void toPasswordActivity() {
         Intent intent = new Intent(LoginActivity.this, PasswordActivity.class);
+        intent.putExtra(ConstantUtil.PASSWORD_ACTIVITY_TYPE, 1);
         startActivity(intent);
         finish();
     }
