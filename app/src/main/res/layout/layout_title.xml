@@ -29,10 +29,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:src="@drawable/icon_mark"
-        android:paddingTop="12dp"
-        android:paddingBottom="12dp"
-        android:layout_marginEnd="-18dp"/>
+        android:src="@drawable/icon_history"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
+        android:layout_marginEnd="5dp"/>
 
     <ImageView
         android:id="@+id/view_image_title"

@@ -10,6 +10,12 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+            java.srcDirs = ['src/main/java' , 'src/main/aidl']
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -37,6 +43,9 @@ dependencies {
     implementation 'com.muddzdev:styleabletoast:2.0.1'
     // Dialog的展示库
     implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
-    implementation files('libs/com.baidu.tts_2.3.1.20170808_e39ea89.jar')
-    implementation files('libs/bdasr_V3_20171108_9800a2a.jar')
+    // WEEX框架集成
+    implementation 'com.android.support:recyclerview-v7:27.1.0'
+    implementation 'com.android.support:support-v4:27.1.0'
+    implementation 'com.alibaba:fastjson:1.1.46.android'
+    implementation 'com.taobao.android:weex_sdk:0.5.1@aar'
 }

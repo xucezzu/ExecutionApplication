@@ -34,9 +34,9 @@ public class TabHomeFragment extends Fragment {
         mTextTitle = view.findViewById(R.id.view_text_title);
         mTextTitle.setVisibility(View.GONE);
         mImageLeft.setVisibility(View.GONE);
-        mImageRight.setVisibility(View.GONE);
+        mImageRight.setImageResource(R.drawable.icon_history);
+        mImageRight.setVisibility(View.VISIBLE);
         mImageTitle.setVisibility(View.VISIBLE);
-
     }
 
     @Override

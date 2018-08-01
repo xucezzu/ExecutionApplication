@@ -3,9 +3,11 @@ package com.bubble.execute.view.adapter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.view.View;
 import android.widget.RadioGroup;
 
 import com.bubble.execute.R;
+import com.bubble.execute.utils.LogUtil;
 
 import java.util.List;
 
@@ -17,29 +19,33 @@ import java.util.List;
  */
 
 public class FragmentViewPagerAdapter implements RadioGroup.OnCheckedChangeListener {
+    private View.OnClickListener mOnClickListener;
+    private OnCurrentTabListener mOnCurrentTabListener;
     private FragmentActivity mFragmentActivity;
     private RadioGroup mRadioGroup;
     private List<Fragment> mFragments;
     private int fragmentId;
     /**
-     * 当前Tab页面索引
+     * 当前Tab页面索引，默认为首页
      **/
-    private int currentTab;
-
+    private int currentTab = 1;
 
     public FragmentViewPagerAdapter(FragmentActivity fragmentActivity, RadioGroup radioGroup,
-                                    List<Fragment> fragments, int fragmentId) {
+                                    List<Fragment> fragments, int fragmentId, View.OnClickListener onClickListener) {
         this.fragmentId = fragmentId;
         this.mFragmentActivity = fragmentActivity;
         this.mRadioGroup = radioGroup;
         this.mFragments = fragments;
+        this.mOnClickListener = onClickListener;
 
         // 默认显示首页
         FragmentTransaction fragmentTransaction = fragmentActivity.getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(fragmentId, fragments.get(1));
+        fragmentTransaction.add(fragmentId, fragments.get(currentTab));
         fragmentTransaction.commit();
 
         radioGroup.setOnCheckedChangeListener(this);
+        // 日志打印默认进入程序显示的Fragment页面
+        LogUtil.d("当前Fragment【FragmentAdapter】:" + getCurrentTab());
     }
 
     @Override
@@ -58,6 +64,8 @@ public class FragmentViewPagerAdapter implements RadioGroup.OnCheckedChangeListe
                 // 显示目标tab
                 showTab(i);
                 fragmentTransaction.commit();
+                LogUtil.d("当前Fragment【FragmentAdapter】:" + getCurrentTab());
+                mRadioGroup.getChildAt(i).setOnClickListener(mOnClickListener);
             }
         }
     }
@@ -96,6 +104,7 @@ public class FragmentViewPagerAdapter implements RadioGroup.OnCheckedChangeListe
         }
         // 更新目标tab为当前tab
         currentTab = index;
+        mOnCurrentTabListener.onCurrentTab(currentTab);
     }
 
     public int getCurrentTab() {
@@ -104,5 +113,13 @@ public class FragmentViewPagerAdapter implements RadioGroup.OnCheckedChangeListe
 
     private Fragment getCurrentFragment() {
         return mFragments.get(currentTab);
+    }
+
+    public interface OnCurrentTabListener {
+        void onCurrentTab(int currentTab);
+    }
+
+    public void setOnCurrentTabListener(OnCurrentTabListener currentTabListener) {
+        this.mOnCurrentTabListener = currentTabListener;
     }
 }

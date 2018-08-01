@@ -14,17 +14,14 @@ import com.bubble.execute.R;
 import com.bubble.execute.presenter.SplashPagePresenter;
 import com.bubble.execute.presenter.impl.ISplashPagePresenter;
 import com.bubble.execute.thread.DefaultExecutorSupplier;
+import com.bubble.execute.thread.task.SpeechTask;
 import com.bubble.execute.utils.ConstantUtil;
 import com.bubble.execute.utils.DeviceUtil;
 import com.bubble.execute.utils.SPManager;
-import com.bubble.execute.thread.task.SpeechTask;
 import com.bubble.execute.view.impl.ISplashActivityView;
 import com.muddzdev.styleabletoastlibrary.StyleableToast;
 
 import java.util.ArrayList;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 /**

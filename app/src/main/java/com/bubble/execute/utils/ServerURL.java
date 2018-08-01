@@ -9,8 +9,8 @@ package com.bubble.execute.utils;
 
 public interface ServerURL {
     /**
-     * 测试服务器IP地址 9988
-     * 生产服务器IP地址 9999
+     * 测试服务器IP地址 http://121.43.103.69:9988
+     * 生产服务器地址 https://www.mango-baby.top
      */
     String BASE_URL = "http://121.43.103.69:9988";
 }

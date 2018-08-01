@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
     <include
+        android:id="@+id/layout_home_title"
         layout="@layout/layout_title"/>
 
     <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_home"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/layout_home_title">
 
         <ScrollView
+            android:id="@+id/scroll_home_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -20,10 +24,114 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+                <!-- 座右铭 -->
+                <RelativeLayout
+                    android:id="@+id/layout_motto"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/colorWhite">
+
+                    <TextView
+                        android:id="@+id/text_motto_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/home_motto_title"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="16sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/text_motto_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/text_motto_title"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Nothing is impossible when you believe in yourself."
+                        android:textColor="@color/colorBlack"/>
+
+                </RelativeLayout>
+
+                <!-- 任务内容 -->
+                <LinearLayout
+                    android:id="@+id/layout_task"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/colorWhite"
+                    android:orientation="vertical">
+
+                    <!-- 任务内容标题 -->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="46dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="10dp"
+                            android:text="@string/home_task_title"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="16sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="10dp"
+                            android:text="10:24 ~ 11:56"
+                            android:textSize="14sp"
+                            android:textColor="@color/colorBlack"/>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:background="@color/colorGray"/>
+
+                    </RelativeLayout>
+
+                    <!-- 任务具体内容 -->
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
             </LinearLayout>
+
         </ScrollView>
 
     </android.support.v4.widget.SwipeRefreshLayout>
 
-</LinearLayout>
+    <RelativeLayout
+        android:id="@+id/layout_home_edit"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="15dp"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/draw_home_edit">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/icon_home_edit"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>
 
