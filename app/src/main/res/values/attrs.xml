@@ -32,4 +32,9 @@
         <attr name="pkvDeleteBackgroundColor" format="color|reference"/>
         <attr name="pkvCancelBackgroundColor" format="color|reference"/>
     </declare-styleable>
+    <!-- 自定义进度条 -->
+    <declare-styleable name="ExecTaskProgressBarView">
+        <!-- 控件的主题颜色 -->
+        <attr name="etpBackgroundColor" format="color|reference"/>
+    </declare-styleable>
 </resources>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:background="@color/colorWhite"
+        android:minHeight="60dp">
+
+        <RelativeLayout
+            android:id="@+id/layout_check_box"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp">
+
+            <CheckBox
+                android:id="@+id/check_target"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/draw_target_checkbox"
+                android:button="@null"
+                android:checked="false"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/text_target_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/layout_check_box"
+            android:textSize="12sp"
+            android:textColor="@color/colorBlack"
+            android:layout_marginEnd="10dp"
+            android:text="早晨五点半起床认真洗漱，煮一碗粥，然后去上班或做其他事情；"/>
+    </RelativeLayout>
+
+</LinearLayout>

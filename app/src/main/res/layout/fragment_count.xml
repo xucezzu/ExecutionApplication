@@ -3,10 +3,6 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical">
-    <!-- 顶部布局 -->
-    <include
-        layout="@layout/layout_title"/>
-
     <!-- 内容布局 -->
     <android.support.v4.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
@@ -20,6 +16,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="176dp"
+                    android:background="@color/colorWhite">
+
+                </RelativeLayout>
 
             </LinearLayout>
         </ScrollView>

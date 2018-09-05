@@ -1,7 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorWhite">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/layout_target_title_day"
+                android:layout_width="70dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/draw_target_day_title_check_not">
+
+                <TextView
+                    android:id="@+id/text_target_title_day"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/target_day_title"
+                    android:textColor="@color/colorBlack"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_target_title_date"
+                android:layout_width="70dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/draw_target_date_title_check_yes">
+
+                <TextView
+                    android:id="@+id/text_target_title_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/target_date_title"
+                    android:textColor="@color/colorWhite"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorViewLine"/>
+    </RelativeLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager_target"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v4.view.ViewPager>
 
 </LinearLayout>
