@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
-import android.util.Log;
 
 import com.bubble.execute.R;
 import com.bubble.execute.model.biz.SafePasswordBiz;
@@ -13,7 +12,7 @@ import com.bubble.execute.presenter.impl.IPasswordPresenter;
 import com.bubble.execute.utils.ConstantUtil;
 import com.bubble.execute.utils.DialogUtil;
 import com.bubble.execute.utils.LogUtil;
-import com.bubble.execute.utils.SPManager;
+import com.bubble.execute.utils.SpManager;
 import com.bubble.execute.view.impl.IPasswordActivityView;
 import com.bubble.execute.widget.PasswordEditText;
 import com.bubble.execute.widget.PasswordKeyboard;
@@ -151,7 +150,7 @@ public class PasswordActivity extends BaseActivity implements IPasswordActivityV
 
     @Override
     public String getUserId() {
-        return SPManager.getUserID();
+        return SpManager.getUserID();
     }
 
     @Override

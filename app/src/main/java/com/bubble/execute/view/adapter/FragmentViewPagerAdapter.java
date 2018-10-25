@@ -116,6 +116,10 @@ public class FragmentViewPagerAdapter implements RadioGroup.OnCheckedChangeListe
     }
 
     public interface OnCurrentTabListener {
+        /**
+         * 当前页面
+         * @param currentTab 当前页面
+         */
         void onCurrentTab(int currentTab);
     }
 

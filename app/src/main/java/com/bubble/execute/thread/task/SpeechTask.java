@@ -30,7 +30,7 @@ public class SpeechTask extends PriorityRunnable {
     private String offlineVoice = OfflineResource.VOICE_MALE;
     private SpeechSynthesizerListener listener = new MessageListener();
 
-    public SpeechTask(Context context, String text){
+    public SpeechTask(Context context, String text) {
         super(Priority.IMMEDIATE);
         this.mContext = context;
         this.mText = text;
@@ -66,7 +66,7 @@ public class SpeechTask extends PriorityRunnable {
      *
      * @return
      */
-    protected Map<String, String> getParams() {
+    private Map<String, String> getParams() {
         Map<String, String> params = new HashMap<String, String>();
         // 以下参数均为选填
         // 设置在线发声音人： 0 普通女声（默认） 1 普通男声 2 特别男声 3 情感男声<度逍遥> 4 情感儿童声<度丫丫>
@@ -105,7 +105,7 @@ public class SpeechTask extends PriorityRunnable {
         return offlineResource;
     }
 
-    public void setParams(Map<String, String> params) {
+    private void setParams(Map<String, String> params) {
         if (params != null) {
             for (Map.Entry<String, String> e : params.entrySet()) {
                 mSpeechSynthesizer.setParam(e.getKey(), e.getValue());

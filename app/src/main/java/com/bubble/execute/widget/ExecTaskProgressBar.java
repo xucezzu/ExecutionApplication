@@ -119,11 +119,11 @@ public class ExecTaskProgressBar extends ProgressBar {
 //        canvas.drawLine(startX, startY, stopX, stopY, mPaintStroke);
 
         // 绘制实心的条形图
-        int left_fill = 167;
-        int bottom_fill = 100;
-        int top_fill = 100;
+        int leftFill = 167;
+        int bottomFill = 100;
+        int topFill = 100;
 
-        RectF rectFill = new RectF(left_fill, top_fill, 300, bottom_fill);
+        RectF rectFill = new RectF(leftFill, topFill, 300, bottomFill);
         canvas.drawRoundRect(rectFill, 5, 5, mPaintStroke);
 
     }

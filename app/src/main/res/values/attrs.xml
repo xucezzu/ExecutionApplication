@@ -12,17 +12,17 @@
         <!-- 密码的个数 -->
         <attr name="passwordNumber" format="integer"/>
         <!-- 密码圆点的半径 -->
-        <attr name="passwordRadius" format="dimension" />
+        <attr name="passwordRadius" format="dimension"/>
         <!-- 密码圆点的颜色 -->
-        <attr name="passwordColor" format="color" />
+        <attr name="passwordColor" format="color"/>
         <!-- 分割线的颜色 -->
-        <attr name="divisionLineColor" format="color" />
+        <attr name="divisionLineColor" format="color"/>
         <!-- 分割线的大小 -->
-        <attr name="divisionLineSize" format="color" />
+        <attr name="divisionLineSize" format="color"/>
         <!-- 背景边框的颜色 -->
-        <attr name="bgColor" format="color" />
+        <attr name="bgColor" format="color"/>
         <!-- 背景边框的大小 -->
-        <attr name="bgSize" format="dimension" />
+        <attr name="bgSize" format="dimension"/>
         <!-- 背景边框的圆角大小 -->
         <attr name="bgCorner" format="dimension"/>
     </declare-styleable>
@@ -36,5 +36,12 @@
     <declare-styleable name="ExecTaskProgressBarView">
         <!-- 控件的主题颜色 -->
         <attr name="etpBackgroundColor" format="color|reference"/>
+    </declare-styleable>
+    <!-- 自定义圆形进度条 -->
+    <declare-styleable name="circleProgressBar">
+        <attr name="circleWidth" format="dimension"/>
+        <attr name="betaAngle" format="integer"/>
+        <attr name="firstColor" format="color"/>
+        <attr name="secondColor" format="color"/>
     </declare-styleable>
 </resources>

@@ -7,7 +7,7 @@ package com.bubble.execute.utils;
  * 版权所有 © 徐长策
  */
 
-public interface ServerURL {
+public interface ServerUrl {
     /**
      * 测试服务器IP地址 http://121.43.103.69:9988
      * 生产服务器地址 https://www.mango-baby.top

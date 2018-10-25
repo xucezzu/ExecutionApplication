@@ -1,6 +1,7 @@
 package com.bubble.execute.model.biz;
 
 import android.content.Context;
+import android.text.TextUtils;
 
 import com.bubble.execute.R;
 import com.bubble.execute.model.bean.LoginDataRequest;
@@ -8,8 +9,8 @@ import com.bubble.execute.model.bean.LoginDataResponse;
 import com.bubble.execute.model.impl.ILoginBiz;
 import com.bubble.execute.model.listener.OnLoginListener;
 import com.bubble.execute.utils.LogUtil;
-import com.bubble.execute.utils.SPManager;
-import com.bubble.execute.utils.ServerURL;
+import com.bubble.execute.utils.SpManager;
+import com.bubble.execute.utils.ServerUrl;
 import com.bubble.execute.utils.Util;
 import com.google.gson.Gson;
 
@@ -56,7 +57,7 @@ public class LoginBiz implements ILoginBiz {
      */
     private static final String LOGIN_FAILED_DEVICE = "4";
 
-    public LoginBiz(Context context){
+    public LoginBiz(Context context) {
         this.mContext = context;
     }
 
@@ -74,17 +75,21 @@ public class LoginBiz implements ILoginBiz {
     public void login(String mail, String password, String phoneDeviceId, String userLoginType, final OnLoginListener loginListener) {
         // 封装JSON数据
         LoginDataRequest loginDataBean = new LoginDataRequest();
-        loginDataBean.setMail(mail);
-        loginDataBean.setPassword(password);
-        loginDataBean.setPhoneDeviceId(phoneDeviceId);
-        loginDataBean.setUserLoginType(userLoginType);
+        if (!TextUtils.isEmpty(mail) || !TextUtils.isEmpty(password) || !TextUtils.isEmpty(phoneDeviceId) || !TextUtils.isEmpty(userLoginType)) {
+            loginDataBean.setMail(mail);
+            loginDataBean.setPassword(password);
+            loginDataBean.setPhoneDeviceId(phoneDeviceId);
+            loginDataBean.setUserLoginType(userLoginType);
+        } else {
+            return;
+        }
         Gson gson = new Gson();
         // 将JSON数据转换为String类型
         String loginRequestJson = gson.toJson(loginDataBean);
         LogUtil.d("PostLoginData: " + loginRequestJson);
         // 网络请求，开始创建 Retrofit 对象
         Retrofit retrofitLogin = new Retrofit.Builder()
-                .baseUrl(ServerURL.BASE_URL)
+                .baseUrl(ServerUrl.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         // 创建网络请求接口实例
@@ -98,13 +103,13 @@ public class LoginBiz implements ILoginBiz {
                 // 网络请求成功，处理返回的结果
                 LogUtil.d("【login】网络请求成功");
                 LogUtil.d("【login】返回的数据：" + response.body().toString());
-                switch (response.body().getErrCode()){
+                switch (response.body().getErrCode()) {
                     case LOGIN_SUCCESS:
                         loginListener.onLoginSuccess(response.body().getAlertMsg());
                         //登录成功，需要保存登录的数据
-                        SPManager.setUserMail(response.body().getReturnData().getUserMail());
-                        SPManager.setUserPassword(response.body().getReturnData().getUserPassword());
-                        SPManager.setUserID(response.body().getReturnData().getUserId());
+                        SpManager.setUserMail(response.body().getReturnData().getUserMail());
+                        SpManager.setUserPassword(response.body().getReturnData().getUserPassword());
+                        SpManager.setUserID(response.body().getReturnData().getUserId());
                         break;
                     case LOGIN_FAILED_VALUE:
                         loginListener.onLoginFailed(response.body().getAlertMsg());

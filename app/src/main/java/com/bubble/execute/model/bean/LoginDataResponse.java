@@ -17,6 +17,7 @@ public class LoginDataResponse {
         private String userMail;
         private String userPassword;
         private String userName;
+        private String userTokenId;
 
         public String getUserId() {
             return userId;
@@ -49,6 +50,14 @@ public class LoginDataResponse {
         public void setUserName(String userName) {
             this.userName = userName;
         }
+
+        public String getUserTokenId() {
+            return userTokenId;
+        }
+
+        public void setUserTokenId(String userTokenId) {
+            this.userTokenId = userTokenId;
+        }
     }
 
     public String getErrCode() {
@@ -79,12 +88,13 @@ public class LoginDataResponse {
     public String toString() {
         String returnMessage = "{ " + "errCode: " + getErrCode() + " alertMsg: " + getAlertMsg();
         String returnDataForUser = "";
-        if(returnData!= null){
+        if (returnData != null) {
             returnDataForUser = " returnData: {" +
                     " userId: " + returnData.getUserId() +
                     " userMail: " + returnData.getUserMail() +
                     " userPassword " + returnData.getUserPassword() +
-                    " userName " + returnData.getUserName() + " }";
+                    " userName " + returnData.getUserName() +
+                    " userTokenId " + returnData.getUserTokenId() + " }";
         }
         return returnMessage + returnDataForUser + " }";
     }

@@ -10,12 +10,7 @@ package com.bubble.execute.model.bean;
 public class RegisterDataRequest {
     private String mail;
     private String password;
-    private String nickname;
-    private String safePassword;
-    private String registerTime;
-    private String lastTime;
-    private String address;
-    private String uuid;
+    private String phoneDeviceId;
 
     public void setMail(String mail) {
         this.mail = mail;
@@ -33,51 +28,11 @@ public class RegisterDataRequest {
         return password;
     }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
+    public void setPhoneDeviceId(String phoneDeviceId) {
+        this.phoneDeviceId = phoneDeviceId;
     }
 
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setSafePassword(String safePassword) {
-        this.safePassword = safePassword;
-    }
-
-    public String getSafePassword() {
-        return safePassword;
-    }
-
-    public void setRegisterTime(String registerTime) {
-        this.registerTime = registerTime;
-    }
-
-    public String getRegisterTime() {
-        return registerTime;
-    }
-
-    public void setLastTime(String lastTime) {
-        this.lastTime = lastTime;
-    }
-
-    public String getLastTime() {
-        return lastTime;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
-    }
-
-    public String getUuid() {
-        return uuid;
+    public String getPhoneDeviceId() {
+        return phoneDeviceId;
     }
 }

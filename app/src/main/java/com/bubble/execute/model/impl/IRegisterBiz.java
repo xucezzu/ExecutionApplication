@@ -1,6 +1,6 @@
 package com.bubble.execute.model.impl;
 
-import com.bubble.execute.model.listener.OnLoginListener;
+import com.bubble.execute.model.listener.OnRegisterListener;
 
 /**
  * @author 徐长策
@@ -11,12 +11,11 @@ import com.bubble.execute.model.listener.OnLoginListener;
 
 public interface IRegisterBiz {
     /**
-     * 用户登录接口
+     * 用户注册接口
      * @param mail 用户邮箱
      * @param password 用户登录密码
      * @param phoneDeviceId  用户设备ID
-     * @param userLoginType 用户登录类型
-     * @param loginListener  用户登录结果监听
+     * @param registerListener  用户登录结果监听
      */
-    void login(String mail, String password, String phoneDeviceId, String userLoginType, OnLoginListener loginListener);
+    void register(String mail, String password, String phoneDeviceId, OnRegisterListener registerListener);
 }

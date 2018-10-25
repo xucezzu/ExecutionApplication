@@ -64,6 +64,7 @@
                 android:layout_height="65dp">
 
                 <Button
+                    android:id="@+id/button_to_edit"
                     android:layout_width="180dp"
                     android:layout_height="35dp"
                     android:background="@drawable/draw_button_edit_target_day"

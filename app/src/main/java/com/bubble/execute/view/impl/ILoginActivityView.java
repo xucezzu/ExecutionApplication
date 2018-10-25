@@ -42,11 +42,6 @@ public interface ILoginActivityView {
     String getUserLoginType();
 
     /**
-     * 跳转到忘记密码界面
-     */
-    void toForgetPasswordActivity();
-
-    /**
      * 邮箱输入错误 || 注册失败， 全部清空输入框
      */
     void clearAllEditText();
@@ -74,12 +69,22 @@ public interface ILoginActivityView {
     /**
      * 显示“正在登录...”
      */
-    void showLoadingData();
+    void showLoginLoading();
 
     /**
      * 隐藏“正在登录...”
      */
-    void hideLoadingData();
+    void hideLoginLoadingData();
+
+    /**
+     * 显示“正在注册...”
+     */
+    void showRegisterLoading();
+
+    /**
+     * 隐藏“正在注册...”
+     */
+    void hideRegisterLoadingData();
 
     /**
      * 弹出Toast的信息

@@ -11,7 +11,7 @@ import com.bubble.execute.R;
 import com.bubble.execute.utils.LogUtil;
 
 /**
- * Author：徐长策
+ * @author 徐长策
  * E-Mail: xuce_zzu@163.com
  * Date：2016/10/24
  * 版权所有 © 徐长策

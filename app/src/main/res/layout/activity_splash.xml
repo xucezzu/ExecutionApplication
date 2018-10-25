@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:sp="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackgroundLayout">
+    android:background="@color/colorBackgroundLayout"
+    tools:ignore="ResAuto">
 
     <ImageView
         android:id="@+id/image_logo"
@@ -26,9 +29,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="40dp"
-        android:layout_marginEnd="60dp"
         android:layout_marginStart="60dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="40dp"
         android:orientation="horizontal">
 
         <TextView
@@ -64,11 +67,29 @@
         android:id="@+id/text_loading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="80dp"
         android:text="@string/splash_loading"
         android:textColor="@color/colorBlack"
-        android:textSize="14sp"
-        android:layout_marginBottom="80dp"/>
+        android:textSize="14sp"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp">
+
+        <com.bubble.execute.widget.ExecCircleProgressBar
+            android:id="@+id/circle_bar"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="4dp"
+            sp:circleWidth="2dp"
+            sp:firstColor="#bdbdbd"
+            sp:secondColor="#000000"/>
+
+    </RelativeLayout>
 
 </RelativeLayout>

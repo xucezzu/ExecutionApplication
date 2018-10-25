@@ -17,4 +17,9 @@ public interface ILoginPresenter {
      * 用户注册
      */
     void userRegister();
+
+    /**
+     * 重置登录密码
+     */
+    void resetPassword();
 }

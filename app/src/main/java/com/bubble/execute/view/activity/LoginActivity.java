@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,6 +15,7 @@ import com.bubble.execute.presenter.impl.ILoginPresenter;
 import com.bubble.execute.utils.ConstantUtil;
 import com.bubble.execute.utils.DeviceUtil;
 import com.bubble.execute.utils.LogUtil;
+import com.bubble.execute.utils.Util;
 import com.bubble.execute.view.impl.ILoginActivityView;
 import com.bubble.execute.widget.CancelEditText;
 import com.jakewharton.rxbinding2.view.RxView;
@@ -31,7 +33,7 @@ import io.reactivex.functions.Consumer;
  */
 
 @SuppressLint("Registered")
-public class LoginActivity extends BaseActivity implements ILoginActivityView{
+public class LoginActivity extends BaseActivity implements ILoginActivityView {
     private ImageView mImageBack;
     private TextView mTextRegister, mTextLogin, mTextForgetPassword, mTextLoginLoading;
     private CancelEditText mEditMail, mEditPassword, mEditPasswordNext;
@@ -73,8 +75,9 @@ public class LoginActivity extends BaseActivity implements ILoginActivityView{
         mEditMail = getViewById(R.id.edit_text_user);
         mEditPassword = getViewById(R.id.edit_text_password);
         mEditPasswordNext = getViewById(R.id.edit_text_again_password);
-        mTextForgetPassword = getViewById(R.id.text_forget_password);
         setViewForLogin(isPageInLogin);
+        mImageBack.setVisibility(View.GONE);
+        mTextLoginLoading.setVisibility(View.GONE);
     }
 
     /**
@@ -132,27 +135,48 @@ public class LoginActivity extends BaseActivity implements ILoginActivityView{
                         if (!isPageInLogin) {
                             // 点击之前就在注册界面，这时点击就是提交注册数据
                             LogUtil.d("点击之前就在注册界面，此次点击需要上传注册数据......");
-                            mILoginPresenter.userRegister();
+                            if (!TextUtils.isEmpty(getMail()) && !TextUtils.isEmpty(getPassword()) && !TextUtils.isEmpty(getTwoPassword())) {
+                                LogUtil.d("注册数据全部不为空。。。");
+                                // 先判断邮箱是否格式正确
+                                if (!ConstantUtil.isEmail(getMail())) {
+                                    StyleableToast.makeText(LoginActivity.this, getResources().getString(R.string.login_mail_error), R.style.AppDefaultToast).show();
+                                    return;
+                                }
+                                // 再次判断密码格式是否正确
+                                if (!ConstantUtil.checkPassword(LoginActivity.this, getPassword())) {
+                                    return;
+                                }
+                                // 再次判断两次输入的密码是否一致
+                                if (!getPassword().equals(getTwoPassword())) {
+                                    StyleableToast.makeText(LoginActivity.this, getResources().getString(R.string.register_error_password), R.style.AppDefaultToast).show();
+                                    return;
+                                }
+                                mILoginPresenter.userRegister();
+                            } else {
+                                LogUtil.d("注册数据存在空数据。。。");
+                                StyleableToast.makeText(LoginActivity.this, getResources().getString(R.string.register_error_empty), R.style.AppDefaultToast).show();
+                            }
                         } else {
                             // 之前在登录界面，这时需要变换界面显示
                             isPageInLogin = false;
                             setViewForLogin(false);
                             LogUtil.d("点击之前在登录界面，此次点击切换到注册界面......");
                         }
+                    }
+                });
 
+        RxView.clicks(mTextForgetPassword).throttleFirst(2, TimeUnit.SECONDS)
+                .subscribe(new Consumer<Object>() {
+                    @Override
+                    public void accept(Object o) throws Exception {
+                        mILoginPresenter.resetPassword();
                     }
                 });
     }
 
     @Override
     public String getMail() {
-        String eMail = mEditMail.getText().toString();
-        if(ConstantUtil.isEmail(eMail)){
-            return eMail;
-        }else {
-            StyleableToast.makeText(LoginActivity.this, getResources().getString(R.string.login_mail_error), R.style.AppDefaultToast).show();
-        }
-        return null;
+        return mEditMail.getText().toString();
     }
 
     @Override
@@ -162,7 +186,7 @@ public class LoginActivity extends BaseActivity implements ILoginActivityView{
 
     @Override
     public String getTwoPassword() {
-        return null;
+        return mEditPasswordNext.getText().toString();
     }
 
     @Override
@@ -173,11 +197,6 @@ public class LoginActivity extends BaseActivity implements ILoginActivityView{
     @Override
     public String getUserLoginType() {
         return ConstantUtil.USER_LOGIN_TYPE_UPDATE_DEVICE_ID;
-    }
-
-    @Override
-    public void toForgetPasswordActivity() {
-
     }
 
     @Override
@@ -213,12 +232,22 @@ public class LoginActivity extends BaseActivity implements ILoginActivityView{
     }
 
     @Override
-    public void showLoadingData() {
+    public void showLoginLoading() {
         mTextLoginLoading.setVisibility(View.VISIBLE);
     }
 
     @Override
-    public void hideLoadingData() {
+    public void hideLoginLoadingData() {
+        mTextLoginLoading.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showRegisterLoading() {
+        mTextLoginLoading.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideRegisterLoadingData() {
         mTextLoginLoading.setVisibility(View.GONE);
     }
 

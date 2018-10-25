@@ -4,9 +4,11 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.CountDownTimer;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
@@ -17,8 +19,10 @@ import com.bubble.execute.thread.DefaultExecutorSupplier;
 import com.bubble.execute.thread.task.SpeechTask;
 import com.bubble.execute.utils.ConstantUtil;
 import com.bubble.execute.utils.DeviceUtil;
-import com.bubble.execute.utils.SPManager;
+import com.bubble.execute.utils.LogUtil;
+import com.bubble.execute.utils.SpManager;
 import com.bubble.execute.view.impl.ISplashActivityView;
+import com.bubble.execute.widget.ExecCircleProgressBar;
 import com.muddzdev.styleabletoastlibrary.StyleableToast;
 
 import java.util.ArrayList;
@@ -32,8 +36,9 @@ import java.util.concurrent.Future;
  */
 
 @SuppressLint("Registered")
-public class SplashPageActivity extends BaseActivity implements ISplashActivityView{
+public class SplashPageActivity extends BaseActivity implements ISplashActivityView {
     private TextView mTextLoading;
+    private ExecCircleProgressBar mCircleProgressBar;
     private ISplashPagePresenter mISplashPagePresenter;
 
     @Override
@@ -51,6 +56,14 @@ public class SplashPageActivity extends BaseActivity implements ISplashActivityV
     public void initView() {
         mTextLoading = getViewById(R.id.text_loading);
         mTextLoading.setVisibility(View.VISIBLE);
+        mCircleProgressBar = getViewById(R.id.circle_bar);
+        mCircleProgressBar.setFirstColor(Color.parseColor("#bdbdbd"));
+        mCircleProgressBar.setSecondColor(Color.parseColor("#000000"));
+        mCircleProgressBar.setProgress(100, true);
+        // 如果持久化的用户登录数据不完整，则直接隐藏“数据加载...”字段
+        if (TextUtils.isEmpty(SpManager.getUserMail()) || TextUtils.isEmpty(SpManager.getUserPassword())) {
+            hideLoadingData();
+        }
     }
 
     @Override
@@ -66,12 +79,12 @@ public class SplashPageActivity extends BaseActivity implements ISplashActivityV
 
     @Override
     public String getMail() {
-        return SPManager.getUserMail();
+        return SpManager.getUserMail();
     }
 
     @Override
     public String getPassword() {
-        return SPManager.getUserPassword();
+        return SpManager.getUserPassword();
     }
 
     @Override
@@ -86,7 +99,7 @@ public class SplashPageActivity extends BaseActivity implements ISplashActivityV
 
     @Override
     public String getUserLoginType() {
-        return ConstantUtil.USER_LOGIN_TYPE_UNUPDATE_DEVICE_ID;
+        return ConstantUtil.USER_LOGIN_TYPE_UN_UPDATE_DEVICE_ID;
     }
 
     @Override
@@ -130,12 +143,18 @@ public class SplashPageActivity extends BaseActivity implements ISplashActivityV
         public void onTick(long millisUntilFinished) {
             // 如果需要，该值可以显示在广告页面上
             String value = String.valueOf((int) (millisUntilFinished / 1000));
+            mCircleProgressBar.setCenterText(value);
         }
 
         @Override
         public void onFinish() {
             // 完成倒计时后，需要根据条件跳转
-            mISplashPagePresenter.userLogin();
+            if (!TextUtils.isEmpty(SpManager.getUserMail()) && !TextUtils.isEmpty(SpManager.getUserPassword())) {
+                mISplashPagePresenter.userLogin();
+            } else {
+                hideLoadingData();
+                toLoginActivity();
+            }
         }
     };
 

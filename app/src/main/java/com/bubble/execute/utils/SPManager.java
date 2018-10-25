@@ -12,7 +12,7 @@ import com.bubble.execute.ExApplication;
  * 版权所有 © 徐长策
  */
 
-public class SPManager {
+public class SpManager {
 
     private static SharedPreferences getSharedPreferences() {
         return ExApplication.getInstance()
@@ -21,10 +21,10 @@ public class SPManager {
 
     /**
      * 写入用户账户数据
-     * @param USER_MAIL
+     * @param userMail
      */
-    public static void setUserMail(String USER_MAIL) {
-        getSharedPreferences().edit().putString(ConstantUtil.UserData.USER_MAIL, USER_MAIL).apply();
+    public static void setUserMail(String userMail) {
+        getSharedPreferences().edit().putString(ConstantUtil.UserData.USER_MAIL, userMail).apply();
     }
 
     /**
@@ -37,10 +37,10 @@ public class SPManager {
 
     /**
      * 写入用户密码数据
-     * @param USER_PASSWORD
+     * @param userPassword
      */
-    public static void setUserPassword(String USER_PASSWORD) {
-        getSharedPreferences().edit().putString(ConstantUtil.UserData.USER_PASSWORD, USER_PASSWORD).apply();
+    public static void setUserPassword(String userPassword) {
+        getSharedPreferences().edit().putString(ConstantUtil.UserData.USER_PASSWORD, userPassword).apply();
     }
 
     /**
@@ -53,10 +53,10 @@ public class SPManager {
 
     /**
      * 写入用户个人ID
-     * @param USER_ID
+     * @param userId
      */
-    public static void setUserID(String USER_ID) {
-        getSharedPreferences().edit().putString(ConstantUtil.UserData.USER_ID, USER_ID).apply();
+    public static void setUserID(String userId) {
+        getSharedPreferences().edit().putString(ConstantUtil.UserData.USER_ID, userId).apply();
     }
 
     /**

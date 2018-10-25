@@ -1,5 +1,7 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources xmlns:tools="http://schemas.android.com/tools"
+           tools:ignore="ExtraTranslation">
     <string name="app_name">Execute</string>
+    <string name="app_title_right_over">完成</string>
     <string name="splash_a">专注</string>
     <string name="splash_b">极简</string>
     <string name="splash_c">坚持</string>
@@ -7,7 +9,9 @@
     <string name="splash_loading">数据加载…</string>
     <string name="login_loading">正在登录…</string>
     <string name="login_mail_error">邮箱格式不正确</string>
-    <string name="register_loading">正在上传数据…</string>
+    <string name="register_loading">正在注册…</string>
+    <string name="register_error_empty">注册的数据不能为空</string>
+    <string name="register_error_password">两次密码输入不一致</string>
     <string name="title_layout_default">Title</string>
     <string name="main_bottom_left">目标</string>
     <string name="main_bottom_right">个人</string>
@@ -34,5 +38,7 @@
     <!-- 目标页面 -->
     <string name="target_day_title">每日必做</string>
     <string name="target_date_title">重要事项</string>
-    <string name="target_day_button_edit">编辑每日必做内容</string>
+    <string name="target_day_button_edit">编辑内容</string>
+    <string name="target_day_edit_title">内容编辑</string>
+    <string name="target_edit_warn">点击屏幕即可编辑内容</string>
 </resources>
