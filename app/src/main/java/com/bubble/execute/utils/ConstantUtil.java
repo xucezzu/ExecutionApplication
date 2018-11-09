@@ -88,7 +88,7 @@ public class ConstantUtil {
      * 4.不能包含空格、制表符、换页符等空白字符
      */
     public static boolean checkPassword(Context context, String password) throws EmptyStackException {
-        if (password == null && password.length() == 0) {
+        if (password == null || password.length() == 0) {
             StyleableToast.makeText(context, "密码字段不能为空", R.style.AppDefaultToast).show();
             return false;
         }

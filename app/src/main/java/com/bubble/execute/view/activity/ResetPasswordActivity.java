@@ -89,6 +89,10 @@ public class ResetPasswordActivity extends BaseActivity implements IResetPasswor
                     @Override
                     public void accept(Object o) throws Exception {
                         if (!isCheckedOldPassword) {
+                            // 判断密码格式是否正确
+                            if (!ConstantUtil.checkPassword(mContext, getOldPassword())) {
+                                return;
+                            }
                             // 核对老密码
                             checkOldPassword();
                         } else {
