@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
 
+import com.bubble.execute.utils.NavigationController;
+
 /**
  * @author 徐长策
  * E-Mail: xuce_zzu@163.com
@@ -25,5 +27,6 @@ public class ExApplication extends Application {
         super.onCreate();
         mContext = getApplicationContext();
         mApplication = this;
+        registerActivityLifecycleCallbacks(NavigationController.getInstance());
     }
 }

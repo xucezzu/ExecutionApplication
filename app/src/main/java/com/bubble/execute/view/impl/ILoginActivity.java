@@ -10,7 +10,7 @@ package com.bubble.execute.view.impl;
  * </p>
  */
 
-public interface ILoginActivityView {
+public interface ILoginActivity {
     /**
      * 获取用户邮箱
      * @return 邮箱
@@ -65,6 +65,11 @@ public interface ILoginActivityView {
      * 忘记密码，跳转到密码重置页面
      */
     void toResetPasswordActivity();
+
+    /**
+     * 注册成功，需要跳转到验证码输入界面
+     */
+    void toIdentifyUserActivity();
 
     /**
      * 显示“正在登录...”

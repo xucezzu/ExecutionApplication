@@ -6,7 +6,7 @@ import com.bubble.execute.model.biz.LoginBiz;
 import com.bubble.execute.model.impl.ILoginBiz;
 import com.bubble.execute.model.listener.OnLoginListener;
 import com.bubble.execute.presenter.impl.ISplashPagePresenter;
-import com.bubble.execute.view.impl.ISplashActivityView;
+import com.bubble.execute.view.impl.ISplashActivity;
 
 /**
  * @author 徐长策
@@ -17,10 +17,10 @@ import com.bubble.execute.view.impl.ISplashActivityView;
 
 public class SplashPagePresenter implements ISplashPagePresenter{
     private Context mContext;
-    private ISplashActivityView mSplashView;
+    private ISplashActivity mSplashView;
     private ILoginBiz mILoginBiz;
 
-    public SplashPagePresenter(Context context, ISplashActivityView splashView){
+    public SplashPagePresenter(Context context, ISplashActivity splashView){
         this.mContext = context;
         this.mSplashView = splashView;
         this.mILoginBiz = new LoginBiz(mContext);

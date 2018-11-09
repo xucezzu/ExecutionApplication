@@ -6,7 +6,7 @@ package com.bubble.execute.presenter.impl;
  * Date：2018/3/27
  * 版权所有 © 徐长策
  */
-public interface IPasswordPresenter {
+public interface ISafePasswordPresenter {
 
     /**
      * 判断是否存在安全密码

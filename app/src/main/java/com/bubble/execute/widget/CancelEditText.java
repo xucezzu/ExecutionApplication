@@ -1,5 +1,6 @@
 package com.bubble.execute.widget;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.AppCompatEditText;
@@ -9,11 +10,12 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 
 import com.bubble.execute.R;
+import com.bubble.execute.utils.LogUtil;
 
 import static android.support.v4.content.ContextCompat.getDrawable;
 
 /**
- * @Author 徐长策
+ * @author 徐长策
  * E-Mail: xuce_zzu@163.com
  * Date：2018/3/5
  * 版权所有 © 徐长策
@@ -52,14 +54,21 @@ public class CancelEditText extends AppCompatEditText implements TextWatcher {
         setClearDrawable();
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        // 重写点击事件，划定点击的范围
+        // getCompoundDrawables()是一个四个值的数组，分别代表左上右下（left/top/right/bottom），故getCompoundDrawables()[2]代表右边的图片
         int action = event.getAction();
         if (action == MotionEvent.ACTION_UP) {
             if (getCompoundDrawables()[2] != null) {
-                boolean touchable = event.getX() > (getWidth() - getTotalPaddingRight())
-                        && (event.getX() < ((getWidth() - getPaddingRight())));
-
+                // 弄明白每个值代表的含义
+                // event.getX()  -->  点击的位置距离控件X轴原点的距离
+                // getWidth()  -->  获取控件的宽度
+                // getTotalPaddingRight()  -->  获取图标左边缘至控件右边缘的距离
+                // getPaddingRight()  -->  获取图标右边缘至控件右边缘的距离
+                LogUtil.d("event.getX() : " + event.getX() + " getWidth() : " + getWidth() + " getTotalPaddingRight() : " + getTotalPaddingRight() + " getPaddingRight() : " + getPaddingRight());
+                boolean touchable = (event.getX() > (getWidth() - getTotalPaddingRight())) && (event.getX() < (getWidth() - getPaddingRight()));
                 if (touchable) {
                     this.setText("");
                 }
@@ -74,6 +83,7 @@ public class CancelEditText extends AppCompatEditText implements TextWatcher {
     private void init() {
         mDrawableClear = getCompoundDrawables()[2];
         mDrawableClear = getDrawable(getContext(), R.drawable.icon_exit_delete);
+        assert mDrawableClear != null;
         mDrawableClear.setBounds(0, 0,
                 (int) (mDrawableClear.getIntrinsicWidth() * 0.25),
                 (int) (mDrawableClear.getIntrinsicHeight() * 0.25));
@@ -87,7 +97,7 @@ public class CancelEditText extends AppCompatEditText implements TextWatcher {
      */
     private void setClearDrawable() {
         if (length() < 1) {
-            setClearIconVisible(true);
+            setClearIconVisible(false);
         } else {
             setClearIconVisible(true);
         }

@@ -1,6 +1,7 @@
 package com.bubble.execute.view.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -15,8 +16,7 @@ import com.bubble.execute.presenter.impl.ILoginPresenter;
 import com.bubble.execute.utils.ConstantUtil;
 import com.bubble.execute.utils.DeviceUtil;
 import com.bubble.execute.utils.LogUtil;
-import com.bubble.execute.utils.Util;
-import com.bubble.execute.view.impl.ILoginActivityView;
+import com.bubble.execute.view.impl.ILoginActivity;
 import com.bubble.execute.widget.CancelEditText;
 import com.jakewharton.rxbinding2.view.RxView;
 import com.muddzdev.styleabletoastlibrary.StyleableToast;
@@ -33,7 +33,8 @@ import io.reactivex.functions.Consumer;
  */
 
 @SuppressLint("Registered")
-public class LoginActivity extends BaseActivity implements ILoginActivityView {
+public class LoginActivity extends BaseActivity implements ILoginActivity {
+    private Context mContext = LoginActivity.this;
     private ImageView mImageBack;
     private TextView mTextRegister, mTextLogin, mTextForgetPassword, mTextLoginLoading;
     private CancelEditText mEditMail, mEditPassword, mEditPasswordNext;
@@ -61,7 +62,7 @@ public class LoginActivity extends BaseActivity implements ILoginActivityView {
         // 获取从上一个页面传递的值
         Intent intent = getIntent();
         typeFromActivity = intent.getIntExtra(ConstantUtil.LOGIN_ACTIVITY_TYPE, 0);
-        mILoginPresenter = new LoginPresenter(LoginActivity.this, this);
+        mILoginPresenter = new LoginPresenter(mContext, this);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -211,7 +212,7 @@ public class LoginActivity extends BaseActivity implements ILoginActivityView {
 
     @Override
     public void toPasswordActivity() {
-        Intent intent = new Intent(LoginActivity.this, PasswordActivity.class);
+        Intent intent = new Intent(LoginActivity.this, SafePasswordActivity.class);
         intent.putExtra(ConstantUtil.PASSWORD_ACTIVITY_TYPE, 1);
         startActivity(intent);
         finish();
@@ -227,6 +228,13 @@ public class LoginActivity extends BaseActivity implements ILoginActivityView {
     @Override
     public void toResetPasswordActivity() {
         Intent intent = new Intent(LoginActivity.this, ResetPasswordActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void toIdentifyUserActivity() {
+        Intent intent = new Intent(LoginActivity.this, IdentifyUserActivity.class);
         startActivity(intent);
         finish();
     }

@@ -1,6 +1,7 @@
 package com.bubble.execute.model.biz;
 
 import com.bubble.execute.model.bean.LoginDataResponse;
+import com.bubble.execute.model.bean.PasswordDataResponse;
 import com.bubble.execute.model.bean.RegisterDataResponse;
 import com.bubble.execute.model.bean.SafePasswordDataResponse;
 
@@ -62,4 +63,22 @@ public interface RequestApi {
     @Headers({"Content-type:application/json;charset=utf-8", "Accept:application/json"})
     @POST("update_safe_password/")
     Call<SafePasswordDataResponse.UpdateSafePassword> updateSafePasswordPostMsg(@Body RequestBody requestBody);
+
+    /**
+     * 核对密码接口
+     * @param requestBody 上传的数据
+     * @return
+     */
+    @Headers({"Content-type:application/json;charset=utf-8", "Accept:application/json"})
+    @POST("check_user_password/")
+    Call<PasswordDataResponse.CheckPassword> checkPasswordPostMsg(@Body RequestBody requestBody);
+
+    /**
+     * 更新密码接口
+     * @param requestBody 上传的数据
+     * @return
+     */
+    @Headers({"Content-type:application/json;charset=utf-8", "Accept:application/json"})
+    @POST("update_user_password/")
+    Call<PasswordDataResponse.UpdatePassword> updatePasswordPostMsg(@Body RequestBody requestBody);
 }

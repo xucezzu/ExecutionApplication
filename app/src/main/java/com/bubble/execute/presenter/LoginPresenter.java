@@ -9,7 +9,7 @@ import com.bubble.execute.model.impl.IRegisterBiz;
 import com.bubble.execute.model.listener.OnLoginListener;
 import com.bubble.execute.model.listener.OnRegisterListener;
 import com.bubble.execute.presenter.impl.ILoginPresenter;
-import com.bubble.execute.view.impl.ILoginActivityView;
+import com.bubble.execute.view.impl.ILoginActivity;
 
 /**
  * @author 徐长策
@@ -20,56 +20,58 @@ import com.bubble.execute.view.impl.ILoginActivityView;
 
 public class LoginPresenter implements ILoginPresenter{
     private Context mContext;
-    private ILoginActivityView mILoginActivityView;
+    private ILoginActivity mILoginActivity;
     private ILoginBiz mILoginBiz;
     private IRegisterBiz mIRegisterBiz;
 
-    public LoginPresenter(Context context, ILoginActivityView loginActivityView){
+    public LoginPresenter(Context context, ILoginActivity loginActivityView){
         this.mContext = context;
-        this.mILoginActivityView = loginActivityView;
+        this.mILoginActivity = loginActivityView;
         this.mILoginBiz = new LoginBiz(mContext);
         this.mIRegisterBiz = new RegisterBiz(mContext);
     }
 
     @Override
     public void userLogin() {
-        mILoginActivityView.showLoginLoading();
-        mILoginBiz.login(mILoginActivityView.getMail(), mILoginActivityView.getPassword(), mILoginActivityView.getDeviceID(), mILoginActivityView.getUserLoginType(), new OnLoginListener() {
+        mILoginActivity.showLoginLoading();
+        mILoginBiz.login(mILoginActivity.getMail(), mILoginActivity.getPassword(), mILoginActivity.getDeviceID(), mILoginActivity.getUserLoginType(), new OnLoginListener() {
             @Override
             public void onLoginSuccess(String msg) {
-                mILoginActivityView.toMainActivity();
-                mILoginActivityView.hideLoginLoadingData();
-                mILoginActivityView.showReturnMsg(msg);
+                mILoginActivity.toMainActivity();
+                mILoginActivity.hideLoginLoadingData();
+                mILoginActivity.showReturnMsg(msg);
             }
 
             @Override
             public void onLoginFailed(String msg) {
-                mILoginActivityView.hideLoginLoadingData();
-                mILoginActivityView.showReturnMsg(msg);
+                mILoginActivity.hideLoginLoadingData();
+                mILoginActivity.showReturnMsg(msg);
             }
         });
     }
 
     @Override
     public void userRegister() {
-        mILoginActivityView.showRegisterLoading();
-        mIRegisterBiz.register(mILoginActivityView.getMail(), mILoginActivityView.getPassword(), mILoginActivityView.getDeviceID(), new OnRegisterListener() {
+        mILoginActivity.showRegisterLoading();
+        mIRegisterBiz.register(mILoginActivity.getMail(), mILoginActivity.getPassword(), mILoginActivity.getDeviceID(), new OnRegisterListener() {
             @Override
             public void onRegisterSuccess(String msg) {
-                mILoginActivityView.hideRegisterLoadingData();
-                mILoginActivityView.showReturnMsg(msg);
+                mILoginActivity.hideRegisterLoadingData();
+                mILoginActivity.showReturnMsg(msg);
+                mILoginActivity.toMainActivity();
             }
 
             @Override
             public void onRegisterFailed(String msg) {
-                mILoginActivityView.hideRegisterLoadingData();
-                mILoginActivityView.showReturnMsg(msg);
+                mILoginActivity.hideRegisterLoadingData();
+                mILoginActivity.showReturnMsg(msg);
+                mILoginActivity.toIdentifyUserActivity();
             }
         });
     }
 
     @Override
     public void resetPassword() {
-        mILoginActivityView.toResetPasswordActivity();
+        mILoginActivity.toResetPasswordActivity();
     }
 }

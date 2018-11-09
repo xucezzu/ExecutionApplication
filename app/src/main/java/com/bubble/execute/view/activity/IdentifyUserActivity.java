@@ -1,5 +1,10 @@
 package com.bubble.execute.view.activity;
 
+import android.annotation.SuppressLint;
+
+import com.bubble.execute.R;
+import com.bubble.execute.view.impl.IIdentifyUserActivity;
+
 /**
  * @author 徐长策
  * E-Mail: xuce_zzu@163.com
@@ -7,10 +12,11 @@ package com.bubble.execute.view.activity;
  * 版权所有 © 徐长策
  * 用户验证页面
  */
-public class IdentifyUserActivity extends BaseActivity {
+@SuppressLint("Registered")
+public class IdentifyUserActivity extends BaseActivity implements IIdentifyUserActivity {
     @Override
     public void setContentView() {
-
+        setContentView(R.layout.activity_identify);
     }
 
     @Override

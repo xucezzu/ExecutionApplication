@@ -67,6 +67,10 @@ public class ConstantUtil {
         String USER_PASSWORD = "User_Password";
     }
 
+    public interface GlobalVariableKey{
+        String INTENT_BUNDLE_NAME = "Intent_bundle_name";
+    }
+
     /**
      * 用正则表达式验证邮箱是否符合标准
      */

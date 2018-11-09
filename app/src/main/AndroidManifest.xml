@@ -20,7 +20,8 @@
         android:roundIcon="@mipmap/icon_application"
         android:supportsRtl="true"
         android:name="com.bubble.execute.ExApplication"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".view.activity.SplashPageActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -30,9 +31,11 @@
         </activity>
         <activity android:name=".view.activity.LoginActivity"/>
         <activity android:name=".view.activity.MainActivity"/>
-        <activity android:name=".view.activity.PasswordActivity"/>
+        <activity android:name=".view.activity.SafePasswordActivity"/>
         <activity android:name=".view.activity.ResetPasswordActivity"/>
         <activity android:name=".view.activity.TargetEditActivity"/>
+        <activity android:name=".view.activity.IdentifyUserActivity"/>
+        <activity android:name=".view.activity.SettingActivity"/>
     </application>
 
 </manifest>

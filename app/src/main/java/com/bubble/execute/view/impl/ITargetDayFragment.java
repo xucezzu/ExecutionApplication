@@ -6,7 +6,7 @@ package com.bubble.execute.view.impl;
  * Date：2018/9/10
  * 版权所有 © 徐长策
  */
-public interface ITargetDayFragmentView {
+public interface ITargetDayFragment {
     /**
      * 跳转到每日任务编辑页面
      */

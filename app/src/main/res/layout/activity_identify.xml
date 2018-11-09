@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackgroundLayout">
+
+    <!-- 输入密码提示 -->
+    <TextView
+        android:id="@+id/text_password_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:text="@string/identify_code_title"
+        android:textColor="@color/colorBlack"
+        android:textSize="12sp"/>
+
+    <!-- 自定义数字键盘 -->
+    <com.bubble.execute.widget.PasswordKeyboard
+        android:id="@+id/keyboard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="60dp"
+        android:background="@color/colorWhite"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:keyBackground="@drawable/draw_text_password"
+        android:keyTextColor="#000000"
+        android:shadowColor="#ec9d20"
+        android:shadowRadius="0"
+        app:pkvCancelBackgroundColor="#FFFFFF"
+        app:pkvDeleteBackgroundColor="#FFFFFF"
+        app:pkvDeleteDrawable="@drawable/icon_delete_password"/>
+
+    <TextView
+        android:id="@+id/forget_safe_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:padding="15dp"
+        android:text="@string/identify_code_again"
+        android:textColor="@color/colorGray"
+        android:textSize="14sp"/>
+
+    <com.bubble.execute.widget.IdentifyCodeEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginRight="25dp"
+        android:background="@null"
+        android:maxLength="6"
+        android:padding="8dp"
+        app:bgCorner="3dp"/>
+
+</RelativeLayout>

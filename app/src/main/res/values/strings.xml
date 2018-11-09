@@ -23,11 +23,15 @@
     <string name="login_button_login">登录</string>
     <string name="login_text_forget_password">忘记密码？</string>
     <string name="login_text_open_forget_password">忘记密码</string>
-    <string name="reset_password_next">下一步</string>
     <string name="reset_password_commit">确定</string>
+    <string name="identify_code_title">输入验证码</string>
+    <string name="identify_code_again">再次发送验证码</string>
     <!-- 对话框的文字说明 -->
     <string name="dialog_title_warn">提示</string>
     <string name="dialog_content_loading_data">正在加载数据…</string>
+    <string name="dialog_title_default">消息类型</string>
+    <string name="dialog_confirm_default">确定</string>
+    <string name="dialog_cancel_default">取消</string>
     <!-- 首页文字 -->
     <string name="home_motto_title">今日寄语</string>
     <string name="home_task_title" tools:ignore="TypographyEllipsis">任务进行中...</string>
@@ -41,4 +45,39 @@
     <string name="target_day_button_edit">编辑内容</string>
     <string name="target_day_edit_title">内容编辑</string>
     <string name="target_edit_warn">点击屏幕即可编辑内容</string>
+    <!-- 个人页面 -->
+    <string name="count_title">个人主页</string>
+    <string name="count_report_day">每日数据</string>
+    <string name="count_report_week">每周数据</string>
+    <string name="count_report_month">每月数据</string>
+    <string name="count_report_year">每年数据</string>
+    <string name="count_other_feedback">问题反馈</string>
+    <string name="count_other_about">关于Execute</string>
+    <string name="count_other_update">检查更新</string>
+    <string name="count_other_share">推荐他人</string>
+    <!-- 设置页面 -->
+    <string name="setting_title">设置</string>
+    <string name="setting_user_title">安全</string>
+    <string name="setting_user_password">修改密码</string>
+    <string name="setting_user_safe">安全密码</string>
+    <string name="setting_user_finger">指纹解锁</string>
+    <string name="setting_individuation_title">个性化</string>
+    <string name="setting_individuation_speech">语音设置</string>
+    <string name="setting_individuation_speech_man">男声</string>
+    <string name="setting_individuation_speech_women">女声</string>
+    <string name="setting_power_title">权限</string>
+    <string name="setting_power">查看权限</string>
+    <string name="setting_logout">退出登录</string>
+    <string name="setting_logout_dialog_message">确定要退出当前账户</string>
+    <string name="setting_logout_dialog_confirm">确定</string>
+    <string name="setting_logout_dialog_cancel">取消</string>
+    <!-- 密码修改 -->
+    <string name="reset_password_title">修改密码</string>
+    <string name="reset_password_old">输入原密码</string>
+    <string name="reset_password_new">输入新密码</string>
+    <string name="reset_password_new_again">再次输入新密码</string>
+    <string name="reset_password_next">下一步</string>
+    <string name="reset_password_confirm">提交</string>
+    <string name="reset_password_update_success">密码更新成功</string>
+    <string name="reset_password_update_failed">密码更新失败</string>
 </resources>

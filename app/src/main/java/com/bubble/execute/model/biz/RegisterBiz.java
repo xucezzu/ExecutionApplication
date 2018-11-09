@@ -9,7 +9,7 @@ import com.bubble.execute.model.bean.RegisterDataResponse;
 import com.bubble.execute.model.impl.IRegisterBiz;
 import com.bubble.execute.model.listener.OnRegisterListener;
 import com.bubble.execute.utils.LogUtil;
-import com.bubble.execute.utils.ServerUrl;
+import com.bubble.execute.utils.ServerURL;
 import com.bubble.execute.utils.Util;
 import com.google.gson.Gson;
 
@@ -83,7 +83,7 @@ public class RegisterBiz implements IRegisterBiz {
         LogUtil.d("PostRegisterData: " + registerRequestJson);
         // 网络请求，开始创建 Retrofit 对象
         Retrofit retrofitLogin = new Retrofit.Builder()
-                .baseUrl(ServerUrl.BASE_URL)
+                .baseUrl(ServerURL.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         // 创建网络请求接口实例

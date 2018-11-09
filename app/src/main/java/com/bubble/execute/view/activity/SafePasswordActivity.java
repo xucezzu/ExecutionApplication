@@ -7,13 +7,13 @@ import android.text.TextWatcher;
 
 import com.bubble.execute.R;
 import com.bubble.execute.model.biz.SafePasswordBiz;
-import com.bubble.execute.presenter.PasswordPresenter;
-import com.bubble.execute.presenter.impl.IPasswordPresenter;
+import com.bubble.execute.presenter.SafePasswordPresenter;
+import com.bubble.execute.presenter.impl.ISafePasswordPresenter;
 import com.bubble.execute.utils.ConstantUtil;
 import com.bubble.execute.utils.DialogUtil;
 import com.bubble.execute.utils.LogUtil;
-import com.bubble.execute.utils.SpManager;
-import com.bubble.execute.view.impl.IPasswordActivityView;
+import com.bubble.execute.utils.SPManager;
+import com.bubble.execute.view.impl.ISafePasswordActivity;
 import com.bubble.execute.widget.PasswordEditText;
 import com.bubble.execute.widget.PasswordKeyboard;
 import com.muddzdev.styleabletoastlibrary.StyleableToast;
@@ -25,7 +25,7 @@ import com.muddzdev.styleabletoastlibrary.StyleableToast;
  * 版权所有 © 徐长策
  */
 
-public class PasswordActivity extends BaseActivity implements IPasswordActivityView {
+public class SafePasswordActivity extends BaseActivity implements ISafePasswordActivity {
     /**
      * 页面跳转类型值
      */
@@ -51,7 +51,7 @@ public class PasswordActivity extends BaseActivity implements IPasswordActivityV
 
     private PasswordEditText mPasswordEdit;
     private PasswordKeyboard mPasswordKeyboard;
-    private IPasswordPresenter mIPasswordPresenter;
+    private ISafePasswordPresenter mISafePasswordPresenter;
 
     @Override
     public void setContentView() {
@@ -63,7 +63,7 @@ public class PasswordActivity extends BaseActivity implements IPasswordActivityV
         // 获取从上一个页面传递的值
         Intent intent = getIntent();
         typeFromActivity = intent.getIntExtra(ConstantUtil.PASSWORD_ACTIVITY_TYPE, 0);
-        mIPasswordPresenter = new PasswordPresenter(PasswordActivity.this, this);
+        mISafePasswordPresenter = new SafePasswordPresenter(SafePasswordActivity.this, this);
     }
 
     @Override
@@ -89,7 +89,7 @@ public class PasswordActivity extends BaseActivity implements IPasswordActivityV
                     if (typeFromActivity == IS_FROM_SPLASH || typeFromActivity == IS_FROM_SCREEN) {
                         // 核对安全密码
                         checkSafePassword = s.toString();
-                        mIPasswordPresenter.checkSafePassword();
+                        mISafePasswordPresenter.checkSafePassword();
                         mPasswordEdit.setText("");
                     } else if (typeFromActivity == IS_FROM_LOGIN || typeFromActivity == IS_FROM_SETTING) {
                         // 修改安全密码
@@ -130,7 +130,7 @@ public class PasswordActivity extends BaseActivity implements IPasswordActivityV
             case IS_FROM_SPLASH:
                 // 从闪屏页面进入，首先需要验证是否存在安全密码
                 showLoadingDataDialog();
-                mIPasswordPresenter.isExistSafePassword();
+                mISafePasswordPresenter.isExistSafePassword();
                 break;
 
             case IS_FROM_LOGIN:
@@ -150,7 +150,7 @@ public class PasswordActivity extends BaseActivity implements IPasswordActivityV
 
     @Override
     public String getUserId() {
-        return SpManager.getUserID();
+        return SPManager.getUserID();
     }
 
     @Override
@@ -167,7 +167,7 @@ public class PasswordActivity extends BaseActivity implements IPasswordActivityV
     public void toNextActivity() {
         switch (typeFromActivity){
             case IS_FROM_SPLASH:
-                Intent intentMain = new Intent(PasswordActivity.this, MainActivity.class);
+                Intent intentMain = new Intent(SafePasswordActivity.this, MainActivity.class);
                 intentMain.putExtra(ConstantUtil.MAIN_ACTIVITY_TYPE, 1);
                 startActivity(intentMain);
                 finish();
@@ -186,7 +186,7 @@ public class PasswordActivity extends BaseActivity implements IPasswordActivityV
 
     @Override
     public void showLoadingDataDialog() {
-        DialogUtil.getInstance().showProgressDialog(PasswordActivity.this);
+        DialogUtil.getInstance().showProgressDialog(SafePasswordActivity.this);
     }
 
     @Override
@@ -247,14 +247,14 @@ public class PasswordActivity extends BaseActivity implements IPasswordActivityV
      * @param msg 消息内容
      */
     public void showToastMsg(String msg) {
-        StyleableToast.makeText(PasswordActivity.this, msg, R.style.AppDefaultToast).show();
+        StyleableToast.makeText(SafePasswordActivity.this, msg, R.style.AppDefaultToast).show();
     }
 
     /**
      * 忘记密码，跳转到登录页面
      */
     public void toLoginActivity() {
-        Intent intent = new Intent(PasswordActivity.this, LoginActivity.class);
+        Intent intent = new Intent(SafePasswordActivity.this, LoginActivity.class);
         intent.putExtra(ConstantUtil.LOGIN_ACTIVITY_TYPE, 1);
         startActivity(intent);
         finish();

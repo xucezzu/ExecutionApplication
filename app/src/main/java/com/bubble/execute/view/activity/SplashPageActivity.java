@@ -19,9 +19,8 @@ import com.bubble.execute.thread.DefaultExecutorSupplier;
 import com.bubble.execute.thread.task.SpeechTask;
 import com.bubble.execute.utils.ConstantUtil;
 import com.bubble.execute.utils.DeviceUtil;
-import com.bubble.execute.utils.LogUtil;
-import com.bubble.execute.utils.SpManager;
-import com.bubble.execute.view.impl.ISplashActivityView;
+import com.bubble.execute.utils.SPManager;
+import com.bubble.execute.view.impl.ISplashActivity;
 import com.bubble.execute.widget.ExecCircleProgressBar;
 import com.muddzdev.styleabletoastlibrary.StyleableToast;
 
@@ -36,7 +35,7 @@ import java.util.concurrent.Future;
  */
 
 @SuppressLint("Registered")
-public class SplashPageActivity extends BaseActivity implements ISplashActivityView {
+public class SplashPageActivity extends BaseActivity implements ISplashActivity {
     private TextView mTextLoading;
     private ExecCircleProgressBar mCircleProgressBar;
     private ISplashPagePresenter mISplashPagePresenter;
@@ -61,7 +60,7 @@ public class SplashPageActivity extends BaseActivity implements ISplashActivityV
         mCircleProgressBar.setSecondColor(Color.parseColor("#000000"));
         mCircleProgressBar.setProgress(100, true);
         // 如果持久化的用户登录数据不完整，则直接隐藏“数据加载...”字段
-        if (TextUtils.isEmpty(SpManager.getUserMail()) || TextUtils.isEmpty(SpManager.getUserPassword())) {
+        if (TextUtils.isEmpty(SPManager.getUserMail()) || TextUtils.isEmpty(SPManager.getUserPassword())) {
             hideLoadingData();
         }
     }
@@ -79,12 +78,12 @@ public class SplashPageActivity extends BaseActivity implements ISplashActivityV
 
     @Override
     public String getMail() {
-        return SpManager.getUserMail();
+        return SPManager.getUserMail();
     }
 
     @Override
     public String getPassword() {
-        return SpManager.getUserPassword();
+        return SPManager.getUserPassword();
     }
 
     @Override
@@ -117,7 +116,7 @@ public class SplashPageActivity extends BaseActivity implements ISplashActivityV
 
     @Override
     public void toPasswordActivity() {
-        Intent intent = new Intent(SplashPageActivity.this, PasswordActivity.class);
+        Intent intent = new Intent(SplashPageActivity.this, SafePasswordActivity.class);
         intent.putExtra(ConstantUtil.PASSWORD_ACTIVITY_TYPE, 0);
         startActivity(intent);
         finish();
@@ -149,7 +148,7 @@ public class SplashPageActivity extends BaseActivity implements ISplashActivityV
         @Override
         public void onFinish() {
             // 完成倒计时后，需要根据条件跳转
-            if (!TextUtils.isEmpty(SpManager.getUserMail()) && !TextUtils.isEmpty(SpManager.getUserPassword())) {
+            if (!TextUtils.isEmpty(SPManager.getUserMail()) && !TextUtils.isEmpty(SPManager.getUserPassword())) {
                 mISplashPagePresenter.userLogin();
             } else {
                 hideLoadingData();

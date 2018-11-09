@@ -29,4 +29,12 @@
         <item name="cornerRadius">3dp</item>
     </style>
 
+    <!-- 对话框（确定，取消）-->
+    <style name="ConfirmCancelDialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowNoTitle">true</item> <!-- 隐藏标题栏 -->
+        <item name="android:windowBackground">@drawable/draw_dialog_background</item>
+    </style>
+
 </resources>

@@ -7,7 +7,7 @@ package com.bubble.execute.view.impl;
  * 版权所有 © 徐长策
  */
 
-public interface ISplashActivityView {
+public interface ISplashActivity {
     /**
      * 获取用户的账号
      * @return 用户的邮箱

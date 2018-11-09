@@ -9,7 +9,7 @@ import com.bubble.execute.model.impl.ISafePasswordBiz;
 import com.bubble.execute.model.listener.OnSafePasswordListener;
 import com.bubble.execute.utils.ConstantUtil;
 import com.bubble.execute.utils.LogUtil;
-import com.bubble.execute.utils.ServerUrl;
+import com.bubble.execute.utils.ServerURL;
 import com.bubble.execute.utils.Util;
 import com.google.gson.Gson;
 
@@ -80,7 +80,7 @@ public class SafePasswordBiz implements ISafePasswordBiz {
         LogUtil.d("PostIsExistPasswordData: " + isExistPasswordRequest);
         // 网络请求，开始创建 Retrofit 对象
         Retrofit retrofitLogin = new Retrofit.Builder()
-                .baseUrl(ServerUrl.BASE_URL)
+                .baseUrl(ServerURL.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         // 创建网络请求接口实例
@@ -134,7 +134,7 @@ public class SafePasswordBiz implements ISafePasswordBiz {
         LogUtil.d("PostCheckSafePasswordData: " + checkSafePasswordRequest);
         // 网络请求，开始创建 Retrofit 对象
         Retrofit retrofitLogin = new Retrofit.Builder()
-                .baseUrl(ServerUrl.BASE_URL)
+                .baseUrl(ServerURL.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         // 创建网络请求接口实例
@@ -188,7 +188,7 @@ public class SafePasswordBiz implements ISafePasswordBiz {
         LogUtil.d("PostUpdateSafePasswordData: " + updateSafePasswordRequest);
         // 网络请求，开始创建 Retrofit 对象
         Retrofit retrofitLogin = new Retrofit.Builder()
-                .baseUrl(ServerUrl.BASE_URL)
+                .baseUrl(ServerURL.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         // 创建网络请求接口实例

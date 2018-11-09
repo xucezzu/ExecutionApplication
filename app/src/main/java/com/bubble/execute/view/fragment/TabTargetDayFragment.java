@@ -16,7 +16,7 @@ import com.bubble.execute.R;
 import com.bubble.execute.utils.ConstantUtil;
 import com.bubble.execute.utils.LogUtil;
 import com.bubble.execute.view.activity.TargetEditActivity;
-import com.bubble.execute.view.impl.ITargetDayFragmentView;
+import com.bubble.execute.view.impl.ITargetDayFragment;
 
 /**
  * @author 徐长策
@@ -24,7 +24,7 @@ import com.bubble.execute.view.impl.ITargetDayFragmentView;
  * Date：2018/8/31
  * 版权所有 © 徐长策
  */
-public class TabTargetDayFragment extends Fragment implements ITargetDayFragmentView, View.OnClickListener {
+public class TabTargetDayFragment extends Fragment implements ITargetDayFragment, View.OnClickListener {
     private static String TAG = TabTargetDayFragment.class.getName();
 
     private Button mButtonToEdit;

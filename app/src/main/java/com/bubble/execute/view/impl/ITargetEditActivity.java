@@ -6,7 +6,7 @@ package com.bubble.execute.view.impl;
  * Date：2018/9/9
  * 版权所有 © 徐长策
  */
-public interface ITargetEditActivityView {
+public interface ITargetEditActivity {
     /**
      * 获取每日必做的内容提交的数据
      * @return

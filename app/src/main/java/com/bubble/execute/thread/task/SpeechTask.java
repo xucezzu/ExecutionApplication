@@ -40,19 +40,16 @@ public class SpeechTask extends PriorityRunnable {
     public void run() {
         InitConfig initConfig = new InitConfig("8804208", "3QqiPU2nmuUXnqLnvBtBmEkw", "65a4248530310e2e262ae89dec5db191",
                 TtsMode.MIX, getParams(), listener);
-        boolean isMix = true;
         mSpeechSynthesizer = SpeechSynthesizer.getInstance();
         mSpeechSynthesizer.setContext(mContext);
         mSpeechSynthesizer.setSpeechSynthesizerListener(initConfig.getListener());
         mSpeechSynthesizer.setAppId(initConfig.getAppId());
         mSpeechSynthesizer.setApiKey(initConfig.getAppKey(), initConfig.getSecretKey());
-        if (isMix) {
-            // 授权检测接口(只是通过AuthInfo进行检验授权是否成功。选择纯在线可以不必调用auth方法。
-            AuthInfo authInfo = mSpeechSynthesizer.auth(TtsMode.MIX);
-            if (!authInfo.isSuccess()) {
-                // 离线授权需要网站上的应用填写包名。本demo的包名是com.baidu.tts.sample，定义在build.gradle中
-                String errorMsg = authInfo.getTtsError().getDetailMessage();
-            }
+        // 授权检测接口(只是通过AuthInfo进行检验授权是否成功。选择纯在线可以不必调用auth方法。
+        AuthInfo authInfo = mSpeechSynthesizer.auth(TtsMode.MIX);
+        if (!authInfo.isSuccess()) {
+            // 离线授权需要网站上的应用填写包名。本demo的包名是com.baidu.tts.sample，定义在build.gradle中
+            String errorMsg = authInfo.getTtsError().getDetailMessage();
         }
         setParams(initConfig.getParams());
         // 初始化tts

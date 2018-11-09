@@ -28,6 +28,7 @@ import com.bubble.execute.utils.ScreenListener;
 @SuppressLint("Registered")
 public abstract class BaseActivity extends AppCompatActivity {
     private ScreenListener mScreenListener;
+    protected boolean root;
     private String nameClass = "";
 
     @TargetApi(Build.VERSION_CODES.M)
@@ -82,7 +83,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     public void toPasswordActivity() {
-        Intent intent = new Intent(this, PasswordActivity.class);
+        Intent intent = new Intent(this, SafePasswordActivity.class);
         intent.putExtra(ConstantUtil.PASSWORD_ACTIVITY_TYPE, 3);
         startActivity(intent);
     }
@@ -118,5 +119,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     @SuppressWarnings("unchecked")
     protected <view extends View> view getViewById(int viewId) {
         return (view) findViewById(viewId);
+    }
+
+    public boolean isRoot() {
+        return root;
     }
 }

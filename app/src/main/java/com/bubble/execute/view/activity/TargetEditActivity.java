@@ -17,7 +17,7 @@ import android.widget.TextView;
 
 import com.bubble.execute.R;
 import com.bubble.execute.utils.LogUtil;
-import com.bubble.execute.view.impl.ITargetEditActivityView;
+import com.bubble.execute.view.impl.ITargetEditActivity;
 import com.bubble.execute.widget.TargetDayEditText;
 
 /**
@@ -27,7 +27,7 @@ import com.bubble.execute.widget.TargetDayEditText;
  * 版权所有 © 徐长策
  */
 @SuppressLint("Registered")
-public class TargetEditActivity extends BaseActivity implements ITargetEditActivityView, View.OnClickListener {
+public class TargetEditActivity extends BaseActivity implements ITargetEditActivity, View.OnClickListener {
     private static String TAG = TargetEditActivity.class.getName();
 
     private static final String EDIT_POINT = "●";

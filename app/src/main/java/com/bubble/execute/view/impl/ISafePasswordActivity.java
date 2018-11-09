@@ -6,7 +6,7 @@ package com.bubble.execute.view.impl;
  * Date：2018/3/27
  * 版权所有 © 徐长策
  */
-public interface IPasswordActivityView {
+public interface ISafePasswordActivity {
     /**
      * 获取到用户的ID
      * @return

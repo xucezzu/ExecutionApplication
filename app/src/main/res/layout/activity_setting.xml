@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <include layout="@layout/layout_title"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/setting_user_title"
+            android:textColor="@color/colorGray"
+            android:textSize="12sp"/>
+
+        <RelativeLayout
+            android:id="@+id/layout_setting_password"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/colorBackgroundLayout">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:text="@string/setting_user_password"
+                android:textColor="@color/colorBlack"
+                android:textSize="14sp"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:paddingStart="10dp"
+                android:paddingTop="14dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="14dp"
+                android:src="@drawable/icon_next"/>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1px"
+                android:layout_alignParentBottom="true"
+                android:background="@color/colorViewLine"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_setting_safe"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@color/colorBackgroundLayout">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:text="@string/setting_user_safe"
+                android:textColor="@color/colorBlack"
+                android:textSize="14sp"/>
+
+            <Switch
+                android:id="@+id/switch_setting_safe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="10dp"
+                android:switchMinWidth="10dp"
+                android:thumb="@drawable/draw_switch_thumb"
+                android:track="@drawable/draw_switch_track"/>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1px"
+                android:layout_alignParentBottom="true"
+                android:background="@color/colorViewLine"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_setting_finger"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@color/colorBackgroundLayout">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:text="@string/setting_user_finger"
+                android:textColor="@color/colorBlack"
+                android:textSize="14sp"/>
+
+            <Switch
+                android:id="@+id/switch_setting_finger"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="10dp"
+                android:switchMinWidth="10dp"
+                android:thumb="@drawable/draw_switch_thumb"
+                android:track="@drawable/draw_switch_track"/>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1px"
+                android:layout_alignParentBottom="true"
+                android:background="@color/colorViewLine"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/setting_individuation_title"
+            android:textColor="@color/colorGray"
+            android:textSize="12sp"/>
+
+        <RelativeLayout
+            android:id="@+id/layout_setting_speech"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/colorBackgroundLayout">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:text="@string/setting_individuation_speech"
+                android:textColor="@color/colorBlack"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="13dp"
+                android:text="@string/setting_individuation_speech_man"
+                android:textColor="@color/colorBlack"
+                android:textSize="12sp"/>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1px"
+                android:layout_alignParentBottom="true"
+                android:background="@color/colorViewLine"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/setting_power_title"
+            android:textColor="@color/colorGray"
+            android:textSize="12sp"/>
+
+        <RelativeLayout
+            android:id="@+id/layout_setting_power"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/colorBackgroundLayout">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:text="@string/setting_power"
+                android:textColor="@color/colorBlack"
+                android:textSize="14sp"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:paddingStart="10dp"
+                android:paddingTop="14dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="14dp"
+                android:src="@drawable/icon_next"/>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1px"
+                android:layout_alignParentBottom="true"
+                android:background="@color/colorViewLine"/>
+
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/button_setting_logout"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginStart="70dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="70dp"
+            android:background="@drawable/draw_logout"
+            android:text="@string/setting_logout"
+            android:textColor="@color/colorRed"
+            android:textSize="12sp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -5,6 +5,8 @@ import android.content.Context;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.bubble.execute.R;
+import com.bubble.execute.widget.ConfirmAndCancelDialog;
+import com.bubble.execute.widget.ConfirmDialog;
 
 /**
  * @author 徐长策
@@ -13,21 +15,75 @@ import com.bubble.execute.R;
  * 版权所有 © 徐长策
  */
 public class DialogUtil {
-    private static DialogUtil instance = new DialogUtil();
+    /**
+     * 用volatile关键字修饰一个共享变量，保证修改的值立刻被更新
+     */
+    private static volatile DialogUtil sDialogUtil = null;
 
     private DialogUtil() {
 
     }
 
+    /**
+     * 双重检测
+     * @return
+     */
     public static DialogUtil getInstance() {
-        return instance;
+        if (sDialogUtil == null) synchronized (DialogUtil.class) {
+            if (sDialogUtil == null) {
+                sDialogUtil = new DialogUtil();
+            }
+        }
+        return sDialogUtil;
     }
 
     @SuppressLint("StaticFieldLeak")
     private static MaterialDialog dialog;
+    @SuppressLint("StaticFieldLeak")
+    private static ConfirmDialog confirmDialog;
+    @SuppressLint("StaticFieldLeak")
+    private static ConfirmAndCancelDialog confirmAndCancelDialog;
+
+    public interface ConfirmCallback{
+        void onConfirmClick(ConfirmAndCancelDialog dialog);
+    }
+
+    public interface CancelCallback{
+        void onCancelClick(ConfirmAndCancelDialog dialog);
+    }
+
+    public void ConfirmAndCancelDialog(Context context, String title, String message, String textConfirm, String textCancel, boolean isCenter, boolean isBackWork,
+                                       final ConfirmCallback confirmCallback,
+                                       final CancelCallback cancelCallback){
+        confirmAndCancelDialog = new ConfirmAndCancelDialog(context, isCenter);
+        confirmAndCancelDialog.setCanceledOnTouchOutside(false);
+        confirmAndCancelDialog.setTitleText(title);
+        confirmAndCancelDialog.setMessageText(message);
+        confirmAndCancelDialog.setCancelable(isBackWork);
+        confirmAndCancelDialog.setOnConfirmClickListenter(textConfirm, new ConfirmAndCancelDialog.onConfirmClickListener() {
+            @Override
+            public void onConfirmClick() {
+                if (confirmCallback != null) {
+                    confirmCallback.onConfirmClick(confirmAndCancelDialog);
+                }
+                confirmAndCancelDialog.dismiss();
+            }
+        });
+        confirmAndCancelDialog.setOnCancelClickListener(textCancel, new ConfirmAndCancelDialog.onCancelClickListener() {
+            @Override
+            public void onCancelClick() {
+                if (cancelCallback != null) {
+                    cancelCallback.onCancelClick(confirmAndCancelDialog);
+                }
+                confirmAndCancelDialog.dismiss();
+            }
+        });
+        confirmAndCancelDialog.show();
+    }
 
     /**
      * 显示数据加载的对话框，固定格式，不包含Title
+     *
      * @param context
      */
     public void showProgressDialog(Context context) {
@@ -43,6 +99,7 @@ public class DialogUtil {
 
     /**
      * 显示数据加载的对话框，固定格式，包含Title
+     *
      * @param context
      */
     public void showTitleProgressDialog(Context context) {
@@ -57,8 +114,13 @@ public class DialogUtil {
         dialog.show();
     }
 
+    public void showTitleDialog(Context context, String title, String message, String confirm, String cancel) {
+
+    }
+
     /**
      * 显示数据加载对话框，字体可变
+     *
      * @param context
      * @param resString
      */

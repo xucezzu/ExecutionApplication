@@ -26,6 +26,23 @@
         <!-- 背景边框的圆角大小 -->
         <attr name="bgCorner" format="dimension"/>
     </declare-styleable>
+    <!-- 验证码输入框 -->
+    <declare-styleable name="IdentifyCodeEditText">
+        <!-- 验证码的个数 -->
+        <attr name="codeNumber" format="integer"/>
+        <!-- 验证码数字的颜色 -->
+        <attr name="codeColor" format="color"/>
+        <!-- 分割线的颜色 -->
+        <attr name="codeDivisionLineColor" format="color"/>
+        <!-- 分割线的大小 -->
+        <attr name="codeDivisionLineSize" format="color"/>
+        <!-- 背景边框的颜色 -->
+        <attr name="codeBgColor" format="color"/>
+        <!-- 背景边框的大小 -->
+        <attr name="codeBgSize" format="dimension"/>
+        <!-- 背景边框的圆角大小 -->
+        <attr name="codeBgCorner" format="dimension"/>
+    </declare-styleable>
     <!-- 自定义的密码键盘 -->
     <declare-styleable name="PasswordKeyboardView">
         <attr name="pkvDeleteDrawable" format="reference"/>

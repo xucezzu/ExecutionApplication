@@ -1,5 +1,6 @@
 package com.bubble.execute.utils;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 
@@ -12,15 +13,16 @@ import com.bubble.execute.ExApplication;
  * 版权所有 © 徐长策
  */
 
-public class SpManager {
+public class SPManager {
+    private static SharedPreferences.Editor editor = null;
 
     private static SharedPreferences getSharedPreferences() {
-        return ExApplication.getInstance()
-                .getSharedPreferences(ExApplication.getInstance().getPackageName(), Context.MODE_PRIVATE);
+        return ExApplication.getInstance().getSharedPreferences(ExApplication.getInstance().getPackageName(), Context.MODE_PRIVATE);
     }
 
     /**
      * 写入用户账户数据
+     *
      * @param userMail
      */
     public static void setUserMail(String userMail) {
@@ -29,6 +31,7 @@ public class SpManager {
 
     /**
      * 返回存储的用户账户数据
+     *
      * @return
      */
     public static String getUserMail() {
@@ -37,6 +40,7 @@ public class SpManager {
 
     /**
      * 写入用户密码数据
+     *
      * @param userPassword
      */
     public static void setUserPassword(String userPassword) {
@@ -45,6 +49,7 @@ public class SpManager {
 
     /**
      * 返回存储的用户账户数据
+     *
      * @return
      */
     public static String getUserPassword() {
@@ -53,6 +58,7 @@ public class SpManager {
 
     /**
      * 写入用户个人ID
+     *
      * @param userId
      */
     public static void setUserID(String userId) {
@@ -61,9 +67,20 @@ public class SpManager {
 
     /**
      * 返回存储的用户账户数据
+     *
      * @return
      */
     public static String getUserID() {
         return getSharedPreferences().getString(ConstantUtil.UserData.USER_ID, "");
+    }
+
+    /**
+     * 清空所有数据
+     */
+    @SuppressLint("CommitPrefEdits")
+    public static void removeAllData() {
+        editor = getSharedPreferences().edit();
+        editor.clear();
+        editor.apply();
     }
 }
