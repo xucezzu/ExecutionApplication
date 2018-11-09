@@ -1,2 +1,5 @@
+/.gradle
 /.idea
 .gitignore
+/gradle
+app/src/main/res/drawable-v24/
