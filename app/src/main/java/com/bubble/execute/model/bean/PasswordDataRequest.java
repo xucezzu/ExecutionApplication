@@ -74,4 +74,42 @@ public class PasswordDataRequest {
             return "UpdatePasswordDataBean: {" + "userID: " + userId + " userNewPassword: " + userNewPassword + " userNewAgainPassword: " + userNewAgainPassword + "}";
         }
     }
+
+    /**
+     * 重置密码
+     */
+    public static class ResetPassword {
+        String userMail;
+        String userNewPassword;
+        String userNewAgainPassword;
+
+        public String getUserMail() {
+            return userMail;
+        }
+
+        public void setUserMail(String userMail) {
+            this.userMail = userMail;
+        }
+
+        public String getUserNewPassword() {
+            return userNewPassword;
+        }
+
+        public void setUserNewPassword(String userNewPassword) {
+            this.userNewPassword = userNewPassword;
+        }
+
+        public String getUserNewAgainPassword() {
+            return userNewAgainPassword;
+        }
+
+        public void setUserNewAgainPassword(String userNewAgainPassword) {
+            this.userNewAgainPassword = userNewAgainPassword;
+        }
+
+        @Override
+        public String toString() {
+            return "ResetPasswordDataBean: {" + "userMail: " + userMail + " userNewPassword: " + userNewPassword + " userNewAgainPassword: " + userNewAgainPassword + "}";
+        }
+    }
 }

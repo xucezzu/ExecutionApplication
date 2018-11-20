@@ -26,12 +26,15 @@ public class DialogUtil {
 
     /**
      * 双重检测
+     *
      * @return
      */
     public static DialogUtil getInstance() {
-        if (sDialogUtil == null) synchronized (DialogUtil.class) {
-            if (sDialogUtil == null) {
-                sDialogUtil = new DialogUtil();
+        if (sDialogUtil == null) {
+            synchronized (DialogUtil.class) {
+                if (sDialogUtil == null) {
+                    sDialogUtil = new DialogUtil();
+                }
             }
         }
         return sDialogUtil;
@@ -44,17 +47,27 @@ public class DialogUtil {
     @SuppressLint("StaticFieldLeak")
     private static ConfirmAndCancelDialog confirmAndCancelDialog;
 
-    public interface ConfirmCallback{
+    public interface ConfirmCallback {
+        /**
+         * 点击提交按钮
+         *
+         * @param dialog
+         */
         void onConfirmClick(ConfirmAndCancelDialog dialog);
     }
 
-    public interface CancelCallback{
+    public interface CancelCallback {
+        /**
+         * 点击取消按钮
+         *
+         * @param dialog
+         */
         void onCancelClick(ConfirmAndCancelDialog dialog);
     }
 
     public void ConfirmAndCancelDialog(Context context, String title, String message, String textConfirm, String textCancel, boolean isCenter, boolean isBackWork,
                                        final ConfirmCallback confirmCallback,
-                                       final CancelCallback cancelCallback){
+                                       final CancelCallback cancelCallback) {
         confirmAndCancelDialog = new ConfirmAndCancelDialog(context, isCenter);
         confirmAndCancelDialog.setCanceledOnTouchOutside(false);
         confirmAndCancelDialog.setTitleText(title);

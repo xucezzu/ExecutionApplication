@@ -1,0 +1,86 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_title"/>
+
+    <RelativeLayout
+        android:id="@+id/layout_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="40dp">
+
+        <com.bubble.execute.widget.CancelEditText
+            android:id="@+id/edit_text_mail"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="@string/forget_password_mail"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/colorEditText"
+            android:textColorHint="@color/colorEditTextHint"
+            android:textCursorDrawable="@null"
+            android:textSize="12sp"
+            android:visibility="visible"/>
+
+        <com.bubble.execute.widget.CancelEditText
+            android:id="@+id/edit_text_code"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/edit_text_mail"
+            android:hint="@string/forget_password_code"
+            android:inputType="number"
+            android:textColor="@color/colorEditText"
+            android:textColorHint="@color/colorEditTextHint"
+            android:textCursorDrawable="@null"
+            android:textSize="12sp"
+            android:visibility="visible"/>
+
+        <com.bubble.execute.widget.CancelEditText
+            android:id="@+id/edit_text_password_new"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/edit_text_code"
+            android:hint="@string/reset_password_new"
+            android:inputType="textPassword"
+            android:textColor="@color/colorEditText"
+            android:textColorHint="@color/colorEditTextHint"
+            android:textCursorDrawable="@null"
+            android:textSize="12sp"
+            android:visibility="visible"/>
+
+        <com.bubble.execute.widget.CancelEditText
+            android:id="@+id/edit_text_again_password_new"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/edit_text_password_new"
+            android:hint="@string/reset_password_new_again"
+            android:inputType="textPassword"
+            android:textColor="@color/colorEditText"
+            android:textColorHint="@color/colorEditTextHint"
+            android:textCursorDrawable="@null"
+            android:textSize="12sp"
+            android:visibility="visible"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/button_reset"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/draw_button_reset_password"
+            android:text="@string/reset_password_confirm"
+            android:textColor="@color/colorBlack"/>
+    </LinearLayout>
+</LinearLayout>

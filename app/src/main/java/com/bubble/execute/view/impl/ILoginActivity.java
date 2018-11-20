@@ -64,7 +64,7 @@ public interface ILoginActivity {
     /**
      * 忘记密码，跳转到密码重置页面
      */
-    void toResetPasswordActivity();
+    void toForgetPasswordActivity();
 
     /**
      * 注册成功，需要跳转到验证码输入界面

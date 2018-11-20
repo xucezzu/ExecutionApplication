@@ -71,7 +71,7 @@ public class LoginPresenter implements ILoginPresenter{
     }
 
     @Override
-    public void resetPassword() {
-        mILoginActivity.toResetPasswordActivity();
+    public void forgetPassword() {
+        mILoginActivity.toForgetPasswordActivity();
     }
 }

@@ -170,7 +170,7 @@ public class LoginActivity extends BaseActivity implements ILoginActivity {
                 .subscribe(new Consumer<Object>() {
                     @Override
                     public void accept(Object o) throws Exception {
-                        mILoginPresenter.resetPassword();
+                        mILoginPresenter.forgetPassword();
                     }
                 });
     }
@@ -226,10 +226,9 @@ public class LoginActivity extends BaseActivity implements ILoginActivity {
     }
 
     @Override
-    public void toResetPasswordActivity() {
-        Intent intent = new Intent(LoginActivity.this, ResetPasswordActivity.class);
+    public void toForgetPasswordActivity() {
+        Intent intent = new Intent(LoginActivity.this, ForgetPasswordActivity.class);
         startActivity(intent);
-        finish();
     }
 
     @Override

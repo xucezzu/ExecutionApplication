@@ -19,7 +19,7 @@ public interface ILoginPresenter {
     void userRegister();
 
     /**
-     * 重置登录密码
+     * 忘记密码
      */
-    void resetPassword();
+    void forgetPassword();
 }

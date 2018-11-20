@@ -50,6 +50,33 @@ public class ConstantUtil {
      */
     public static String PASSWORD_ACTIVITY = "PasswordActivity";
 
+    /**
+     * 验证码发送的类型
+     */
+    public interface IdentifyCodeType {
+        /**
+         * 注册成功之后的验证
+         */
+        String TYPE_FROM_REGISTER = "0";
+
+        /**
+         * 忘记密码
+         */
+        String TYPE_FROM_FORGET_PASSWORD = "1";
+    }
+
+    public interface CheckMailType {
+        /**
+         * 不做任何操作，单纯验证邮箱
+         */
+        String TYPE_FROM_NONE = "0";
+
+        /**
+         * 忘记密码时验证邮箱，如果存在则发送验证码
+         */
+        String TYPE_FROM_FORGET_PASSWORD = "1";
+    }
+
     public interface UserData {
         /**
          * 用户ID
@@ -67,7 +94,7 @@ public class ConstantUtil {
         String USER_PASSWORD = "User_Password";
     }
 
-    public interface GlobalVariableKey{
+    public interface GlobalVariableKey {
         String INTENT_BUNDLE_NAME = "Intent_bundle_name";
     }
 

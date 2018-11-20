@@ -80,4 +80,10 @@
     <string name="reset_password_confirm">提交</string>
     <string name="reset_password_update_success">密码更新成功</string>
     <string name="reset_password_update_failed">密码更新失败</string>
+    <!-- 忘记密码 -->
+    <string name="forget_password_title">忘记密码</string>
+    <string name="forget_password_mail">输入注册邮箱</string>
+    <string name="forget_password_code">输入验证码</string>
+    <string name="forget_password_update">提交</string>
+    <string name="forget_password_next">下一步</string>
 </resources>

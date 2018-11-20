@@ -24,10 +24,10 @@ public class TargetDayAdapter extends RecyclerView.Adapter<TargetDayAdapter.VH> 
     /**
      * 创建ViewHolder
      */
-    public static class VH extends RecyclerView.ViewHolder {
+    static class VH extends RecyclerView.ViewHolder {
         CheckBox mCheckTargetDay;
         TextView mTextTargetDay;
-        public VH(View itemView) {
+        VH(View itemView) {
             super(itemView);
             mCheckTargetDay = itemView.findViewById(R.id.check_target);
             mTextTargetDay = itemView.findViewById(R.id.text_target_content);
