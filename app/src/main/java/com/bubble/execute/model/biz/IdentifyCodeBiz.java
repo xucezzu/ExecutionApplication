@@ -2,6 +2,7 @@ package com.bubble.execute.model.biz;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.widget.Toast;
 
 import com.bubble.execute.R;
 import com.bubble.execute.model.bean.IdentifyCodeRequest;
@@ -56,7 +57,7 @@ public class IdentifyCodeBiz implements IIdentifyCodeBiz {
             checkIdentifyCode.setIdentifyCode(code);
             checkIdentifyCode.setTypeFrom(type);
         } else {
-            StyleableToast.makeText(mContext, Util.getResourceString(mContext, R.string.login_mail_error), R.style.AppDefaultToast).show();
+            StyleableToast.makeText(mContext, Util.getResourceString(mContext, R.string.login_mail_error), Toast.LENGTH_LONG, R.style.AppDefaultToast).show();
             return;
         }
         Gson gson = new Gson();
@@ -77,30 +78,35 @@ public class IdentifyCodeBiz implements IIdentifyCodeBiz {
             @Override
             public void onResponse(Call<IdentifyCodeResponse.CheckIdentifyCode> call, Response<IdentifyCodeResponse.CheckIdentifyCode> response) {
                 // 网络请求成功，处理返回的结果
-                LogUtil.d("【checkIdentifyCode】网络请求成功");
-                LogUtil.d("【checkIdentifyCode】返回的数据：" + response.body().toString());
-                switch (response.body().getErrCode()) {
-                    case CODE_CHECK_SUCCESS:
-                        checkListener.onCheckSuccess(response.body().getErrCode(), response.body().getAlertMsg());
-                        break;
-                    case CODE_CHECK_FAILED:
-                        checkListener.onCheckFailed(response.body().getErrCode(), response.body().getAlertMsg());
-                        break;
-                    case CODE_CHECK_TIME_OUT:
-                        checkListener.onCheckFailed(response.body().getErrCode(), response.body().getAlertMsg());
-                        break;
-                    case CODE_CHECK_USER_NOT:
-                        checkListener.onCheckFailed(response.body().getErrCode(), response.body().getAlertMsg());
-                        break;
-                    default:
-                        break;
+                if (response.body() != null) {
+                    LogUtil.d("【checkIdentifyCode】网络请求成功");
+                    LogUtil.d("【checkIdentifyCode】返回的数据：" + response.body().toString());
+                    switch (response.body().getErrCode()) {
+                        case CODE_CHECK_SUCCESS:
+                            checkListener.onCheckSuccess(response.body().getErrCode(), response.body().getAlertMsg());
+                            break;
+                        case CODE_CHECK_FAILED:
+                            checkListener.onCheckFailed(response.body().getErrCode(), response.body().getAlertMsg());
+                            break;
+                        case CODE_CHECK_TIME_OUT:
+                            checkListener.onCheckFailed(response.body().getErrCode(), response.body().getAlertMsg());
+                            break;
+                        case CODE_CHECK_USER_NOT:
+                            checkListener.onCheckFailed(response.body().getErrCode(), response.body().getAlertMsg());
+                            break;
+                        default:
+                            break;
+                    }
+                } else {
+                    // 服务器错误
+                    StyleableToast.makeText(mContext, Util.getResourceString(mContext, R.string.server_error), Toast.LENGTH_LONG, R.style.AppDefaultToast).show();
                 }
             }
 
             @Override
             public void onFailure(Call<IdentifyCodeResponse.CheckIdentifyCode> call, Throwable t) {
                 // 网络请求失败
-                StyleableToast.makeText(mContext, Util.getResourceString(mContext, R.string.net_fail), R.style.AppDefaultToast).show();
+                StyleableToast.makeText(mContext, Util.getResourceString(mContext, R.string.net_fail), Toast.LENGTH_LONG, R.style.AppDefaultToast).show();
             }
         });
     }

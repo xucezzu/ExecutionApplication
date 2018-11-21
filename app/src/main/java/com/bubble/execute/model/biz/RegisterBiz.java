@@ -2,6 +2,7 @@ package com.bubble.execute.model.biz;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.widget.Toast;
 
 import com.bubble.execute.R;
 import com.bubble.execute.model.bean.RegisterDataRequest;
@@ -12,6 +13,7 @@ import com.bubble.execute.utils.LogUtil;
 import com.bubble.execute.utils.ServerURL;
 import com.bubble.execute.utils.Util;
 import com.google.gson.Gson;
+import com.muddzdev.styleabletoastlibrary.StyleableToast;
 
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
@@ -94,26 +96,31 @@ public class RegisterBiz implements IRegisterBiz {
             @Override
             public void onResponse(Call<RegisterDataResponse> call, Response<RegisterDataResponse> response) {
                 // 网络请求成功，处理返回的结果
-                LogUtil.d("【register】网络请求成功");
-                LogUtil.d("【register】返回的数据：" + response.body().toString());
-                switch (response.body().getErrCode()) {
-                    case REGISTER_SUCCESS:
-                        registerListener.onRegisterSuccess(response.body().getAlertMsg());
-                        break;
-                    case REGISTER_FAILED_VALUE:
-                        registerListener.onRegisterFailed(response.body().getAlertMsg());
-                        break;
-                    case REGISTER_FAILED_EXIST:
-                        registerListener.onRegisterFailed(response.body().getAlertMsg());
-                        break;
-                    case REGISTER_FAILED_PASSWORD:
-                        registerListener.onRegisterFailed(response.body().getAlertMsg());
-                        break;
-                    case REGISTER_FAILED:
-                        registerListener.onRegisterFailed(response.body().getAlertMsg());
-                        break;
-                    default:
-                        break;
+                if (response != null) {
+                    LogUtil.d("【register】网络请求成功");
+                    LogUtil.d("【register】返回的数据：" + response.body().toString());
+                    switch (response.body().getErrCode()) {
+                        case REGISTER_SUCCESS:
+                            registerListener.onRegisterSuccess(response.body().getAlertMsg());
+                            break;
+                        case REGISTER_FAILED_VALUE:
+                            registerListener.onRegisterFailed(response.body().getAlertMsg());
+                            break;
+                        case REGISTER_FAILED_EXIST:
+                            registerListener.onRegisterFailed(response.body().getAlertMsg());
+                            break;
+                        case REGISTER_FAILED_PASSWORD:
+                            registerListener.onRegisterFailed(response.body().getAlertMsg());
+                            break;
+                        case REGISTER_FAILED:
+                            registerListener.onRegisterFailed(response.body().getAlertMsg());
+                            break;
+                        default:
+                            break;
+                    }
+                } else {
+                    // 服务器错误
+                    StyleableToast.makeText(mContext, Util.getResourceString(mContext, R.string.server_error), Toast.LENGTH_LONG, R.style.AppDefaultToast).show();
                 }
             }
 

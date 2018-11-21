@@ -2,6 +2,7 @@ package com.bubble.execute.model.biz;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.widget.Toast;
 
 import com.bubble.execute.R;
 import com.bubble.execute.model.bean.MailDataRequest;
@@ -75,17 +76,22 @@ public class MailBiz implements IMailBiz {
             @Override
             public void onResponse(Call<MailDataResponse.CheckMail> call, Response<MailDataResponse.CheckMail> response) {
                 // 网络请求成功，处理返回的结果
-                LogUtil.d("【checkMail】网络请求成功");
-                LogUtil.d("【checkMail】返回的数据：" + response.body().toString());
-                switch (response.body().getErrCode()) {
-                    case MAIL_EXIST:
-                        mailListener.mailHasExist(response.body().getErrCode(), response.body().getAlertMsg());
-                        break;
-                    case MAIL_NOT_EXIST:
-                        mailListener.mailNotExist(response.body().getErrCode(), response.body().getAlertMsg());
-                        break;
-                    default:
-                        break;
+                if (response.body() != null) {
+                    LogUtil.d("【checkMail】网络请求成功");
+                    LogUtil.d("【checkMail】返回的数据：" + response.body().toString());
+                    switch (response.body().getErrCode()) {
+                        case MAIL_EXIST:
+                            mailListener.mailHasExist(response.body().getErrCode(), response.body().getAlertMsg());
+                            break;
+                        case MAIL_NOT_EXIST:
+                            mailListener.mailNotExist(response.body().getErrCode(), response.body().getAlertMsg());
+                            break;
+                        default:
+                            break;
+                    }
+                } else {
+                    // 服务器错误
+                    StyleableToast.makeText(mContext, Util.getResourceString(mContext, R.string.server_error), Toast.LENGTH_LONG, R.style.AppDefaultToast).show();
                 }
             }
 

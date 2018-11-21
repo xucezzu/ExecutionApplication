@@ -2,6 +2,7 @@ package com.bubble.execute.model.biz;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.widget.Toast;
 
 import com.bubble.execute.R;
 import com.bubble.execute.model.bean.LoginDataRequest;
@@ -13,6 +14,7 @@ import com.bubble.execute.utils.SPManager;
 import com.bubble.execute.utils.ServerURL;
 import com.bubble.execute.utils.Util;
 import com.google.gson.Gson;
+import com.muddzdev.styleabletoastlibrary.StyleableToast;
 
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
@@ -101,30 +103,35 @@ public class LoginBiz implements ILoginBiz {
             @Override
             public void onResponse(Call<LoginDataResponse> call, Response<LoginDataResponse> response) {
                 // 网络请求成功，处理返回的结果
-                LogUtil.d("【login】网络请求成功");
-                LogUtil.d("【login】返回的数据：" + response.body().toString());
-                switch (response.body().getErrCode()) {
-                    case LOGIN_SUCCESS:
-                        loginListener.onLoginSuccess(response.body().getAlertMsg());
-                        //登录成功，需要保存登录的数据
-                        SPManager.setUserMail(response.body().getReturnData().getUserMail());
-                        SPManager.setUserPassword(response.body().getReturnData().getUserPassword());
-                        SPManager.setUserID(response.body().getReturnData().getUserId());
-                        break;
-                    case LOGIN_FAILED_VALUE:
-                        loginListener.onLoginFailed(response.body().getAlertMsg());
-                        break;
-                    case LOGIN_FAILED_NO_USER:
-                        loginListener.onLoginFailed(response.body().getAlertMsg());
-                        break;
-                    case LOGIN_FAILED_PASSWORD:
-                        loginListener.onLoginFailed(response.body().getAlertMsg());
-                        break;
-                    case LOGIN_FAILED_DEVICE:
-                        loginListener.onLoginFailed(response.body().getAlertMsg());
-                        break;
-                    default:
-                        break;
+                if (response.body() != null) {
+                    LogUtil.d("【login】网络请求成功");
+                    LogUtil.d("【login】返回的数据：" + response.body().toString());
+                    switch (response.body().getErrCode()) {
+                        case LOGIN_SUCCESS:
+                            loginListener.onLoginSuccess(response.body().getAlertMsg());
+                            //登录成功，需要保存登录的数据
+                            SPManager.setUserMail(response.body().getReturnData().getUserMail());
+                            SPManager.setUserPassword(response.body().getReturnData().getUserPassword());
+                            SPManager.setUserID(response.body().getReturnData().getUserId());
+                            break;
+                        case LOGIN_FAILED_VALUE:
+                            loginListener.onLoginFailed(response.body().getAlertMsg());
+                            break;
+                        case LOGIN_FAILED_NO_USER:
+                            loginListener.onLoginFailed(response.body().getAlertMsg());
+                            break;
+                        case LOGIN_FAILED_PASSWORD:
+                            loginListener.onLoginFailed(response.body().getAlertMsg());
+                            break;
+                        case LOGIN_FAILED_DEVICE:
+                            loginListener.onLoginFailed(response.body().getAlertMsg());
+                            break;
+                        default:
+                            break;
+                    }
+                } else {
+                    // 服务器错误
+                    StyleableToast.makeText(mContext, Util.getResourceString(mContext, R.string.server_error), Toast.LENGTH_LONG, R.style.AppDefaultToast).show();
                 }
             }
 

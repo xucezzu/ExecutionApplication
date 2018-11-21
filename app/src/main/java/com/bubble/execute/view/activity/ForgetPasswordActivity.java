@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bubble.execute.R;
 import com.bubble.execute.presenter.ForgetPasswordPresenter;
@@ -186,6 +187,6 @@ public class ForgetPasswordActivity extends BaseActivity implements IForgetPassw
 
     @Override
     public void showMsg(String msg) {
-        StyleableToast.makeText(mContext, msg, R.style.AppDefaultToast).show();
+        StyleableToast.makeText(mContext, msg, Toast.LENGTH_LONG, R.style.AppDefaultToast).show();
     }
 }

@@ -1,6 +1,7 @@
 package com.bubble.execute.model.biz;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import com.bubble.execute.R;
 import com.bubble.execute.model.bean.SafePasswordDataRequest;
@@ -12,6 +13,7 @@ import com.bubble.execute.utils.LogUtil;
 import com.bubble.execute.utils.ServerURL;
 import com.bubble.execute.utils.Util;
 import com.google.gson.Gson;
+import com.muddzdev.styleabletoastlibrary.StyleableToast;
 
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
@@ -91,20 +93,25 @@ public class SafePasswordBiz implements ISafePasswordBiz {
         call.enqueue(new Callback<SafePasswordDataResponse.IsExistSafePassword>() {
             @Override
             public void onResponse(Call<SafePasswordDataResponse.IsExistSafePassword> call, Response<SafePasswordDataResponse.IsExistSafePassword> response) {
-                LogUtil.d("【isExistSafePassword】网络请求成功！");
-                LogUtil.d("【isExistSafePassword】返回数据：" + response.body().toString());
-                switch (response.body().getErrCode()) {
-                    case IS_EXIST_SAFE_PASSWORD_SUCCESS:
-                        listener.onIsExistSuccess(response.body().getErrCode(), response.body().getAlertMsg());
-                        break;
-                    case IS_EXIST_SAFE_PASSWORD_NO:
-                        listener.onIsExistFailed(response.body().getErrCode(), response.body().getAlertMsg());
-                        break;
-                    case IS_EXIST_SAFE_PASSWORD_USER_NOT:
-                        listener.onIsExistFailed(response.body().getErrCode(), response.body().getAlertMsg());
-                        break;
-                    default:
-                        break;
+                if (response.body() != null) {
+                    LogUtil.d("【isExistSafePassword】网络请求成功！");
+                    LogUtil.d("【isExistSafePassword】返回数据：" + response.body().toString());
+                    switch (response.body().getErrCode()) {
+                        case IS_EXIST_SAFE_PASSWORD_SUCCESS:
+                            listener.onIsExistSuccess(response.body().getErrCode(), response.body().getAlertMsg());
+                            break;
+                        case IS_EXIST_SAFE_PASSWORD_NO:
+                            listener.onIsExistFailed(response.body().getErrCode(), response.body().getAlertMsg());
+                            break;
+                        case IS_EXIST_SAFE_PASSWORD_USER_NOT:
+                            listener.onIsExistFailed(response.body().getErrCode(), response.body().getAlertMsg());
+                            break;
+                        default:
+                            break;
+                    }
+                } else {
+                    // 服务器错误
+                    StyleableToast.makeText(mContext, Util.getResourceString(mContext, R.string.server_error), Toast.LENGTH_LONG, R.style.AppDefaultToast).show();
                 }
             }
 
@@ -145,20 +152,25 @@ public class SafePasswordBiz implements ISafePasswordBiz {
         call.enqueue(new Callback<SafePasswordDataResponse.CheckSafePassword>() {
             @Override
             public void onResponse(Call<SafePasswordDataResponse.CheckSafePassword> call, Response<SafePasswordDataResponse.CheckSafePassword> response) {
-                LogUtil.d("【checkSafePassword】网络请求成功！");
-                LogUtil.d("【checkSafePassword】返回数据：" + response.body().toString());
-                switch (response.body().getErrCode()) {
-                    case IS_CHECK_SAFE_PASSWORD_SUCCESS:
-                        listener.onCheckSuccess(response.body().getErrCode(), response.body().getAlertMsg());
-                        break;
-                    case IS_CHECK_SAFE_PASSWORD_NO:
-                        listener.onCheckFailed(response.body().getErrCode(), response.body().getAlertMsg());
-                        break;
-                    case IS_CHECK_SAFE_PASSWORD_USER_NOT:
-                        listener.onCheckFailed(response.body().getErrCode(), response.body().getAlertMsg());
-                        break;
-                    default:
-                        break;
+                if (response.body() != null) {
+                    LogUtil.d("【checkSafePassword】网络请求成功！");
+                    LogUtil.d("【checkSafePassword】返回数据：" + response.body().toString());
+                    switch (response.body().getErrCode()) {
+                        case IS_CHECK_SAFE_PASSWORD_SUCCESS:
+                            listener.onCheckSuccess(response.body().getErrCode(), response.body().getAlertMsg());
+                            break;
+                        case IS_CHECK_SAFE_PASSWORD_NO:
+                            listener.onCheckFailed(response.body().getErrCode(), response.body().getAlertMsg());
+                            break;
+                        case IS_CHECK_SAFE_PASSWORD_USER_NOT:
+                            listener.onCheckFailed(response.body().getErrCode(), response.body().getAlertMsg());
+                            break;
+                        default:
+                            break;
+                    }
+                } else {
+                    // 服务器错误
+                    StyleableToast.makeText(mContext, Util.getResourceString(mContext, R.string.server_error), Toast.LENGTH_LONG, R.style.AppDefaultToast).show();
                 }
             }
 

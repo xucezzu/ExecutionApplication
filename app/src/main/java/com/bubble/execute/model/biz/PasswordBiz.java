@@ -2,6 +2,7 @@ package com.bubble.execute.model.biz;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.widget.Toast;
 
 import com.bubble.execute.R;
 import com.bubble.execute.model.bean.PasswordDataRequest;
@@ -13,6 +14,7 @@ import com.bubble.execute.utils.LogUtil;
 import com.bubble.execute.utils.ServerURL;
 import com.bubble.execute.utils.Util;
 import com.google.gson.Gson;
+import com.muddzdev.styleabletoastlibrary.StyleableToast;
 
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
@@ -212,7 +214,7 @@ public class PasswordBiz implements IPasswordBiz {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         // 创建网络请求接口实例
-        RequestApi requestAPI = retrofitResetPassword.create(RequestApi.class);
+        final RequestApi requestAPI = retrofitResetPassword.create(RequestApi.class);
         final RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), resetPasswordRequestJson);
         Call<PasswordDataResponse.ResetPassword> call = requestAPI.resetPasswordPostMsg(requestBody);
         // 发送网络请求（异步）
@@ -221,20 +223,25 @@ public class PasswordBiz implements IPasswordBiz {
             @Override
             public void onResponse(Call<PasswordDataResponse.ResetPassword> call, Response<PasswordDataResponse.ResetPassword> response) {
                 // 网络请求成功，处理返回的结果
-                LogUtil.d("【resetPassword】网络请求成功");
-                LogUtil.d("【resetPassword】返回的数据：" + response.body().toString());
-                switch (response.body().getErrCode()) {
-                    case RESET_PASSWORD_SUCCESS:
-                        resetPasswordListener.onResetSuccess(response.body().getErrCode(), response.body().getAlertMsg());
-                        break;
-                    case RESET_PASSWORD_FAILD:
-                        resetPasswordListener.onResetFailed(response.body().getErrCode(), response.body().getAlertMsg());
-                        break;
-                    case RESET_PASSWORD_NOT_MAIL:
-                        resetPasswordListener.onResetFailed(response.body().getErrCode(), response.body().getAlertMsg());
-                        break;
-                    default:
-                        break;
+                if (response.body() != null) {
+                    LogUtil.d("【resetPassword】网络请求成功");
+                    LogUtil.d("【resetPassword】返回的数据：" + response.body().toString());
+                    switch (response.body().getErrCode()) {
+                        case RESET_PASSWORD_SUCCESS:
+                            resetPasswordListener.onResetSuccess(response.body().getErrCode(), response.body().getAlertMsg());
+                            break;
+                        case RESET_PASSWORD_FAILD:
+                            resetPasswordListener.onResetFailed(response.body().getErrCode(), response.body().getAlertMsg());
+                            break;
+                        case RESET_PASSWORD_NOT_MAIL:
+                            resetPasswordListener.onResetFailed(response.body().getErrCode(), response.body().getAlertMsg());
+                            break;
+                        default:
+                            break;
+                    }
+                } else {
+                    // 服务器错误
+                    StyleableToast.makeText(mContext, Util.getResourceString(mContext, R.string.server_error), Toast.LENGTH_LONG, R.style.AppDefaultToast).show();
                 }
             }
 

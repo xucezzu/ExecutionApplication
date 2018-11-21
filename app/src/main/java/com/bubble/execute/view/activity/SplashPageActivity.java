@@ -11,6 +11,7 @@ import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bubble.execute.R;
 import com.bubble.execute.presenter.SplashPagePresenter;
@@ -125,7 +126,7 @@ public class SplashPageActivity extends BaseActivity implements ISplashActivity 
     @Override
     public void showReturnMsg(String msg) {
         // 展示登录的结果，但是为了照顾逻辑，有时此处不易显示Toast
-        StyleableToast.makeText(SplashPageActivity.this, msg, R.style.AppDefaultToast).show();
+        StyleableToast.makeText(SplashPageActivity.this, msg, Toast.LENGTH_LONG, R.style.AppDefaultToast).show();
         // 语音（测试）
         Future future = DefaultExecutorSupplier.getInstance()
                 .forLightWeightBackgroundTasks()

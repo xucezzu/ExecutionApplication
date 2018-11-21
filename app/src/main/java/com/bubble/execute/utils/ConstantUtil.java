@@ -1,6 +1,7 @@
 package com.bubble.execute.utils;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import com.bubble.execute.R;
 import com.muddzdev.styleabletoastlibrary.StyleableToast;
@@ -116,7 +117,7 @@ public class ConstantUtil {
      */
     public static boolean checkPassword(Context context, String password) throws EmptyStackException {
         if (password == null || password.length() == 0) {
-            StyleableToast.makeText(context, "密码字段不能为空", R.style.AppDefaultToast).show();
+            StyleableToast.makeText(context, "密码字段不能为空", Toast.LENGTH_LONG, R.style.AppDefaultToast).show();
             return false;
         }
         // 包含中文字符正则表达式
@@ -124,12 +125,12 @@ public class ConstantUtil {
         Pattern pattern = Pattern.compile(containChinese);
         Matcher matcher = pattern.matcher(password);
         if (matcher.find()) {
-            StyleableToast.makeText(context, "密码字段不能包含中文字符", R.style.AppDefaultToast).show();
+            StyleableToast.makeText(context, "密码字段不能包含中文字符", Toast.LENGTH_LONG, R.style.AppDefaultToast).show();
             return false;
         }
         // 密码长度至少8位
         if (password.length() < PASSWORD_LEN) {
-            StyleableToast.makeText(context, "密码字段长度不能少于8位", R.style.AppDefaultToast).show();
+            StyleableToast.makeText(context, "密码字段长度不能少于8位", Toast.LENGTH_LONG, R.style.AppDefaultToast).show();
             return false;
         }
         // 密码中至少要包含两种类型字符
@@ -142,7 +143,7 @@ public class ConstantUtil {
         if (isLetterNumber || isLetterSymbol || isNumberSymbol) {
             return true;
         } else {
-            StyleableToast.makeText(context, "密码字段不能低于两种字符类型", R.style.AppDefaultToast).show();
+            StyleableToast.makeText(context, "密码字段不能低于两种字符类型", Toast.LENGTH_LONG, R.style.AppDefaultToast).show();
             return false;
         }
     }

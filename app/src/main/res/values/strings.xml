@@ -6,6 +6,7 @@
     <string name="splash_b">极简</string>
     <string name="splash_c">坚持</string>
     <string name="net_fail">网络请求失败，请检查网络</string>
+    <string name="server_error">服务器请求返回错误，烦请反馈给管理员</string>
     <string name="splash_loading">数据加载…</string>
     <string name="login_loading">正在登录…</string>
     <string name="login_mail_error">邮箱格式不正确</string>
