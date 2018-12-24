@@ -1,5 +1,6 @@
 package com.bubble.execute.model.biz;
 
+import com.bubble.execute.model.bean.HomeDataResponse;
 import com.bubble.execute.model.bean.IdentifyCodeResponse;
 import com.bubble.execute.model.bean.LoginDataResponse;
 import com.bubble.execute.model.bean.MailDataResponse;
@@ -23,6 +24,7 @@ import retrofit2.http.POST;
 public interface RequestApi {
     /**
      * 注册的接口
+     *
      * @param requestBody 上传的数据
      * @return
      */
@@ -32,6 +34,7 @@ public interface RequestApi {
 
     /**
      * 登录的接口
+     *
      * @param requestBody 上传的数据
      * @return
      */
@@ -41,6 +44,7 @@ public interface RequestApi {
 
     /**
      * 是否存在安全密码接口
+     *
      * @param requestBody 上传的数据
      * @return
      */
@@ -50,6 +54,7 @@ public interface RequestApi {
 
     /**
      * 核对安全密码接口
+     *
      * @param requestBody 上传的数据
      * @return
      */
@@ -59,6 +64,7 @@ public interface RequestApi {
 
     /**
      * 更新安全密码接口
+     *
      * @param requestBody 上传的数据
      * @return
      */
@@ -68,6 +74,7 @@ public interface RequestApi {
 
     /**
      * 核对密码接口
+     *
      * @param requestBody 上传的数据
      * @return
      */
@@ -77,6 +84,7 @@ public interface RequestApi {
 
     /**
      * 更新密码接口
+     *
      * @param requestBody 上传的数据
      * @return
      */
@@ -86,6 +94,7 @@ public interface RequestApi {
 
     /**
      * 重置密码接口
+     *
      * @param requestBody 上传的数据
      * @return
      */
@@ -95,6 +104,7 @@ public interface RequestApi {
 
     /**
      * 核对邮箱
+     *
      * @param requestBody 上传的数据
      * @return
      */
@@ -104,10 +114,31 @@ public interface RequestApi {
 
     /**
      * 核对验证码
+     *
      * @param requestBody 上传的数据
      * @return
      */
     @Headers({"Content-type:application/json;charset=utf-8", "Accept:application/json"})
     @POST("check_identify_code/")
     Call<IdentifyCodeResponse.CheckIdentifyCode> checkIdentifyCodePostMsg(@Body RequestBody requestBody);
+
+    /**
+     * 获取首页今日寄语
+     *
+     * @param requestBody 上传的数据
+     * @return
+     */
+    @Headers({"Content-type:application/json;charset=utf-8", "Accept:application/json"})
+    @POST("get_today_motto/")
+    Call<HomeDataResponse.HomeDataMottoResponse> getHomeMottoData(@Body RequestBody requestBody);
+
+    /**
+     * 获取首页任务数据
+     *
+     * @param requestBody 上传的数据
+     * @return
+     */
+    @Headers({"Content-type:application/json;charset=utf-8", "Accept:application/json"})
+    @POST("get_doing_task/")
+    Call<HomeDataResponse.HomeDataTaskResponse> getHomeTaskData(@Body RequestBody requestBody);
 }

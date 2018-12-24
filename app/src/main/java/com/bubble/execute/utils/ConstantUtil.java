@@ -1,11 +1,15 @@
 package com.bubble.execute.utils;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.widget.Toast;
 
 import com.bubble.execute.R;
 import com.muddzdev.styleabletoastlibrary.StyleableToast;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.EmptyStackException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -144,6 +148,30 @@ public class ConstantUtil {
             return true;
         } else {
             StyleableToast.makeText(context, "密码字段不能低于两种字符类型", Toast.LENGTH_LONG, R.style.AppDefaultToast).show();
+            return false;
+        }
+    }
+
+
+    /**
+     * 判断时间格式 格式必须为“YYYY-MM-dd”
+     * 2004-2-30 是无效的
+     * 2003-2-29 是无效的
+     *
+     * @param sDate
+     * @return
+     */
+    public static boolean isLegalDate(String sDate) {
+        int legalLen = 10;
+        if ((sDate == null) || (sDate.length() != legalLen)) {
+            return false;
+        }
+
+        @SuppressLint("SimpleDateFormat") DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date date = formatter.parse(sDate);
+            return sDate.equals(formatter.format(date));
+        } catch (Exception e) {
             return false;
         }
     }

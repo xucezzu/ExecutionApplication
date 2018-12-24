@@ -1,10 +1,9 @@
 package com.bubble.execute.widget;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.view.Gravity;
+import android.support.design.widget.BottomSheetDialog;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -14,51 +13,25 @@ import com.bubble.execute.R;
 /**
  * @author 徐长策
  * E-Mail: xuce_zzu@163.com
- * Date：2018/11/5
+ * Date：2018/11/29
  * 版权所有 © 徐长策
  */
-public class ConfirmAndCancelDialog extends Dialog {
-    private int mTheme = R.style.ConfirmCancelDialog;
+public class DateForWeekPikerDialog extends BottomSheetDialog {
     private Context mContext;
     private TextView mTextTitle, mTextMessage;
     private Button mButtonConfirm, mButtonCancel;
     private String mStringTitle, mStringMessage, mStringConfirm, mStringCancel;
-    /**
-     * 对话框中间文字是否居中显示
-     */
-    private boolean mBooleanIsCenter = true;
     private OnConfirmClickListener mOnConfirmClickListener;
     private OnCancelClickListener mOnCancelClickListener;
 
-    public ConfirmAndCancelDialog(@NonNull Context context, boolean booleanIsCenter) {
+    public DateForWeekPikerDialog(@NonNull Context context) {
         super(context);
         this.mContext = context;
-        this.mBooleanIsCenter = booleanIsCenter;
     }
 
-    public ConfirmAndCancelDialog(@NonNull Context context, int themeResId, boolean booleanIsCenter) {
-        super(context, themeResId);
+    public DateForWeekPikerDialog(@NonNull Context context, int theme) {
+        super(context, theme);
         this.mContext = context;
-        this.mTheme = themeResId;
-        this.mBooleanIsCenter = booleanIsCenter;
-    }
-
-    /**
-     * 设置对话框Title
-     *
-     * @param title
-     */
-    public void setTitleText(String title) {
-        this.mStringTitle = title;
-    }
-
-    /**
-     * 设置对话框中间内容
-     *
-     * @param message
-     */
-    public void setMessageText(String message) {
-        this.mStringMessage = message;
     }
 
     /**
@@ -85,23 +58,9 @@ public class ConfirmAndCancelDialog extends Dialog {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_confirm_cancel_dialog);
-
         mTextTitle = findViewById(R.id.dialog_text_title);
-        mTextMessage = findViewById(R.id.dialog_text_message);
         mButtonConfirm = findViewById(R.id.button_confirm);
         mButtonCancel = findViewById(R.id.button_cancel);
-        if (mBooleanIsCenter) {
-            mTextMessage.setGravity(Gravity.CENTER);
-        }
-        if (mStringTitle != null) {
-            mTextTitle.setText(mStringTitle);
-        }
-        if (mStringMessage != null) {
-            mTextMessage.setText(mStringMessage);
-        }
-        if (mStringConfirm != null) {
-            mButtonConfirm.setText(mStringConfirm);
-        }
         mButtonConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

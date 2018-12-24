@@ -16,7 +16,6 @@
 
     <application
         android:name="com.bubble.execute.ExApplication"
-        android:allowBackup="false"
         android:icon="@mipmap/icon_application"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/icon_application"
@@ -38,6 +37,7 @@
         <activity android:name=".view.activity.TargetEditActivity"/>
         <activity android:name=".view.activity.IdentifyUserActivity"/>
         <activity android:name=".view.activity.SettingActivity"/>
+        <activity android:name=".view.activity.TaskEditActivity"/>
     </application>
 
 </manifest>

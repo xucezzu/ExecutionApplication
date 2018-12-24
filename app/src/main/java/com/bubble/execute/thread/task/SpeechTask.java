@@ -38,8 +38,7 @@ public class SpeechTask extends PriorityRunnable {
 
     @Override
     public void run() {
-        InitConfig initConfig = new InitConfig("8804208", "3QqiPU2nmuUXnqLnvBtBmEkw", "65a4248530310e2e262ae89dec5db191",
-                TtsMode.MIX, getParams(), listener);
+        InitConfig initConfig = new InitConfig("8804208", "3QqiPU2nmuUXnqLnvBtBmEkw", "65a4248530310e2e262ae89dec5db191", TtsMode.MIX, getParams(), listener);
         mSpeechSynthesizer = SpeechSynthesizer.getInstance();
         mSpeechSynthesizer.setContext(mContext);
         mSpeechSynthesizer.setSpeechSynthesizerListener(initConfig.getListener());

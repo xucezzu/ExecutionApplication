@@ -29,6 +29,8 @@ dependencies {
     //noinspection GradleCompatible
     implementation 'com.android.support:appcompat-v7:27.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    //noinspection GradleCompatible
+    implementation 'com.android.support:design:27.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
@@ -43,12 +45,15 @@ dependencies {
     implementation 'com.muddzdev:styleabletoast:2.0.1'
     // Dialog的展示库
     implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
-    // WEEX框架集成
     //noinspection GradleCompatible
     implementation 'com.android.support:recyclerview-v7:27.1.0'
     //noinspection GradleCompatible
     implementation 'com.android.support:support-v4:27.1.0'
+    // FastJSON
     implementation 'com.alibaba:fastjson:1.1.46.android'
+    // WEEX框架集成
     implementation 'com.taobao.android:weex_sdk:0.5.1@aar'
     implementation 'org.jetbrains:annotations-java5:15.0'
+    // 日期选择器
+    implementation 'com.github.codbking:PickTime:v1.0.1'
 }

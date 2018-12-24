@@ -7,6 +7,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.bubble.execute.R;
 import com.bubble.execute.widget.ConfirmAndCancelDialog;
 import com.bubble.execute.widget.ConfirmDialog;
+import com.bubble.execute.widget.DateForWeekPikerDialog;
 
 /**
  * @author 徐长策
@@ -21,7 +22,6 @@ public class DialogUtil {
     private static volatile DialogUtil sDialogUtil = null;
 
     private DialogUtil() {
-
     }
 
     /**
@@ -40,23 +40,33 @@ public class DialogUtil {
         return sDialogUtil;
     }
 
+    /**
+     * MaterialDialog
+     */
     @SuppressLint("StaticFieldLeak")
     private static MaterialDialog dialog;
+
+    /**
+     * 只有确定按钮的Dialog
+     */
     @SuppressLint("StaticFieldLeak")
     private static ConfirmDialog confirmDialog;
+
+    /**
+     * 带有取消和确定的Dialog
+     */
     @SuppressLint("StaticFieldLeak")
     private static ConfirmAndCancelDialog confirmAndCancelDialog;
+    private static DateForWeekPikerDialog dateForWeekPikerDialog;
 
-    public interface ConfirmCallback {
+    public interface ConfirmAndCancelCallback {
         /**
          * 点击提交按钮
          *
          * @param dialog
          */
         void onConfirmClick(ConfirmAndCancelDialog dialog);
-    }
 
-    public interface CancelCallback {
         /**
          * 点击取消按钮
          *
@@ -65,33 +75,39 @@ public class DialogUtil {
         void onCancelClick(ConfirmAndCancelDialog dialog);
     }
 
-    public void ConfirmAndCancelDialog(Context context, String title, String message, String textConfirm, String textCancel, boolean isCenter, boolean isBackWork,
-                                       final ConfirmCallback confirmCallback,
-                                       final CancelCallback cancelCallback) {
+    public void ConfirmAndCancelDialog(Context context, String title, String message, String textConfirm, String textCancel, boolean isCenter, boolean isBackWork, final ConfirmAndCancelCallback confirmAndCancelCallback) {
         confirmAndCancelDialog = new ConfirmAndCancelDialog(context, isCenter);
         confirmAndCancelDialog.setCanceledOnTouchOutside(false);
         confirmAndCancelDialog.setTitleText(title);
         confirmAndCancelDialog.setMessageText(message);
         confirmAndCancelDialog.setCancelable(isBackWork);
-        confirmAndCancelDialog.setOnConfirmClickListenter(textConfirm, new ConfirmAndCancelDialog.onConfirmClickListener() {
+        confirmAndCancelDialog.setOnConfirmClickListener(textConfirm, new ConfirmAndCancelDialog.OnConfirmClickListener() {
             @Override
             public void onConfirmClick() {
-                if (confirmCallback != null) {
-                    confirmCallback.onConfirmClick(confirmAndCancelDialog);
+                if (confirmAndCancelCallback != null) {
+                    confirmAndCancelCallback.onConfirmClick(confirmAndCancelDialog);
                 }
                 confirmAndCancelDialog.dismiss();
             }
         });
-        confirmAndCancelDialog.setOnCancelClickListener(textCancel, new ConfirmAndCancelDialog.onCancelClickListener() {
+        confirmAndCancelDialog.setOnCancelClickListener(textCancel, new ConfirmAndCancelDialog.OnCancelClickListener() {
             @Override
             public void onCancelClick() {
-                if (cancelCallback != null) {
-                    cancelCallback.onCancelClick(confirmAndCancelDialog);
+                if (confirmAndCancelCallback != null) {
+                    confirmAndCancelCallback.onCancelClick(confirmAndCancelDialog);
                 }
                 confirmAndCancelDialog.dismiss();
             }
         });
         confirmAndCancelDialog.show();
+    }
+
+    public interface ExecWeekPikerButtonCallback {
+
+    }
+
+    public void DateForWeekDialog(){
+
     }
 
     /**
@@ -125,10 +141,6 @@ public class DialogUtil {
 
         dialog = builder.build();
         dialog.show();
-    }
-
-    public void showTitleDialog(Context context, String title, String message, String confirm, String cancel) {
-
     }
 
     /**

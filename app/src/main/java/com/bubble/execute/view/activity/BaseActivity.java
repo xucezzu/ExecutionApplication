@@ -51,6 +51,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                 return false;
             }
         });
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT_WATCH)

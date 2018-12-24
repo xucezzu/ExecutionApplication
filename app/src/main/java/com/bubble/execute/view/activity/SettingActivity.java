@@ -100,7 +100,7 @@ public class SettingActivity extends BaseActivity implements ISettingActivity {
                 Util.getResourceString(mContext, R.string.setting_logout_dialog_confirm),
                 Util.getResourceString(mContext, R.string.setting_logout_dialog_cancel),
                 true, true,
-                new DialogUtil.ConfirmCallback() {
+                new DialogUtil.ConfirmAndCancelCallback() {
                     @Override
                     public void onConfirmClick(ConfirmAndCancelDialog dialog) {
                         SPManager.removeAllData();
@@ -108,7 +108,7 @@ public class SettingActivity extends BaseActivity implements ISettingActivity {
                         NavigationController.getInstance().clear();
                         finish();
                     }
-                }, new DialogUtil.CancelCallback() {
+
                     @Override
                     public void onCancelClick(ConfirmAndCancelDialog dialog) {
                         dialog.dismiss();

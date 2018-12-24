@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal">
+
+    <RelativeLayout
+        android:id="@+id/layout_item_home_task_left"
+        android:layout_width="68dp"
+        android:layout_height="68dp"
+        android:layout_gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/text_item_home_task_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text=""
+            android:textColor="@color/colorBlack"
+            android:textSize="12sp"
+            tools:ignore="HardcodedText"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_item_home_task_center"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/image_item_home_task_center"
+            android:layout_width="6dp"
+            android:layout_height="6dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/icon_home_task_item_normal"/>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/image_item_home_task_center"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="14dp"
+            android:background="@color/colorBlack"/>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/image_item_home_task_center"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="14dp"
+            android:background="@color/colorBlack"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_item_home_task_right"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/edit_task"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@color/colorWhite"
+            android:hint="@string/task_edit_step_text_hint"
+            android:inputType="text"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:textColor="@color/colorBlack"
+            android:textCursorDrawable="@null"
+            android:textSize="12sp"
+            android:visibility="visible"
+            tools:ignore="HardcodedText,LabelFor"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="10dp"
+            android:background="@color/colorViewLine"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

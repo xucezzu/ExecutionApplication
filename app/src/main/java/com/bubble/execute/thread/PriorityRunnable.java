@@ -16,10 +16,9 @@ public class PriorityRunnable implements Runnable{
 
     @Override
     public void run() {
-        // Nothing to do here!
     }
 
-    public Priority getPriority() {
+    Priority getPriority() {
         return priority;
     }
 }

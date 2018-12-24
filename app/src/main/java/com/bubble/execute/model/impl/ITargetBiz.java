@@ -6,6 +6,6 @@ package com.bubble.execute.model.impl;
  * Date：2018/9/17
  * 版权所有 © 徐长策
  */
-public interface ITargetDayBiz {
+public interface ITargetBiz {
     void uploadTargetDay();
 }

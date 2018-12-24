@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <!-- 座右铭 -->
+                <!-- 今日寄语 -->
                 <RelativeLayout
                     android:id="@+id/layout_motto"
                     android:layout_width="match_parent"
@@ -50,8 +50,8 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/text_motto_title"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
                         android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
                         android:text="Nothing is impossible when you believe in yourself."
                         android:textColor="@color/colorBlack"/>
 
@@ -62,10 +62,11 @@
                     android:id="@+id/layout_task"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="15dp"
                     android:layout_marginTop="10dp"
+                    android:layout_marginBottom="15dp"
                     android:background="@color/colorWhite"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="visible">
 
                     <!-- 任务内容标题 -->
                     <RelativeLayout
@@ -89,7 +90,7 @@
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
                             android:layout_marginEnd="10dp"
-                            android:text="10:24 ~ 11:56"
+                            android:text="剩余: 1小时24分"
                             android:textColor="@color/colorBlack"
                             android:textSize="14sp"/>
 
@@ -124,60 +125,21 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/text_content_task_title"
-                            android:layout_marginEnd="10dp"
                             android:layout_marginStart="10dp"
                             android:layout_marginTop="10dp"
+                            android:layout_marginEnd="10dp"
                             android:lineSpacingMultiplier="1.2"
                             android:text="完成公司金付通项目的注册逻辑开发，再学习RxJava的设计模式"
                             android:textColor="@color/colorBlack"
-                            android:textSize="16sp"/>
+                            android:textSize="14sp"/>
 
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1px"
                             android:layout_below="@+id/text_content_task"
                             android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
-                            android:layout_marginTop="10dp"
-                            android:background="@color/colorGray"/>
-                    </RelativeLayout>
-
-                    <!-- 任务详细步骤 -->
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:id="@+id/text_step_task_title"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="10dp"
-                            android:text="@string/home_task_step"
-                            android:textColor="@color/colorBlack"
-                            android:textSize="16sp"
-                            android:textStyle="bold"/>
-
-                        <TextView
-                            android:id="@+id/text_step_task"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/text_step_task_title"
-                            android:layout_marginEnd="10dp"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="10dp"
-                            android:lineSpacingMultiplier="1.2"
-                            android:text="@string/home_task_step_content"
-                            android:textColor="@color/colorBlack"
-                            android:textSize="16sp"/>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1px"
-                            android:layout_below="@+id/text_step_task"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginTop="10dp"
                             android:background="@color/colorGray"/>
                     </RelativeLayout>
 
@@ -205,7 +167,7 @@
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
                             android:layout_marginEnd="10dp"
-                            android:text="67%"
+                            android:text="2018/11/25 09:45 ~ 2018/11/25 14:25"
                             android:textColor="@color/colorBlack"
                             android:textSize="14sp"/>
 
@@ -217,17 +179,113 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:background="@color/colorGray"
-                            app:etpBackgroundColor="@color/colorBlack"
+                            android:visibility="gone"
+                            app:etpBackgroundColor="@color/colorBlack"/>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:background="@color/colorGray"/>
+                    </RelativeLayout>
+
+                    <!-- 任务详细步骤 -->
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/text_step_task_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="10dp"
+                            android:text="@string/home_task_step"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="16sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/text_step_task"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/text_step_task_title"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:lineSpacingMultiplier="1.2"
+                            android:text="@string/home_task_step_content"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="16sp"
                             android:visibility="gone"/>
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/recycler_home_task"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/text_step_task_title"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="10dp"/>
+
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:layout_below="@+id/text_step_task"
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="0dp"
+                            android:background="@color/colorGray"/>
                     </RelativeLayout>
 
                 </LinearLayout>
+                
+                <!-- 不存在需要进行中的任务 -->
+                <RelativeLayout
+                    android:id="@+id/layout_task_not_complete"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp"
+                    android:layout_marginTop="2px"
+                    android:visibility="gone"
+                    android:background="@color/colorWhite">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_task_not_complete"
+                        android:layout_centerInParent="true"/>
+
+                </RelativeLayout>
+
 
             </LinearLayout>
 
         </ScrollView>
 
     </android.support.v4.widget.SwipeRefreshLayout>
+
+    <!-- 进入任务编辑按钮 -->
+    <RelativeLayout
+        android:id="@+id/layout_home_edit"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/draw_home_edit"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/image_home_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_home_edit"/>
+
+    </RelativeLayout>
 
 </RelativeLayout>
 

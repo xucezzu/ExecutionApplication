@@ -35,10 +35,15 @@
     <string name="dialog_cancel_default">取消</string>
     <!-- 首页文字 -->
     <string name="home_motto_title">今日寄语</string>
+    <string name="home_motto_date_warn">日期格式不对</string>
+    <string name="home_task_date_warn">数据信息不完整，请重新登录</string>
     <string name="home_task_title" tools:ignore="TypographyEllipsis">任务进行中...</string>
+    <string name="home_task_title_end">任务已结束</string>
+    <string name="hone_task_remain_time">剩余时间</string>
     <string name="home_task_content">任务内容</string>
+    <string name="home_task_time">任务周期</string>
     <string name="home_task_step">任务步骤</string>
-    <string name="home_task_time">任务时间进度</string>
+    <string name="home_task_step_item_left">Step.</string>
     <string name="home_task_step_content">1：先与产品沟通好具体的需求逻辑，要问清需要注意的点\n2：再与UI设计确定好设计\n3：然后在开发具体逻辑，开发之前一定要把逻辑弄清楚\n4：做完功能后，务必亲自测试一下，测试完成后提交代码\n5：剩下的时间，抓紧百度几篇文章看一下RXJava的设计模式，一定要达到熟记于心</string>
     <!-- 目标页面 -->
     <string name="target_day_title">每日必做</string>
@@ -87,4 +92,23 @@
     <string name="forget_password_code">输入验证码</string>
     <string name="forget_password_update">提交</string>
     <string name="forget_password_next">下一步</string>
+    <!-- 任务编辑页面 -->
+    <string name="task_edit_title">任务编辑</string>
+    <string name="task_edit_content">任务内容编辑：</string>
+    <string name="task_edit_content_hint">在此编辑任务主要内容</string>
+    <string name="task_edit_time">任务周期选择：</string>
+    <string name="task_edit_time_start">开始时间</string>
+    <string name="task_edit_time_end">结束时间</string>
+    <string name="task_edit_time_start_hint">点击选择任务开始时间</string>
+    <string name="task_edit_time_end_hint">点击选择任务结束时间</string>
+    <string name="task_edit_step">任务步骤编辑：</string>
+    <string name="task_edit_step_text">Step.</string>
+    <string name="task_edit_step_text_hint">编辑该步骤详细内容</string>
+    <string name="task_edit_step_del">删除</string>
+    <string name="task_edit_step_add">添加</string>
+    <string name="task_edit_step_warn">点击以上按钮可选择新增或删除操作</string>
+    <string name="task_edit_step_back_title">提示</string>
+    <string name="task_edit_step_back_message">是否放弃任务编辑？</string>
+    <string name="task_edit_step_confirm">放弃</string>
+    <string name="task_edit_step_cancel">取消</string>
 </resources>

@@ -61,4 +61,10 @@
         <attr name="firstColor" format="color"/>
         <attr name="secondColor" format="color"/>
     </declare-styleable>
+    <!-- 自定义评分控件 -->
+    <declare-styleable name="ExecMarkView">
+        <attr name="srcEmpty" format="reference"/>
+        <attr name="srcFill" format="reference"/>
+        <attr name="starNum" format="integer"/>
+    </declare-styleable>
 </resources>

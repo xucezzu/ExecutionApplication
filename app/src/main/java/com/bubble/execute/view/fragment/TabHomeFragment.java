@@ -1,16 +1,31 @@
 package com.bubble.execute.view.fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bubble.execute.R;
 import com.bubble.execute.utils.LogUtil;
+import com.bubble.execute.utils.NavigationController;
+import com.bubble.execute.view.activity.TaskEditActivity;
+import com.bubble.execute.view.adapter.HomeTaskStepAdapter;
+import com.bubble.execute.view.bean.TaskStepBean;
+import com.bubble.execute.view.impl.ITabHomeFragment;
+import com.jakewharton.rxbinding2.view.RxView;
+
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.functions.Consumer;
 
 
 /**
@@ -20,10 +35,16 @@ import com.bubble.execute.utils.LogUtil;
  * 版权所有 © 徐长策
  */
 
-public class TabHomeFragment extends Fragment {
-    private ImageView mImageTitle, mImageLeft, mImageRight;
-    private TextView mTextTitle;
+public class TabHomeFragment extends Fragment implements ITabHomeFragment {
+    private Context mContext = getContext();
 
+    private ImageView mImageTitle, mImageLeft, mImageRight, mImageEdit;
+    private TextView mTextTitle;
+    private RelativeLayout mLayoutIntoEdit;
+    private RecyclerView mRecyclerTask;
+
+    private HomeTaskStepAdapter mHomeTaskStepAdapter;
+    private List<TaskStepBean> mTaskStepBeans;
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -37,6 +58,17 @@ public class TabHomeFragment extends Fragment {
         mImageRight.setImageResource(R.drawable.icon_history);
         mImageRight.setVisibility(View.VISIBLE);
         mImageTitle.setVisibility(View.VISIBLE);
+        // 设置RecycleView
+        mRecyclerTask = view.findViewById(R.id.recycler_home_task);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        mRecyclerTask.setLayoutManager(layoutManager);
+        // Todo 注意该《TaskStepBean》Data，赋值的地方才需要加载，这个地方属于初始化的地方，必须拿到数据才能赋值，等功能出来后再做调整
+        mHomeTaskStepAdapter = new HomeTaskStepAdapter(mContext, mTaskStepBeans);
+        // 进入编辑页面
+        mLayoutIntoEdit = view.findViewById(R.id.layout_home_edit);
+        mImageEdit = view.findViewById(R.id.image_home_edit);
+        initData();
     }
 
     @Override
@@ -58,6 +90,24 @@ public class TabHomeFragment extends Fragment {
         return mHomeView;
     }
 
+    @SuppressLint("CheckResult")
+    private void initData() {
+        RxView.clicks(mImageEdit).throttleFirst(2, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
+            @Override
+            public void accept(Object o) throws Exception {
+                LogUtil.d("[TabHomeFragment]跳转到编辑页面");
+                toTaskEditActivity();
+            }
+        });
+
+        RxView.clicks(mImageRight).throttleFirst(2, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
+            @Override
+            public void accept(Object o) throws Exception {
+                LogUtil.d("[TabHomeFragment]跳转到历史列表页面");
+            }
+        });
+    }
+
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -72,5 +122,10 @@ public class TabHomeFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+    }
+
+    @Override
+    public void toTaskEditActivity() {
+        NavigationController.getInstance().jumpTo(TaskEditActivity.class);
     }
 }
