@@ -1,5 +1,7 @@
 package com.bubble.execute.model.bean;
 
+import android.support.annotation.NonNull;
+
 /**
  * @author 徐长策
  * E-Mail: xuce_zzu@163.com
@@ -14,9 +16,9 @@ public class HomeDataResponse {
     public class HomeDataMottoResponse {
         String errCode;
         String alertMsg;
-        MottoData mMottoData;
+        ReturnData returnData;
 
-        public class MottoData {
+        public class ReturnData {
             String mottoDate;
             String mottoContent;
 
@@ -53,12 +55,25 @@ public class HomeDataResponse {
             return alertMsg;
         }
 
-        public void setMottoData(MottoData mottoData) {
-            mMottoData = mottoData;
+        public void setReturnData(ReturnData returnData) {
+            returnData = returnData;
         }
 
-        public MottoData getMottoData() {
-            return mMottoData;
+        public ReturnData getReturnData() {
+            return returnData;
+        }
+
+        @NonNull
+        @Override
+        public String toString() {
+            String returnMessage = "{" + "\"errCode\": \"" + getErrCode() + "\",\"alertMsg\": \"" + getAlertMsg();
+            String returnDataForMotto = "";
+            if (returnData != null) {
+                returnDataForMotto = "\",\"returnData\":{" +
+                        "\"mottoDate\": \"" + returnData.getMottoDate() +
+                        "\",\"mottoContent\": \"" + returnData.getMottoContent() + "\"}";
+            }
+            return returnMessage + returnDataForMotto + "}";
         }
     }
 
@@ -68,7 +83,7 @@ public class HomeDataResponse {
     public class HomeDataTaskResponse {
         String errCode;
         String alertMsg;
-        HomeTaskData mHomeTaskData;
+        HomeTaskData returnData;
 
         public class HomeTaskData {
             String taskContent;
@@ -125,12 +140,12 @@ public class HomeDataResponse {
             return alertMsg;
         }
 
-        public void setHomeTaskData(HomeTaskData homeTaskData) {
-            mHomeTaskData = homeTaskData;
+        public void setHomeTaskData(HomeTaskData returnData) {
+            returnData = returnData;
         }
 
         public HomeTaskData getHomeTaskData() {
-            return mHomeTaskData;
+            return returnData;
         }
     }
 }

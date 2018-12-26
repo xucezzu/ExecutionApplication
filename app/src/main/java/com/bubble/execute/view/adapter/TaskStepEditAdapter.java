@@ -72,7 +72,7 @@ public class TaskStepEditAdapter extends RecyclerView.Adapter<TaskStepEditAdapte
         if (getViewFooter() != null && viewType == VIEW_TYPE_FOOTER) {
             return new TaskStepEditAdapter.TaskStepEditHolder(mViewFooter);
         }
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_task_home, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_task_edit, parent, false);
         return new TaskStepEditAdapter.TaskStepEditHolder(view);
     }
 

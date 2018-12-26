@@ -68,7 +68,7 @@ public class TaskBiz implements ITaskBiz {
                 if (response.body() != null) {
                     LogUtil.d("【HomeMotto】网络请求成功");
                     LogUtil.d("【HomeMotto】返回的数据：" + response.body().toString());
-                    listener.onSuccess(response.body().getErrCode(), response.body().getAlertMsg(), response.body().getMottoData().toString());
+                    listener.onSuccess(response.body().getErrCode(), response.body().getAlertMsg(), response.body().getReturnData());
                 }
             }
 
@@ -113,7 +113,7 @@ public class TaskBiz implements ITaskBiz {
                     LogUtil.d("【HomeTask】返回的数据：" + response.body().toString());
                     switch (response.body().getErrCode()) {
                         case HOME_TASK_SUCCESS:
-                            listener.onSuccess(response.body().getErrCode(), response.body().getAlertMsg(), response.body().getHomeTaskData().toString());
+                            listener.onSuccess(response.body().getErrCode(), response.body().getAlertMsg(), response.body().getHomeTaskData());
                             break;
                         case HOME_TASK_FAIL_NO_DOING:
                             listener.onFailed(response.body().getErrCode(), response.body().getAlertMsg());

@@ -10,7 +10,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.bubble.execute.R;
-import com.bubble.execute.utils.Util;
+import com.bubble.execute.utils.ConstantUtil;
+import com.bubble.execute.utils.LogUtil;
 import com.bubble.execute.view.bean.TaskStepBean;
 
 import java.util.List;
@@ -40,7 +41,10 @@ public class HomeTaskStepAdapter extends RecyclerView.Adapter<HomeTaskStepAdapte
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull TaskStepHolder holder, int position) {
-        holder.mTextStep.setText(Util.getResourceString(mContext, R.string.home_task_step_item_left) + mTaskStepBeans.get(position).getTaskStep());
+        LogUtil.d("Position: " + position + mTaskStepBeans.get(position).getTaskStep());
+        holder.mTextStepNumber.setText("Step." + mTaskStepBeans.get(position).getTaskStep());
+        holder.mTextStepContent.setEnabled(false);
+        holder.mTextStepContent.setText(ConstantUtil.ToDBC(mTaskStepBeans.get(position).getTaskContent()));
     }
 
     @Override
@@ -49,11 +53,13 @@ public class HomeTaskStepAdapter extends RecyclerView.Adapter<HomeTaskStepAdapte
     }
 
     class TaskStepHolder extends RecyclerView.ViewHolder {
-        private TextView mTextStep;
+        private TextView mTextStepNumber;
+        private TextView mTextStepContent;
 
         TaskStepHolder(View itemView) {
             super(itemView);
-            mTextStep = itemView.findViewById(R.id.text_item_home_task_left);
+            mTextStepNumber = itemView.findViewById(R.id.text_item_home_task_left);
+            mTextStepContent = itemView.findViewById(R.id.task_content);
         }
     }
 }

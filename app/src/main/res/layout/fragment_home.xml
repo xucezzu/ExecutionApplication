@@ -29,7 +29,7 @@
                 <RelativeLayout
                     android:id="@+id/layout_motto"
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:background="@color/colorWhite">
 
@@ -39,6 +39,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="5dp"
+                        android:layout_marginEnd="10dp"
                         android:text="@string/home_motto_title"
                         android:textColor="@color/colorBlack"
                         android:textSize="16sp"
@@ -52,7 +53,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
-                        android:text="Nothing is impossible when you believe in yourself."
+                        android:layout_marginBottom="10dp"
                         android:textColor="@color/colorBlack"/>
 
                 </RelativeLayout>
@@ -228,7 +229,8 @@
                             android:layout_below="@+id/text_step_task_title"
                             android:layout_marginStart="10dp"
                             android:layout_marginTop="10dp"
-                            android:layout_marginEnd="10dp"/>
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="20dp"/>
 
 
                         <View
@@ -242,24 +244,23 @@
                     </RelativeLayout>
 
                 </LinearLayout>
-                
+
                 <!-- 不存在需要进行中的任务 -->
                 <RelativeLayout
                     android:id="@+id/layout_task_not_complete"
                     android:layout_width="match_parent"
                     android:layout_height="220dp"
                     android:layout_marginTop="2px"
-                    android:visibility="gone"
-                    android:background="@color/colorWhite">
+                    android:background="@color/colorWhite"
+                    android:visibility="gone">
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/icon_task_not_complete"
-                        android:layout_centerInParent="true"/>
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/icon_task_not_complete"/>
 
                 </RelativeLayout>
-
 
             </LinearLayout>
 

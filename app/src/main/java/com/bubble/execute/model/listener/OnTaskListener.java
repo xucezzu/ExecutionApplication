@@ -1,5 +1,7 @@
 package com.bubble.execute.model.listener;
 
+import com.bubble.execute.model.bean.HomeDataResponse;
+
 /**
  * @Author：徐长策 E-Mail: xuce_zzu@163.com
  * Date：2018/12/22
@@ -15,7 +17,7 @@ public interface OnTaskListener {
          * @param alertMsg
          * @param returnData
          */
-        void onSuccess(String errCode, String alertMsg, String returnData);
+        void onSuccess(String errCode, String alertMsg, HomeDataResponse.HomeDataMottoResponse.ReturnData returnData);
 
         /**
          * 获取今日寄语 失败
@@ -26,7 +28,7 @@ public interface OnTaskListener {
         void onFailed(String errCode, String alertMsg);
     }
 
-    interface OnTaskHomeListener{
+    interface OnTaskHomeListener {
         /**
          * 获取首页任务数据 成功
          *
@@ -34,7 +36,7 @@ public interface OnTaskListener {
          * @param alertMsg
          * @param returnData
          */
-        void onSuccess(String errCode, String alertMsg, String returnData);
+        void onSuccess(String errCode, String alertMsg,HomeDataResponse.HomeDataTaskResponse.HomeTaskData returnData);
 
         /**
          * 获取首页任务数据 失败

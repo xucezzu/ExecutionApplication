@@ -152,7 +152,6 @@ public class ConstantUtil {
         }
     }
 
-
     /**
      * 判断时间格式 格式必须为“YYYY-MM-dd”
      * 2004-2-30 是无效的
@@ -174,5 +173,23 @@ public class ConstantUtil {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    /**
+     * 转成全角字符
+     * @param input
+     * @return
+     */
+    public static String ToDBC(String input) {
+        char[] c = input.toCharArray();
+        for (int i = 0; i< c.length; i++) {
+            if (c[i] == 12288) {
+                c[i] = (char) 32;
+                continue;
+            }if (c[i]> 65280&& c[i]< 65375) {
+                c[i] = (char) (c[i] - 65248);
+            }
+        }
+        return new String(c);
     }
 }
