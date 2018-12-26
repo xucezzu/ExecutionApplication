@@ -5,6 +5,7 @@ import android.content.Context;
 import android.icu.text.SimpleDateFormat;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -53,7 +54,7 @@ public class TabHomeFragment extends Fragment implements ITabHomeFragment {
     private Context mContext = getActivity();
 
     private ImageView mImageTitle, mImageLeft, mImageRight, mImageEdit;
-    private TextView mTextTitle, mTextMotto;
+    private TextView mTextTitle, mTextMotto, mTextSurplusTime, mTextTaskContent, mTextCycle;
     private RelativeLayout mLayoutIntoEdit;
     private RecyclerView mRecyclerTask;
     private SwipeRefreshLayout mRefreshLayout;
@@ -61,6 +62,8 @@ public class TabHomeFragment extends Fragment implements ITabHomeFragment {
     private HomeTaskStepAdapter mHomeTaskStepAdapter;
     private List<TaskStepBean> mTaskStepBeans;
     private IHomeTaskPresenter mIHomeTaskPresenter;
+    private CountDownTimer mTaskCountDownTimer;
+    private long mTaskEndTime = 0;
     /**
      * 刷新加载状态, 今日寄语&&任务
      */
@@ -81,13 +84,16 @@ public class TabHomeFragment extends Fragment implements ITabHomeFragment {
         mImageTitle.setVisibility(View.VISIBLE);
         mRefreshLayout = view.findViewById(R.id.swipe_home);
         mTextMotto = view.findViewById(R.id.text_motto_content);
+        mTextSurplusTime = view.findViewById(R.id.surplus_time);
+        mTextTaskContent = view.findViewById(R.id.text_content_task);
+        mTextCycle = view.findViewById(R.id.text_time_task);
         // 设置RecycleView
         mRecyclerTask = view.findViewById(R.id.recycler_home_task);
         LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerTask.setLayoutManager(layoutManager);
         // Todo 注意该《TaskStepBean》Data，赋值的地方才需要加载，这个地方属于初始化的地方，必须拿到数据才能赋值，等功能出来后再做调整
-        mHomeTaskStepAdapter = new HomeTaskStepAdapter(mContext, mTaskStepBeans);
+        mHomeTaskStepAdapter = new HomeTaskStepAdapter(getContext(), mTaskStepBeans);
         mRecyclerTask.setAdapter(mHomeTaskStepAdapter);
         // 进入编辑页面
         mLayoutIntoEdit = view.findViewById(R.id.layout_home_edit);
@@ -159,6 +165,12 @@ public class TabHomeFragment extends Fragment implements ITabHomeFragment {
     }
 
     @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        mTaskCountDownTimer.onFinish();
+    }
+
+    @Override
     public void loadHomeData() {
         mIHomeTaskPresenter.getHomeMottoData();
         mIHomeTaskPresenter.getHomeTaskData();
@@ -195,8 +207,10 @@ public class TabHomeFragment extends Fragment implements ITabHomeFragment {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void setHomeTaskContent(String taskContent, String taskStartTime, String taskEndTime, String taskStep) {
+        // 展示任务步骤列表
         JSONArray array = JSONArray.parseArray(taskStep);
         TaskStepBean taskStepBean;
         mTaskStepBeans.clear();
@@ -211,6 +225,28 @@ public class TabHomeFragment extends Fragment implements ITabHomeFragment {
         mHomeTaskStepAdapter.notifyDataSetChanged();
         for (int i = 0; i < mTaskStepBeans.size(); i++) {
             LogUtil.d("获取的列表内容【" + i + "】：" + mTaskStepBeans.get(i).getTaskStep() + " | " + mTaskStepBeans.get(i).getTaskContent() + " | " + mTaskStepBeans.get(i).getTaskStatus());
+        }
+        // 展示其他内容
+        mTextTaskContent.setText(ConstantUtil.ToDBC(taskContent));
+        mTextCycle.setText(taskStartTime + "  -  " + taskEndTime);
+        LogUtil.d("结束时间时间戳：" + ConstantUtil.dateToStamp(taskEndTime) + " 当前时间戳：" + System.currentTimeMillis());
+        mTaskEndTime = ConstantUtil.dateToStamp(taskEndTime);
+        if (mTaskEndTime - System.currentTimeMillis() > 0) {
+            mTaskCountDownTimer = new CountDownTimer(mTaskEndTime - System.currentTimeMillis(), 60000) {
+                @RequiresApi(api = Build.VERSION_CODES.N)
+                @Override
+                public void onTick(long millisUntilFinished) {
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH : mm");
+                    LogUtil.d("剩余时间：" + simpleDateFormat.format(millisUntilFinished));
+                    mTextSurplusTime.setText(simpleDateFormat.format(millisUntilFinished));
+                }
+
+                @Override
+                public void onFinish() {
+
+                }
+            };
+            mTaskCountDownTimer.start();
         }
     }
 }

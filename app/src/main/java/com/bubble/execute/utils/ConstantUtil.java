@@ -8,6 +8,7 @@ import com.bubble.execute.R;
 import com.muddzdev.styleabletoastlibrary.StyleableToast;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.EmptyStackException;
@@ -191,5 +192,16 @@ public class ConstantUtil {
             }
         }
         return new String(c);
+    }
+
+    public static long dateToStamp(String date){
+        long timeStamp = 0;
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd EEE HH:mm");
+        try {
+            timeStamp = simpleDateFormat.parse(date).getTime();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return timeStamp;
     }
 }

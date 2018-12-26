@@ -19,4 +19,5 @@
     <color name="colorLoginButton">#FFFFFF</color>
     <color name="colorLoginButtonText">#000000</color>
     <color name="colorLoginButtonTextNot">#918f8f</color>
+    <color name="colorHasComplete">#0e932e</color>
 </resources>

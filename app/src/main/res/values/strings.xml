@@ -45,7 +45,7 @@
     <string name="home_task_step">任务步骤</string>
     <string name="home_task_step_item_left">Step.</string>
     <string name="home_task_step_text_hint">该步骤详细内容</string>
-    <string name="home_task_step_content">1：先与产品沟通好具体的需求逻辑，要问清需要注意的点\n2：再与UI设计确定好设计\n3：然后在开发具体逻辑，开发之前一定要把逻辑弄清楚\n4：做完功能后，务必亲自测试一下，测试完成后提交代码\n5：剩下的时间，抓紧百度几篇文章看一下RXJava的设计模式，一定要达到熟记于心</string>
+    <string name="home_task_step_content">(长摁每步内容即可更改状态)</string>
     <!-- 目标页面 -->
     <string name="target_day_title">每日必做</string>
     <string name="target_date_title">重要事项</string>

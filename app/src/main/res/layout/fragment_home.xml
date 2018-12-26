@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
@@ -85,22 +86,42 @@
                             android:textSize="16sp"
                             android:textStyle="bold"/>
 
-                        <TextView
+                        <RelativeLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
                             android:layout_marginEnd="10dp"
-                            android:text="剩余: 1小时24分"
-                            android:textColor="@color/colorBlack"
-                            android:textSize="14sp"/>
+                            android:paddingTop="7dp"
+                            android:paddingBottom="7dp">
+
+                            <TextView
+                                android:id="@+id/text_over"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:text="OVER"
+                                android:textColor="@color/colorBlack"
+                                android:textSize="14sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:id="@+id/surplus_time"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerHorizontal="true"
+                                android:textColor="@color/colorBlack"
+                                android:textSize="14sp"/>
+
+                        </RelativeLayout>
 
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1px"
                             android:layout_alignParentBottom="true"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginRight="0dp"
                             android:background="@color/colorGray"/>
 
                     </RelativeLayout>
@@ -130,7 +151,6 @@
                             android:layout_marginTop="10dp"
                             android:layout_marginEnd="10dp"
                             android:lineSpacingMultiplier="1.2"
-                            android:text="完成公司金付通项目的注册逻辑开发，再学习RxJava的设计模式"
                             android:textColor="@color/colorBlack"
                             android:textSize="14sp"/>
 
@@ -148,7 +168,7 @@
                     <RelativeLayout
                         android:id="@+id/layout_task_progress"
                         android:layout_width="match_parent"
-                        android:layout_height="44dp"
+                        android:layout_height="wrap_content"
                         android:background="@color/colorWhite">
 
                         <TextView
@@ -163,12 +183,13 @@
                             android:textStyle="bold"/>
 
                         <TextView
+                            android:id="@+id/text_time_task"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginEnd="10dp"
-                            android:text="2018/11/25 09:45 ~ 2018/11/25 14:25"
+                            android:layout_below="@+id/text_time_task_title"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="10dp"
                             android:textColor="@color/colorBlack"
                             android:textSize="14sp"/>
 
@@ -197,36 +218,43 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
 
-                        <TextView
-                            android:id="@+id/text_step_task_title"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="10dp"
-                            android:text="@string/home_task_step"
-                            android:textColor="@color/colorBlack"
-                            android:textSize="16sp"
-                            android:textStyle="bold"/>
+                        <RelativeLayout
+                            android:id="@+id/layout_task_step"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginStart="10dp">
 
-                        <TextView
-                            android:id="@+id/text_step_task"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/text_step_task_title"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginEnd="10dp"
-                            android:lineSpacingMultiplier="1.2"
-                            android:text="@string/home_task_step_content"
-                            android:textColor="@color/colorBlack"
-                            android:textSize="16sp"
-                            android:visibility="gone"/>
+                            <TextView
+                                android:id="@+id/text_step_task_title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:text="@string/home_task_step"
+                                android:textColor="@color/colorBlack"
+                                android:textSize="16sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:id="@+id/text_step_task"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="10dp"
+                                android:layout_toEndOf="@+id/text_step_task_title"
+                                android:lineSpacingMultiplier="1.2"
+                                android:text="@string/home_task_step_content"
+                                android:textColor="@color/colorGray"
+                                android:textSize="10sp"
+                                android:visibility="visible"
+                                tools:ignore="SmallSp"/>
+                        </RelativeLayout>
+
 
                         <android.support.v7.widget.RecyclerView
                             android:id="@+id/recycler_home_task"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/text_step_task_title"
+                            android:layout_below="@+id/layout_task_step"
                             android:layout_marginStart="10dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginEnd="10dp"
@@ -236,10 +264,9 @@
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1px"
-                            android:layout_below="@+id/text_step_task"
-                            android:layout_marginLeft="0dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="0dp"
+                            android:layout_below="@+id/layout_task_step"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
                             android:background="@color/colorGray"/>
                     </RelativeLayout>
 
